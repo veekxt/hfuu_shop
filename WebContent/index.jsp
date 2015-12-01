@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ page language="java" %> 
+    <%@ page import="java.sql.*"%>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -41,7 +43,7 @@
 				</ul>
 				<form class="navbar-form navbar-left" role="search">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
+						<input type="text" class="form-control" placeholder="关键字">
 					</div>
 					<button type="submit" class="btn btn-default">查找物品</button>
 				</form>
@@ -98,7 +100,42 @@
 				</div>
 
 			</div>
-			<div class="col-md-8">这是右侧主体,暂定：展开左侧分类</div>
+			<div class="col-md-8">这是右侧主体,暂定：展开左侧分类
+<%
+
+			// 驱动程序名
+String driver = "com.mysql.jdbc.Driver";
+// URL指向要访问的数据库名scutcs
+String url = "jdbc:mysql://127.0.0.1:3306/mys";
+// MySQL配置时的用户名
+String user = "root";
+// MySQL配置时的密码
+String password = "44222";
+try
+{
+    // 加载驱动程序
+    Class.forName(driver).newInstance();
+    // 连续数据库
+    Connection conn = DriverManager.getConnection(url, user, password);
+    if(!conn.isClosed())
+        out.println("Succeeded connecting to the Database!");
+    // statement用来执行SQL语句
+    Statement statement = conn.createStatement();
+    ResultSet rs = statement.executeQuery("select * from stu");
+    while(rs.next())
+    {
+        out.println(rs.getString("姓名"));
+    }
+}
+catch(ClassNotFoundException e)
+{
+    System.out.println("Sorry,can`t find the Driver!");
+    e.printStackTrace();
+}
+
+%>
+
+			</div>
 		</div>
 	</div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -113,6 +150,5 @@
 				2015 - 2015 </small>
 		</p>
 	</footer>
-
 </body>
 </html>
