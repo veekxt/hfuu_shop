@@ -61,8 +61,8 @@
 							<li><a href="#">退出登录</a></li>
 						</ul>
 					</li>
-					<li><a href="#">登录</a></li>
-					<li><a href="#">注册</a></li>
+					<li><a href="src/user/login.jsp">登录</a></li>
+					<li><a href="src/user/register.jsp">注册</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -96,11 +96,11 @@
 								class="list-group-item">用户5：物品h</a>
 						</div>
 					</div>
-
 				</div>
-
 			</div>
 			<div class="col-md-8">这是右侧主体,暂定：展开左侧分类
+			<br />
+            某学生表测试<br />
 <%
 
 			// 驱动程序名
