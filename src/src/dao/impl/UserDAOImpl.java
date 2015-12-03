@@ -11,9 +11,12 @@ public class UserDAOImpl implements IUserDAO{
 	}
 	public boolean doCreate(User user) throws Exception{
 		boolean flag = false ;
+		ResultSet max_id=this.conn.prepareStatement("select max(id) from user").executeQuery();
+		max_id.next();
+		String maxId=max_id.getString("max(id)");
 		String sql = "INSERT INTO user(id,email,pwd,name,stu_num) VALUES (?,?,?,?,?)" ;
 		this.pstmt = this.conn.prepareStatement(sql) ;
-		this.pstmt.setInt(1,user.getId()) ;
+		this.pstmt.setInt(1,1+Integer.parseInt(maxId));
 		this.pstmt.setString(2,user.getEmail()) ;
 		this.pstmt.setString(3,user.getPwd()) ;
 		this.pstmt.setString(4,user.getName()) ;
@@ -58,7 +61,7 @@ public class UserDAOImpl implements IUserDAO{
 			user.setName(rs.getString(4)) ;
 			user.setStu_num(rs.getString(5)) ;
 		}
-		this.pstmt.close() ;
+		this.pstmt.close();
 		return user ;
 	}
 }

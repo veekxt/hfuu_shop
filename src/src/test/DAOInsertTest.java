@@ -21,7 +21,7 @@ public class DAOInsertTest {
 			emp.setName("лн╦Г - " + x) ;
 			emp.setPwd("123") ;
 			emp.setEmail("1234@qq.com");
-			DAOFactory.getIUserDAOInstance().doCreate(emp) ;
+			DAOFactory.getIUserDAOInstance().doCreate(emp);
 		}
 		List<User> all = DAOFactory.getIUserDAOInstance().findAll("") ;
 		Iterator<User> iter = all.iterator() ;

@@ -21,6 +21,9 @@ public class UserDAOProxy implements IUserDAO {
 			if(this.dao.findById(user.getId()) == null){
 				flag = this.dao.doCreate(user) ;
 			}
+			else{
+				flag = this.dao.doCreate(user) ;
+			}
 		}catch(Exception e){
 			throw e ;
 		}finally{
