@@ -1,6 +1,6 @@
 package src.vo;
 
-public class Users {
+public class User {
 private int id;
 private String email;
 private String pwd;
