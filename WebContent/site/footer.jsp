@@ -3,7 +3,8 @@
     
     <style type=text/css>
 footer {
-    margin-top: 1em;
+margin-top: 1em;
+padding:5px;
     bottom: 2px;
     clear: both;
     display: block;
@@ -17,7 +18,6 @@ footer small {
     font-size: 12px
 }
     </style>
-    
     <footer>
         <p>
             <small> Hfuu物品交易-发布平台，Powered By <a href="about" target="_blank">HfuuShop</a>

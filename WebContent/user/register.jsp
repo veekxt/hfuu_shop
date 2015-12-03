@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page language="java" %> 
-    <%@ page import="java.sql.*"%>
+    <%@ page language="java" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -58,7 +57,7 @@
           <div class="form-group">
   <label class="col-sm-2 control-label"></label>
     <div class="col-sm-10" style="text-align:left;">
-      <input type="checkbox" value=""> 我已阅读了<a href="src/user/agreement.jsp" target="_blank">《用户协议》</a>
+      <input type="checkbox" value=""> 我已阅读了<a href="user/agreement.jsp" target="_blank">《用户协议》</a>
     </div>
   </div>
         

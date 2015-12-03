@@ -9,19 +9,14 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<jsp:include page="../site/head.jsp" />
 <base href=" <%=basePath%>">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <title>登录-合肥学院物品交易</title>
-<!-- Bootstrap -->
-<link href="src/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
-<link href="src/index.css" rel="stylesheet">
 <link href="src/css/sign.css" rel="stylesheet">
 
 </head>
 <body>
+<jsp:include page="../site/header.jsp"  flush="true" />
     <div class="container">
       <form class="form-signin">
         <h2 class="form-signin-heading">登录网站</h2>
@@ -36,7 +31,7 @@
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
       </form>
-
     </div> <!-- /container -->
+    <jsp:include page="../site/footer.jsp" />
 </body>
 </html>
