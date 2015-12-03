@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-//Servlet²âÊÔ£¬¶ÔÓ¦ÓÚÍøÕ¾µÄ/st
+//Servletæµ‹è¯•ï¼Œå¯¹åº”äºç½‘ç«™çš„/st
 /**
  * Servlet implementation class SevletTest
  */
@@ -30,6 +30,7 @@ public class SevletTest extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out=response.getWriter();
+		//æ§åˆ¶å°ä¿¡æ¯
 		System.out.println("OOK");
 		out.println("success! Servlet");
 	}
