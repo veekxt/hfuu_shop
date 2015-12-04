@@ -22,7 +22,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="list-group">
-							<a href="#" class="list-group-item active"> 分类 </a> <a
+							<a href="#" class="list-group-item list-group-item-info"> 分类 </a> <a
 								href="?ceta=0" class="list-group-item"><span class="badge">322</span>全部</a>
 							<a href="#" class="list-group-item"><span class="badge">14</span>生活出行</a>
 							<a href="#" class="list-group-item"><span class="badge">27</span>书籍</a>
@@ -50,7 +50,7 @@
 -->
 			<div class="col-md-8">
 				<div class="list-group">
-					<a href="#" class="list-group-item active">全部分类-最新 </a>
+					<a href="#" class="list-group-item list-group-item-info">全部分类-最新 </a>
 					<!-- 每个商品占一个此div -->
                     <div class="list-group-item">
                         <div class="row">
