@@ -18,7 +18,22 @@
 
 <body>
 <jsp:include page="../site/header.jsp"  flush="true" />
-
+<%
+if(request.getAttribute("isRegister")!=null){
+%>
+<div class="alert alert-danger" role="alert">
+<%if(!request.getAttribute("isEmail").equals("")){
+    out.print(request.getAttribute("isEmail")+"<br />");}
+if(!request.getAttribute("isPwd").equals("")){
+    out.print(request.getAttribute("isPwd")+"<br />");}
+if(!request.getAttribute("isPwdSame").equals("")){
+    out.print(request.getAttribute("isPwdSame"));
+}
+%>
+</div>
+<%
+}
+%>
     <div class="container">
 <div class="xt_mid">
 

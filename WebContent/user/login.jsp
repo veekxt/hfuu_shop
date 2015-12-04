@@ -17,6 +17,10 @@
 </head>
 <body>
 <jsp:include page="../site/header.jsp"  flush="true" />
+<%if(request.getAttribute("isRegister")!=null){
+out.print("<div class=\"alert alert-success\" role=\"alert\">注册成功，现在你可以登录</div>");
+}
+%>
     <div class="container">
       <form class="form-signin" action="LoginServlet" Method="Post">
         <h2 class="form-signin-heading">登录网站</h2>
