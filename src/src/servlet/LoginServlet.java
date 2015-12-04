@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 					
 				}
 				else{
-					
+					request.setAttribute("isLogin", false);
 					request.getRequestDispatcher("/user/login.jsp").forward(request, response);
 				}
 			} catch (Exception e) {
