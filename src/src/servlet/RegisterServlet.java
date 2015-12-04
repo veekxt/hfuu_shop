@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import src.factory.DAOFactory;
-import src.vo.MD5;
+import src.tools.MD5;
 import src.vo.User;
 
 /**
