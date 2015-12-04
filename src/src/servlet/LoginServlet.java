@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import src.factory.DAOFactory;
 import src.tools.MD5;
@@ -39,7 +40,15 @@ public class LoginServlet extends HttpServlet {
 				User user=	DAOFactory.getIUserDAOInstance().findByEmail(inputEmail);
                 String pass=	MD5.getMD5(MD5.getMD5(inputPassword));
 					if(user.getPwd().equals(pass)){
+						//session状态
+//					HttpSession session=request.getSession();
+//				     String sessionId=	session.getId();
+//				     session.setAttribute("sessionId",sessionId);
+//					session.setAttribute("loginstates", true);
 						request.getRequestDispatcher("/index.jsp").forward(request, response);
+					}else{
+						
+						request.getRequestDispatcher("/user/login.jsp").forward(request, response);
 					}
 					
 				}
