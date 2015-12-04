@@ -4,7 +4,7 @@
 */
 USE hfuu_shop;
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
+CREATE TA BLE `user` (
   `id` int(32) NOT NULL,
   `email` char(255) COLLATE utf8_bin NOT NULL,
   `pwd` char(255) COLLATE utf8_bin NOT NULL,
