@@ -18,12 +18,12 @@
 <body>
 <jsp:include page="../site/header.jsp"  flush="true" />
     <div class="container">
-      <form class="form-signin">
+      <form class="form-signin" action="LoginServlet" Method="Post">
         <h2 class="form-signin-heading">登录网站</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="邮箱地址" required autofocus>
+        <input type="email" id="inputEmail" class="form-control" name="inputEmail" placeholder="邮箱地址" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="密码" required>
+        <input type="password" id="inputPassword" class="form-control" name="inputPassword" placeholder="密码" required>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> 下次自动登录

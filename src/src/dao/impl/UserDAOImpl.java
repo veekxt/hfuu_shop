@@ -64,4 +64,22 @@ public class UserDAOImpl implements IUserDAO{
 		this.pstmt.close();
 		return user ;
 	}
+	public User findByEmail(String str) throws Exception{
+		User user = null ;
+		
+		String sql = "SELECT id,email,pwd,name,stu_num FROM user WHERE Email=?" ;
+		this.pstmt = this.conn.prepareStatement(sql) ;
+		this.pstmt.setString(1,str) ;
+		ResultSet rs = this.pstmt.executeQuery() ;
+		if(rs.next()){
+			user = new User() ;
+			user.setId(rs.getInt(1)) ;
+			user.setEmail(rs.getString(2)) ;
+			user.setPwd(rs.getString(3)) ;
+			user.setName(rs.getString(4)) ;
+			user.setStu_num(rs.getString(5)) ;
+		}
+		this.pstmt.close();
+		return user ;
+	}
 }
