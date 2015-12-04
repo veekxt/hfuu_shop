@@ -47,40 +47,7 @@
 			</div>
 			<div class="col-md-8">这是右侧主体,暂定：展开左侧分类
 			<br />
-            某学生表测试<br />
-<%
 
-			// 驱动程序名
-String driver = "com.mysql.jdbc.Driver";
-// URL指向要访问的数据库名scutcs
-String url = "jdbc:mysql://127.0.0.1:3306/mys";
-// MySQL配置时的用户名
-String user = "root";
-// MySQL配置时的密码
-String password = "44222";
-try
-{
-    // 加载驱动程序
-    Class.forName(driver).newInstance();
-    // 连续数据库
-    Connection conn = DriverManager.getConnection(url, user, password);
-    if(!conn.isClosed())
-        out.println("Succeeded connecting to the Database!");
-    // statement用来执行SQL语句
-    Statement statement = conn.createStatement();
-    ResultSet rs = statement.executeQuery("select * from stu");
-    while(rs.next())
-    {
-        out.println(rs.getString("姓名"));
-    }
-}
-catch(ClassNotFoundException e)
-{
-    System.out.println("Sorry,can`t find the Driver!");
-    e.printStackTrace();
-}
-
-%>
 
 			</div>
 		</div>

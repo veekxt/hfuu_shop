@@ -18,7 +18,7 @@ public class DAOInsertTest {
 		for(int x=0;x<5;x++){
 			emp = new User() ;
 			emp.setId(1000 + x) ;
-			emp.setName("лн╦Г - " + x) ;
+			emp.setName("t" + x) ;
 			emp.setPwd("123") ;
 			emp.setEmail("1234@qq.com");
 			DAOFactory.getIUserDAOInstance().doCreate(emp);
