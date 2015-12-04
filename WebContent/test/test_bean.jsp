@@ -2,9 +2,9 @@
 <!-- //输出“谢涛，xt方法”-->
 
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-        <%@ page language="java" %>
-    <%@ page import="src.test.*"%>
+	pageEncoding="utf-8"%>
+<%@ page language="java"%>
+<%@ page import="src.test.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,10 +12,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
+	<%
 main tmp=new main();
 String s=tmp.xt();
 %>
-<%=s%>
+	<%=s%>
 </body>
 </html>
