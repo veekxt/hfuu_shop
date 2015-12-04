@@ -60,5 +60,19 @@ public class UserDAOProxy implements IUserDAO {
 		// TODO Auto-generated method stub
 		return user;
 	}
+	@Override
+	public User findByEmail(String str) throws Exception {
+		User user = null ;
+		try{
+			user = this.dao.findByEmail(str) ;
+		}catch(Exception e){
+			throw e ;
+		}finally{
+			this.dbc.close() ;
+		}
+		// TODO Auto-generated method stub
+		return user;
+	}
+	}
 
-}
+
