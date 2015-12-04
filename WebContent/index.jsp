@@ -14,7 +14,6 @@
 <jsp:include page="site/head.jsp" />
 <title>物品交易-合肥学院-首页</title>
 </head>
-
 <body>
 	<jsp:include page="site/header.jsp" />
 	<div class="container">

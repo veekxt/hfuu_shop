@@ -29,11 +29,11 @@ public class LoginServlet extends HttpServlet {
         super();
     
     }
-
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String inputEmail=request.getParameter("inputEmail");
-	    String inputPassword=request.getParameter("inputPassword");
+		String inputPassword=request.getParameter("inputPassword");
+		String autoLogin=request.getParameter("auto_login");
 //	    Cookie[]cookies=request.getCookies();
 //	   String cookieValue= GetCookie.getCookie(cookies, "idNum");
 //	   if(cookieValue!=null){
@@ -44,21 +44,19 @@ public class LoginServlet extends HttpServlet {
 //		 request.getRequestDispatcher("/index.jsp").forward(request, response);  
 //		   
 //	   }
-	    
+	   
 			try {
 				if(DAOFactory.getIUserDAOInstance().findByEmail(inputEmail)!=null){
 				
 				User user=	DAOFactory.getIUserDAOInstance().findByEmail(inputEmail);
                 String pass=	MD5.getMD5(MD5.getMD5(inputPassword));
 					if(user.getPwd().equals(pass)){
-				   String checkstate="sss";
-				  checkstate =(String)request.getParameter("checkbox");
 				  
-				   if(checkstate!=null&&checkstate.equals("on")){
-					   Cookie cookie=new Cookie("idNum",user.getEmail());
-					   cookie.setMaxAge(60*60);
-					   response.addCookie(cookie);
-					   }
+				    if(autoLogin!=null &&autoLogin.equals("on")){
+				    	Cookie cookieE=new Cookie("LOGIN_EMAIL",inputEmail);
+				    	cookieE.setMaxAge(60*60*24*7);
+				    	response.addCookie(cookieE);
+				    }
 					HttpSession session=request.getSession();
 				     String sessionId=session.getId();
 				     session.setAttribute("Email",user.getEmail());
@@ -79,8 +77,6 @@ public class LoginServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 	}
-
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request,response);
 	}
