@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import src.factory.DAOFactory;
-import src.tools.GetCookie;
 import src.tools.MD5;
 import src.vo.User;
 
@@ -34,17 +32,6 @@ public class LoginServlet extends HttpServlet {
 		String inputEmail=request.getParameter("inputEmail");
 		String inputPassword=request.getParameter("inputPassword");
 		String autoLogin=request.getParameter("auto_login");
-//	    Cookie[]cookies=request.getCookies();
-//	   String cookieValue= GetCookie.getCookie(cookies, "idNum");
-//	   if(cookieValue!=null){
-//			HttpSession session=request.getSession();
-//		     String sessionId=session.getId();
-//		     session.setAttribute("Email",cookieValue);
-//			session.setAttribute("isLogin", true);
-//		 request.getRequestDispatcher("/index.jsp").forward(request, response);  
-//		   
-//	   }
-	   
 			try {
 				if(DAOFactory.getIUserDAOInstance().findByEmail(inputEmail)!=null){
 				
@@ -58,7 +45,6 @@ public class LoginServlet extends HttpServlet {
 				    	response.addCookie(cookieE);
 				    }
 					HttpSession session=request.getSession();
-				     String sessionId=session.getId();
 				     session.setAttribute("Email",user.getEmail());
 					session.setAttribute("isLogin",true);
 						request.getRequestDispatcher("/index.jsp").forward(request, response);
