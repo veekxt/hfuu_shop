@@ -39,8 +39,6 @@ public class LoginServlet extends HttpServlet {
 				User user=	DAOFactory.getIUserDAOInstance().findByEmail(inputEmail);
                 String pass=	MD5.getMD5(MD5.getMD5(inputPassword));
 					if(user.getPwd().equals(pass)){
-						
-						
 						request.getRequestDispatcher("/index.jsp").forward(request, response);
 					}
 					
