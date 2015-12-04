@@ -1,5 +1,5 @@
    <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="javax.servlet.http.HttpSession,src.vo.*,src.tools.*"%>
     <nav class="navbar navbar-default">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -25,6 +25,11 @@
                     </div>
                     <button type="submit" class="btn btn-default">查找物品</button>
                 </form>
+              
+                <% Boolean isLogin=(Boolean)session.getAttribute("isLogin");
+                String email=(String)session.getAttribute("Email");
+                
+                %>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">我的收藏</a></li>
                     <li><a href="#">购物车(0)</a></li>
@@ -39,8 +44,14 @@
                             <li><a href="#">退出登录</a></li>
                         </ul>
                     </li>
+                    <%if (isLogin!=null){
+                    	%>
+                    	<li><a><%=email%></a></li>
+                    	<%
+                    }else{%>
                     <li><a href="user/login.jsp">登录</a></li>
                     <li><a href="user/register.jsp">注册</a></li>
+                    <% }%>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

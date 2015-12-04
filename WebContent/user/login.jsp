@@ -36,7 +36,7 @@ out.print("<div class=\"alert alert-danger\" role=\"alert\">登录失败，请�
         <input type="password" id="inputPassword" class="form-control" name="inputPassword" placeholder="密码" required>
         <div class="checkbox">
           <label>
-            <input type="checkbox" value="remember-me"> 下次自动登录
+            <input type="checkbox"name="checkbox"> 下次自动登录
           </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
