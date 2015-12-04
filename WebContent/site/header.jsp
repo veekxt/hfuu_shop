@@ -41,10 +41,10 @@
                             <li><a href="#">个人资料</a></li>
                             <li><a href="#">设置</a></li>
                             <li><a href="#">我的消息</a></li>
-                            <li><a href="#">退出登录</a></li>
+                            <li><a href="isLoginServlet">退出登录</a></li>
                         </ul>
                     </li>
-                    <%if (isLogin!=null){
+                    <%if (isLogin!=null&&isLogin==true){
                     	%>
                     	<li><a><%=email%></a></li>
                     	<%
