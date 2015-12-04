@@ -21,6 +21,12 @@
 out.print("<div class=\"alert alert-success\" role=\"alert\">注册成功，现在你可以登录</div>");
 }
 %>
+
+<%if(request.getAttribute("isLogin")!=null){
+out.print("<div class=\"alert alert-danger\" role=\"alert\">登录失败，请检查邮箱和密码</div>");
+}
+%>
+
     <div class="container">
       <form class="form-signin" action="LoginServlet" Method="Post">
         <h2 class="form-signin-heading">登录网站</h2>
