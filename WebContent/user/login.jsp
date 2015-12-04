@@ -22,7 +22,7 @@ out.print("<div class=\"alert alert-success\" role=\"alert\">注册成功，现�
 }
 %>
 
-<%if(request.getAttribute("isLogin")!=null){
+<%if(request.getAttribute("isLoginOk")!=null && request.getAttribute("isLoginOk").equals("false")){
 out.print("<div class=\"alert alert-danger\" role=\"alert\">登录失败，请检查邮箱和密码</div>");
 }
 %>

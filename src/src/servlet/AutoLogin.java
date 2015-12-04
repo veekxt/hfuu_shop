@@ -38,16 +38,19 @@ public class AutoLogin implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
+
 		HttpServletRequest req = (HttpServletRequest) request ;
 		HttpSession ses = req.getSession() ;
 		
 		Cookie[] cookies = req.getCookies();
 		String emailCookie=null;
-		for(Cookie cookie:cookies){
-			if("LOGIN_EMAIL".equals(cookie.getName())){
-				emailCookie=cookie.getValue();
-				ses.setAttribute("Email",emailCookie);
-				ses.setAttribute("isLogin", true);
+		if(cookies!=null){
+			for(Cookie cookie:cookies){
+				if("LOGIN_EMAIL".equals(cookie.getName())){
+					emailCookie=cookie.getValue();
+					ses.setAttribute("Email",emailCookie);
+					ses.setAttribute("isLogin", true);
+				}
 			}
 		}
 		// pass the request along the filter chain

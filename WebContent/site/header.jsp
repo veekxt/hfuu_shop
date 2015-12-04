@@ -46,7 +46,7 @@
                     </li>
                     <%if (isLogin!=null&&isLogin==true){
                     	%>
-                    	<li><a><%=email%></a></li>
+                    	<li><a href="#"><%=email%></a></li>
                     	<%
                     }else{%>
                     <li><a href="user/login.jsp">登录</a></li>

@@ -60,16 +60,15 @@ public class LoginServlet extends HttpServlet {
 					HttpSession session=request.getSession();
 				     String sessionId=session.getId();
 				     session.setAttribute("Email",user.getEmail());
-					session.setAttribute("isLogin", true);
+					session.setAttribute("isLogin",true);
 						request.getRequestDispatcher("/index.jsp").forward(request, response);
 					}else{
-						request.setAttribute("isLogin", false);
+						request.setAttribute("isLoginOk", "false");
 						request.getRequestDispatcher("/user/login.jsp").forward(request, response);
 					}
-					
 				}
 				else{
-					request.setAttribute("isLogin", false);
+					request.setAttribute("isLoginOk", "false");
 					request.getRequestDispatcher("/user/login.jsp").forward(request, response);
 				}
 			} catch (Exception e) {
