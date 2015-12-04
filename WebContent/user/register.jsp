@@ -74,7 +74,7 @@ if(!request.getAttribute("isPwdSame").equals("")){
           <div class="form-group">
   <label class="col-sm-2 control-label"></label>
     <div class="col-sm-10" style="text-align:left;">
-      <input type="checkbox" value=""> 我已阅读了<a href="user/agreement.jsp" target="_blank">《用户协议》</a>
+       同意注册说明您已阅读<a href="user/agreement.jsp" target="_blank">《用户协议》</a>
     </div>
   </div>
         

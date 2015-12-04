@@ -13,8 +13,6 @@ public class GetCookie {
 				return cookieValue;
 				
 			}
-			
-			
 		}
 		
 return null;
