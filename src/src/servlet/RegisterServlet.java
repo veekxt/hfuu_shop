@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import src.factory.DAOFactory;
+import src.dbHandle.UserDbHandle;
 import src.tools.MD5;
 import src.vo.User;
 
@@ -35,15 +35,16 @@ public class RegisterServlet extends HttpServlet {
 		String isPwdSame="";
 		String isPwd="";
 		String isEmail="";
+		UserDbHandle userDbHandle= new UserDbHandle();
 		try {
 			if (email.matches("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$")
-					&& ((DAOFactory.getIUserDAOInstance().findByEmail(email)) == null)) {
+					&& ((userDbHandle.findByEmail(email)) == null)) {
 				if (pwd.matches("[A-Za-z0-9]{6,}")) {
 					if (pwd2.equals(pwd)) {
 						pwd = MD5.getMD5(MD5.getMD5(pwd));
 						user.setEmail(email);
 						user.setPwd(pwd);
-						if (DAOFactory.getIUserDAOInstance().doCreate(user)) {
+						if (userDbHandle.doCreate(user)) {
 							isRegister = true;
 						}
 						request.setAttribute("isRegister", isRegister);

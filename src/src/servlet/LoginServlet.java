@@ -9,10 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import src.factory.DAOFactory;
 import src.tools.MD5;
 import src.vo.User;
-
+import src.dbHandle.*;
 /**
  * Servlet implementation class LoginServlet
  */
@@ -32,10 +31,11 @@ public class LoginServlet extends HttpServlet {
 		String inputEmail=request.getParameter("inputEmail");
 		String inputPassword=request.getParameter("inputPassword");
 		String autoLogin=request.getParameter("auto_login");
+		UserDbHandle userDbHandle = new UserDbHandle();
 			try {
-				if(DAOFactory.getIUserDAOInstance().findByEmail(inputEmail)!=null){
-				
-				User user=	DAOFactory.getIUserDAOInstance().findByEmail(inputEmail);
+				//if(DAOFactory.getIUserDAOInstance().findByEmail(inputEmail)!=null){
+				if(userDbHandle.findByEmail(inputEmail)!=null){
+				User user=	userDbHandle.findByEmail(inputEmail);
                 String pass=	MD5.getMD5(MD5.getMD5(inputPassword));
 					if(user.getPwd().equals(pass)){
 				  

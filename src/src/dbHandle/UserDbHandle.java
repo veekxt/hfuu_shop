@@ -1,13 +1,18 @@
-package src.dao.impl;
+package src.dbHandle;
 import java.util.* ;
 import java.sql.* ;
-import src.dao.* ;
+
+import src.dbc.DatabaseConnection;
 import src.vo.* ;
-public class UserDAOImpl implements IUserDAO{
-	private Connection conn = null ;
+public class UserDbHandle{
+	private Connection conn = null;
 	private PreparedStatement pstmt = null ;
-	public UserDAOImpl(Connection conn){
-		this.conn = conn ;
+	public UserDbHandle(){
+		try {
+			this.conn=new DatabaseConnection().getConnection();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 	public boolean doCreate(User user) throws Exception{
 		boolean flag = false ;
