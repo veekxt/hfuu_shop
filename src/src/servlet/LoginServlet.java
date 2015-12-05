@@ -16,48 +16,53 @@ import src.dbHandle.*;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public LoginServlet() {
-        super();
-    
-    }
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String inputEmail=request.getParameter("inputEmail");
-		String inputPassword=request.getParameter("inputPassword");
-		String autoLogin=request.getParameter("auto_login");
-		UserDbHandle userDbHandle = new UserDbHandle();
-			try {
-				//if(DAOFactory.getIUserDAOInstance().findByEmail(inputEmail)!=null){
-				if(userDbHandle.findByEmail(inputEmail)!=null){
-				User user=	userDbHandle.findByEmail(inputEmail);
-                String pass=	MD5.getMD5(MD5.getMD5(inputPassword));
-					if(user.getPwd().equals(pass)){
-				  
-				    if(autoLogin!=null &&autoLogin.equals("on")){
-				    	Cookie cookieE=new Cookie("LOGIN_EMAIL",inputEmail);
-				    	cookieE.setMaxAge(60*60*24*7);
-				    	response.addCookie(cookieE);
-				    }
-					HttpSession session=request.getSession();
-				     session.setAttribute("Email",user.getEmail());
-					session.setAttribute("isLogin",true);
-						request.getRequestDispatcher("/index.jsp").forward(request, response);
-					}else{
-						request.setAttribute("isLoginOk", "false");
-						request.getRequestDispatcher("/user/login.jsp").forward(request, response);
-					}
-				}
-				else{
-					request.setAttribute("isLoginOk", "false");
-					request.getRequestDispatcher("/user/login.jsp").forward(request, response);
-				}
-			} catch (Exception e) {
-			
-				e.printStackTrace();
-			}
+	public LoginServlet() {
+		super();
+
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request,response);
+
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		String inputEmail = request.getParameter("inputEmail");
+		String inputPassword = request.getParameter("inputPassword");
+		String autoLogin = request.getParameter("auto_login");
+		UserDbHandle userDbHandle = new UserDbHandle();
+		try {
+			// if(DAOFactory.getIUserDAOInstance().findByEmail(inputEmail)!=null){
+			if (userDbHandle.findByEmail(inputEmail) != null) {
+				User user = userDbHandle.findByEmail(inputEmail);
+				String pass = MD5.getMD5(MD5.getMD5(inputPassword));
+				if (user.getPwd().equals(pass)) {
+
+					if (autoLogin != null && autoLogin.equals("on")) {
+						Cookie cookieE = new Cookie("LOGIN_EMAIL", inputEmail);
+						cookieE.setMaxAge(60 * 60 * 24 * 7);
+						response.addCookie(cookieE);
+					}
+					HttpSession session = request.getSession();
+					session.setAttribute("Email", user.getEmail());
+					session.setAttribute("isLogin", true);
+					request.getRequestDispatcher("/index.jsp").forward(request,
+							response);
+				} else {
+					request.setAttribute("isLoginOk", "false");
+					request.getRequestDispatcher("/user/login.jsp").forward(
+							request, response);
+				}
+			} else {
+				request.setAttribute("isLoginOk", "false");
+				request.getRequestDispatcher("/user/login.jsp").forward(
+						request, response);
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+	}
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 	}
 
 }
