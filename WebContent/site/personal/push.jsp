@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+    String path = request.getContextPath();
+String servletPath=path+"/GoodsCheckServlet";
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <div class="panel panel-info">
 <div class="panel-heading">
 <%
@@ -7,7 +12,8 @@
 %>
 </div>
 <div class="panel-body">
-<form　action="GoodsCheckServlet">
+
+ <form  action="<%=servletPath%>" method="post" enctype="multipart/form-data">
   <div class="form-group">
     <p>物品名称：</p>
     <input class="form-control" name="name-goods">
@@ -25,7 +31,7 @@
     <input type="file" name="img-goods">
     <p class="help-block">提醒：请上传真实物品照片</p>
   </div>
-  <button type="submit" class="btn btn-primary">发布</button>
+   <button type="submit" class="btn btn-primary">提交</button>
 </form>
 </div>
 </div>

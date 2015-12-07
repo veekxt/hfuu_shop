@@ -13,7 +13,7 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="#" style="font-size: 24px">合肥学院物品交易网</a>
+		<a class="navbar-brand" href="" style="font-size: 24px">合肥学院物品交易网</a>
 	</div>
 
 	<!-- Collect the nav links, forms, and other content for toggling -->
@@ -29,7 +29,7 @@
 
 		<% Boolean isLogined=(Boolean)session.getAttribute("isLogined");
 				//email 是邮箱或用户名（如果存在）
-                String email=(String)session.getAttribute("EmailOrUserName");
+           String email=(String)session.getAttribute("EmailOrUserName");
            User user=(User)session.getAttribute("loginUser");
                 %>
 		<ul class="nav navbar-nav navbar-right">

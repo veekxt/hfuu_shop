@@ -9,14 +9,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>用户中心 - HfuuShop</title>
-</head>
-<body>
-<head>
-
 <base href="<%=basePath%>">
 <jsp:include page="../site/head.jsp" />
-<title>用户中心</title>
+<title>用户中心 - HfuuShop</title>
 </head>
 <body>
 	<jsp:include page="../site/header.jsp" />
