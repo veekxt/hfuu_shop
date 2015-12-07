@@ -26,8 +26,9 @@
 			<button type="submit" class="btn btn-default">查找物品</button>
 		</form>
 
-		<% Boolean isLogin=(Boolean)session.getAttribute("isLogin");
-                String email=(String)session.getAttribute("Email");
+		<% Boolean isLogined=(Boolean)session.getAttribute("isLogined");
+				//email 是邮箱或用户名（如果存在）
+                String email=(String)session.getAttribute("EmailOrUserName");
                 
                 %>
 		<ul class="nav navbar-nav navbar-right">
@@ -35,9 +36,12 @@
 			</li>
 			<li><a href="#">购物车(0)</a>
 			</li>
+			<%if (isLogined!=null&&isLogined==true){
+                    	%>
+            
 			<li class="dropdown"><a href="javascript:void(0)"
 				class="dropdown-toggle" data-toggle="dropdown" role="button"
-				aria-haspopup="true" aria-expanded="false">个人中心 <span
+				aria-haspopup="true" aria-expanded="false"><%=email%> <span
 					class="caret"></span> </a>
 				<ul class="dropdown-menu">
 					<li><a href="#">我的历史</a>
@@ -51,10 +55,6 @@
 					<li><a href="ExitLoginServlet">退出登录</a>
 					</li>
 				</ul></li>
-			<%if (isLogin!=null&&isLogin==true){
-                    	%>
-			<li><a href="#"><%=email%></a>
-			</li>
 			<%
                     }else{%>
 			<li><a href="user/login.jsp">登录</a>

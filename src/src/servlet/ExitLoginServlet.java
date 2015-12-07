@@ -18,7 +18,7 @@ public class ExitLoginServlet extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().setAttribute("isLogin", false);
+		request.getSession().setAttribute("isLogined", false);
 		Cookie[] cookies=request.getCookies();
 		for(int i=0;i<cookies.length;++i){
 			if("LOGIN_EMAIL".equals(cookies[i].getName())){

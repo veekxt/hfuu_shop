@@ -27,11 +27,15 @@ public class LoginServlet extends HttpServlet {
 		String inputPassword = request.getParameter("inputPassword");
 		String autoLogin = request.getParameter("auto_login");
 		UserDbHandle userDbHandle = new UserDbHandle();
+		String EmailOrUserName="";
 		try {
 			// if(DAOFactory.getIUserDAOInstance().findByEmail(inputEmail)!=null){
 			if (userDbHandle.findByEmail(inputEmail) != null) {
 				User user = userDbHandle.findByEmail(inputEmail);
 				String pass = MD5.getMD5(MD5.getMD5(inputPassword));
+				/*
+				 * 日后修复标记：这里仅用了email作为cookie并用于验证，极不安全
+				 */
 				if (user.getPwd().equals(pass)) {
 
 					if (autoLogin != null && autoLogin.equals("on")) {
@@ -40,8 +44,13 @@ public class LoginServlet extends HttpServlet {
 						response.addCookie(cookieE);
 					}
 					HttpSession session = request.getSession();
-					session.setAttribute("Email", user.getEmail());
-					session.setAttribute("isLogin", true);
+					if(user.getName()!=null && !user.getName().equals("")){
+						EmailOrUserName=user.getName();
+					}else{
+						EmailOrUserName=user.getEmail();
+					}
+					session.setAttribute("EmailOrUserName", EmailOrUserName);
+					session.setAttribute("isLogined", true);
 					request.getRequestDispatcher("/index.jsp").forward(request,
 							response);
 				} else {
