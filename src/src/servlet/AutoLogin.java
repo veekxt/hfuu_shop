@@ -52,6 +52,7 @@ public class AutoLogin implements Filter {
 							}else{
 								EmailOrUserName=user.getEmail();
 							}
+							ses.setAttribute("loginUser",user);
 							ses.setAttribute("EmailOrUserName", EmailOrUserName);
 							ses.setAttribute("isLogined", true);
 						}

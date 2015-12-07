@@ -50,6 +50,7 @@ public class LoginServlet extends HttpServlet {
 						EmailOrUserName=user.getEmail();
 					}
 					session.setAttribute("EmailOrUserName", EmailOrUserName);
+					session.setAttribute("loginUser",user);
 					session.setAttribute("isLogined", true);
 					request.getRequestDispatcher("/index.jsp").forward(request,
 							response);

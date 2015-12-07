@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	import="javax.servlet.http.HttpSession,src.vo.*,src.tools.*"%>
+
 <nav class="navbar navbar-default">
 <div class="container">
 	<!-- Brand and toggle get grouped for better mobile display -->
@@ -29,7 +30,7 @@
 		<% Boolean isLogined=(Boolean)session.getAttribute("isLogined");
 				//email 是邮箱或用户名（如果存在）
                 String email=(String)session.getAttribute("EmailOrUserName");
-                
+           User user=(User)session.getAttribute("loginUser");
                 %>
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="#">我的收藏</a>
@@ -44,13 +45,11 @@
 				aria-haspopup="true" aria-expanded="false"><%=email%> <span
 					class="caret"></span> </a>
 				<ul class="dropdown-menu">
-					<li><a href="#">我的历史</a>
+					<li><a href="user/personal.jsp?user=<%=user.getId()%>&tab=info">个人中心</a>
 					</li>
-					<li><a href="#">个人资料</a>
+					<li><a href="user/personal.jsp?user=<%=user.getId()%>&tab=setting">设置</a>
 					</li>
-					<li><a href="#">设置</a>
-					</li>
-					<li><a href="#">我的消息</a>
+					<li><a href="user/personal.jsp?user=<%=user.getId()%>&tab=message">我的消息</a>
 					</li>
 					<li><a href="ExitLoginServlet">退出登录</a>
 					</li>
