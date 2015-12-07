@@ -1,5 +1,5 @@
-package src.servlet;
 
+package src.servlet;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class UploadServlet extends HttpServlet {
             response.setCharacterEncoding("utf-8");
             response.setContentType("text/html;charset=utf-8");
             //存储路径
-            String savePath = request.getServletContext().getRealPath("/WEB-INF/");
+            String savePath = request.getServletContext().getRealPath("/static");
             //获取上传的文件集合
             Collection<Part> parts = request.getParts();
             //上传单个文件
