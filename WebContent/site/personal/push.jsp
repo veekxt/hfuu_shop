@@ -28,7 +28,7 @@ String servletPath=path+"/GoodsCheckServlet";
   </div>
   <div class="form-group">
     <p>物品图片：</p>
-    <input type="file" name="img-goods">
+    <input type="file" name="file">
     <p class="help-block">提醒：请上传真实物品照片</p>
   </div>
    <button type="submit" class="btn btn-primary">提交</button>
