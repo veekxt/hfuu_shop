@@ -1,6 +1,5 @@
 package src.dbc;
 import java.sql.*;
-
 public class DatabaseConnection {
 	private static final String DBDRIVER = "com.mysql.jdbc.Driver" ; 
 	private static final String DBURL = "jdbc:mysql://127.0.0.1:3306/hfuu_shop" ;

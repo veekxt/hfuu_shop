@@ -53,7 +53,7 @@ public class RegisterServlet extends HttpServlet {
 					isPwd="密码格式错误";
 				}
 			} else {
-				isEmail="邮箱格式错误";
+				isEmail="邮箱格式错误或已经存在";
 			}
 			if(isRegister == true){
 				request.setAttribute("isRegister",isRegister);

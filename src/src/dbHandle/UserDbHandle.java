@@ -12,6 +12,7 @@ public class UserDbHandle{
 			this.conn=new DatabaseConnection().getConnection();
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 	public boolean doCreate(User user) throws Exception{
@@ -71,8 +72,7 @@ public class UserDbHandle{
 	}
 	public User findByEmail(String str) throws Exception{
 		User user = null ;
-		
-		String sql = "SELECT id,email,pwd,name,stu_num FROM user WHERE Email=?" ;
+		String sql = "SELECT id,email,pwd,name,stu_num FROM user WHERE email=?" ;
 		this.pstmt = this.conn.prepareStatement(sql) ;
 		this.pstmt.setString(1,str) ;
 		ResultSet rs = this.pstmt.executeQuery() ;
