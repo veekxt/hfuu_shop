@@ -27,6 +27,11 @@ out.print("<div class=\"alert alert-danger\" role=\"alert\">登录失败，请�
 }
 %>
 
+	<%if(request.getParameter("login-info")!=null){
+out.print("<div class=\"alert alert-danger\" role=\"alert\">"+new String(request.getParameter("login-info").getBytes("ISO8859_1"))+"</div>");
+}
+%>
+
 	<div class="container">
 		<form class="form-signin" action="LoginServlet" Method="Post">
 			<h2 class="form-signin-heading">登录网站</h2>
