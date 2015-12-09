@@ -14,6 +14,28 @@ String servletPath=path+"/GoodsCheckServlet";
 <div class="panel-body">
 
  <form  action="<%=servletPath%>" method="post" enctype="multipart/form-data">
+
+ <%
+ if(request.getAttribute("isCheck")!=null){%>
+ <div class="alert alert-danger" role="alert">
+ <%
+ if(request.getAttribute("nameCheck")!=null&&!request.getAttribute("nameCheck").equals("")){
+	 out.print(request.getAttribute("nameCheck"));
+
+	 
+ };if(request.getAttribute("quantityCheck")!=null&&!request.getAttribute("quantityCheck").equals("")){
+	 out.print(request.getAttribute("quantityCheck"));
+	 
+ }if(request.getAttribute("contentCheck")!=null&&!request.getAttribute("contentCheck").equals("")){
+	 out.print(request.getAttribute("contentCheck"));
+	 
+ }
+ if(request.getAttribute("fileCheck")!=null&&!request.getAttribute("fileCheck").equals("")){
+	 out.print(request.getAttribute("fileCheck"));
+	 
+ }
+ %></div>
+ <% }%>
   <div class="form-group">
     <p>物品名称：</p>
     <input class="form-control" name="name-goods">
