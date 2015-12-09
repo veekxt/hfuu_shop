@@ -51,6 +51,7 @@ public class LoginServlet extends HttpServlet {
 					}
 					session.setAttribute("EmailOrUserName", EmailOrUserName);
 					session.setAttribute("loginUser",user);
+					//getServletContext().setAttribute("loginUser", user);
 					session.setAttribute("isLogined", true);
 					request.getRequestDispatcher("/index.jsp").forward(request,
 							response);

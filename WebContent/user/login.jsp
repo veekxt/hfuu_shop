@@ -5,6 +5,7 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    request.setCharacterEncoding("utf-8");
 %>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -28,7 +29,8 @@ out.print("<div class=\"alert alert-danger\" role=\"alert\">登录失败，请�
 %>
 
 	<%if(request.getParameter("login-info")!=null){
-out.print("<div class=\"alert alert-danger\" role=\"alert\">"+new String(request.getParameter("login-info").getBytes("ISO8859_1"))+"</div>");
+		 String loginInfo=new String(request.getParameter("login-info").getBytes("ISO8859-1"),"UTF-8");
+out.print("<div class=\"alert alert-danger\" role=\"alert\">"+loginInfo+"</div>");
 }
 %>
 

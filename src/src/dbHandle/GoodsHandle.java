@@ -25,14 +25,16 @@ public class GoodsHandle {
 	public boolean doCreateGoods(Goods good) throws Exception{
 		boolean flag = false ;
 		
-		String sql = "INSERT INTO goods(name,num,image,content,status,id) VALUES (?,?,?,?,?,?)" ;
+		String sql = "INSERT INTO goods(name,price,image,content,status,id,type_id,producter_id) VALUES (?,?,?,?,?,?,?,?)" ;
 		this.pstmt = this.conn.prepareStatement(sql) ;
 		pstmt.setString(1,good.getName());
-		pstmt.setInt(2,good.getNum());
+		pstmt.setFloat(2,good.getPrice());
 		pstmt.setString(3, good.getImage());
 		pstmt.setString(4, good.getContent());
 		pstmt.setInt(5, 1);
 		pstmt.setInt(6, good.getId());
+		pstmt.setInt(7, good.getType_id());
+		pstmt.setInt(8, good.getProducter_id());
 		if(this.pstmt.executeUpdate()> 0){
 			flag = true ;
 		}

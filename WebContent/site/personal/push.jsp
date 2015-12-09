@@ -15,6 +15,12 @@ String servletPath=path+"/GoodsCheckServlet";
 
  <form  action="<%=servletPath%>" method="post" enctype="multipart/form-data">
 
+<%
+if(request.getParameter("info")!=null && !request.getParameter("info").equals("")){%>
+	<div class="alert alert-success" role="alert">
+	<%out.print(new String(request.getParameter("info").getBytes("ISO8859-1"),"UTF-8"));%>
+	</div>
+<%}%>
  <%
  if(request.getAttribute("isCheck")!=null){%>
  <div class="alert alert-danger" role="alert">
@@ -50,7 +56,7 @@ String servletPath=path+"/GoodsCheckServlet";
   </div>
   <div class="form-group">
     <p>选择一个分类：</p>
-      <select class="form-control">
+      <select name="type_id-goods"class="form-control">
          <option value="other">其他</option>
          <option value="book">书籍</option>
          <option value="live">生活出行</option>
