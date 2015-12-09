@@ -41,12 +41,23 @@ String servletPath=path+"/GoodsCheckServlet";
     <input class="form-control" name="name-goods">
   </div>
   <div class="form-group">
-    <p>数量：</p>
+    <p>价格(元)：</p>
     <input type="number" class="form-control" name="quantity-goods">
   </div>
   <div class="form-group">
     <p>物品简介：</p>
     <textarea rows="3" class="form-control" name="content-goods"></textarea>
+  </div>
+  <div class="form-group">
+    <p>选择一个分类：</p>
+      <select class="form-control">
+         <option value="other">其他</option>
+         <option value="book">书籍</option>
+         <option value="live">生活出行</option>
+         <option value="sport">体育运动</option>
+         <option value="clothes">衣服鞋包</option>
+         <option value="eletronic">电子产品</option>
+      </select>
   </div>
   <div class="form-group">
     <p>物品图片：</p>
