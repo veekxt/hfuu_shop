@@ -9,6 +9,14 @@
     <filter-name>login</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+    <filter>
+    <filter-name>charset</filter-name>
+    <filter-class>src.servlet.CharSet</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>charset</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
   <servlet>
     <servlet-name>register</servlet-name>
     <servlet-class>src.servlet.RegisterServlet</servlet-class>

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
     String path = request.getContextPath();
-String servletPath=path+"/GoodsCheckServlet";
+	String servletPath=path+"/GoodsCheckServlet";
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <div class="panel panel-info">
@@ -18,11 +18,11 @@ String servletPath=path+"/GoodsCheckServlet";
 <%
 if(request.getParameter("info")!=null && !request.getParameter("info").equals("")){%>
 	<div class="alert alert-success" role="alert">
-	<%out.print(new String(request.getParameter("info").getBytes("ISO8859-1"),"UTF-8"));%>
+	<%out.print(new String(request.getParameter("info").getBytes("UTF-8"),"UTF-8"));%>
 	</div>
 <%}%>
  <%
- if(request.getAttribute("isCheck")!=null){%>
+ if(request.getParameter("seccess")!=null && request.getParameter("seccess").equals("0") && request.getAttribute("isCheck")!=null){%>
  <div class="alert alert-danger" role="alert">
  <%
  if(request.getAttribute("nameCheck")!=null&&!request.getAttribute("nameCheck").equals("")){

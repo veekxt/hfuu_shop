@@ -41,6 +41,7 @@ public class LoginServlet extends HttpServlet {
 					if (autoLogin != null && autoLogin.equals("on")) {
 						Cookie cookieE = new Cookie("LOGIN_EMAIL", inputEmail);
 						cookieE.setMaxAge(60 * 60 * 24 * 7);
+						cookieE.setDomain("/");
 						response.addCookie(cookieE);
 					}
 					HttpSession session = request.getSession();
@@ -51,18 +52,16 @@ public class LoginServlet extends HttpServlet {
 					}
 					session.setAttribute("EmailOrUserName", EmailOrUserName);
 					session.setAttribute("loginUser",user);
-					//getServletContext().setAttribute("loginUser", user);
 					session.setAttribute("isLogined", true);
-					request.getRequestDispatcher("/index.jsp").forward(request,
-							response);
+					response.sendRedirect("index.jsp");
 				} else {
 					request.setAttribute("isLoginOk", "false");
-					request.getRequestDispatcher("/user/login.jsp").forward(
+					request.getRequestDispatcher("user/login.jsp").forward(
 							request, response);
 				}
 			} else {
 				request.setAttribute("isLoginOk", "false");
-				request.getRequestDispatcher("/user/login.jsp").forward(
+				request.getRequestDispatcher("user/login.jsp").forward(
 						request, response);
 			}
 		} catch (Exception e) {

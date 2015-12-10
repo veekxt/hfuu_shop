@@ -9,6 +9,7 @@ public class DatabaseConnection {
 	public DatabaseConnection() throws Exception {
 		Class.forName(DBDRIVER) ;
 		this.conn = DriverManager.getConnection(DBURL,DBUSER,DBPASSWORD) ;
+		//this.conn.createStatement().execute("SET NAMES utf8");
 	}
 	public Connection getConnection(){
 		return this.conn ;
