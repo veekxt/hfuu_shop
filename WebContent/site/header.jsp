@@ -37,7 +37,7 @@
 			</li>
 			<li><a href="#">购物车(0)</a>
 			</li>
-			<%if (isLogined!=null&&isLogined==true){
+			<%if (isLogined!=null && user!=null &&isLogined==true){
                     	%>
             
 			<li class="dropdown"><a href="javascript:void(0)"

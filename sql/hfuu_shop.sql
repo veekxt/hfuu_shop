@@ -25,7 +25,6 @@ CREATE TABLE `goods` (
   `num` int(11) COMMENT '数量',
   `price` float NOT NULL,
   `status` int NOT NULL,
-  
   `content` varchar(255) COLLATE utf8_bin NOT NULL,
   `producter_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)

@@ -9,7 +9,7 @@
     <filter-name>login</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-    <filter>
+  <filter>
     <filter-name>charset</filter-name>
     <filter-class>src.servlet.CharSet</filter-class>
   </filter>

@@ -1,7 +1,5 @@
 package src.vo;
 
-import java.awt.Image;
-
 public class Goods {
 	private Integer id;
 	private String image;
