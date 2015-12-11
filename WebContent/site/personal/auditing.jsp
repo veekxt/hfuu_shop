@@ -1,9 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="src.dbHandle.*,src.vo.*,java.sql.*,java.util.*" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<script>
+function passGoods(goodsid,type){
+	xmlGoods=new XMLHttpRequest();
+	xmlGoods.onreadystatechange=function()
+	  {
+	  if (xmlGoods.readyState==4 && xmlGoods.status==200)
+	    {
+	    if(xmlGoods.responseText=="success")
+	    	{
+	    		if(type=="pass"){document.getElementById("auditing-button-"+goodsid).innerHTML="<p class=\"bg-info\">已通过</p>";}
+	    		if(type=="refuse"){document.getElementById("auditing-button-"+goodsid).innerHTML="<p class=\"bg-danger\">已拒绝</p>";}
+	    	}
+	    }
+	  else{
+		  //document.getElementById("auditing-button-"+goodsid).innerHTML="=操作中=";
+	  }
+	  }
+	xmlGoods.open("GET","AuditingServlet?goodsid="+goodsid+"&t="+Math.random()+(type=="pass"?"&hd=1":"&hd=0"),true);
+	xmlGoods.send(null);
+}
+</script>
 <div class="panel panel-info">
 <div class="panel-heading">
 <%
@@ -16,37 +38,58 @@
   <th class="td-user-name" style="width:10%;">
 姓名
   </th>
+      <th class="td-user-name" style="width:15%;">
+发布于
+  </th>
     <th class="td-user-name" style="width:15%;">
 物品名
   </th>
-    <th class="td-user-name" style="width:20%;">
+    <th class="td-user-name" style="width:15%;">
 详情
   </th>
       <th class="td-user-name" style="width:15%;">
 操作
   </th>
   </tr>
-  <tr>
-  	<td class="td-user-name">
-  	谢涛
-  	</td>
-  	<td class="td-name">
-  	野生蛤蟆
-  	</td>
-  	  	<td>
-  	<abbr title="付款就
-  	
-  	
-就发货地恢复苏杭的覅配方牛和覅速回地批发你看的时间房价会USD房间内的减肥不就\n是不复读巨神兵复合素的房价似乎对方的框架房你师父是对方就能上看到就会发卡号是豆腐皮和啤酒能付款了环保的皮肤和家人能立刻恢复和配送费多少技能覅普惠的反对四但开发工具是南方科技表示的基本覅诶办法" 
-  	class="initialism">HTML</abbr>
-  	</td>
+<%
+GoodsHandle goodsHandle=new GoodsHandle();
+UserHandle userHandle=new UserHandle();
+List<Goods> all = goodsHandle.findAllNotAuditing();
+if(all==null){
+	System.out.print("cant find anything");
+}else{%>
+<%
+for(Goods goods:all)
+{
+%>
+
+<tr>
+  <td class="td-user-name" style="width:10%;">
+<%=userHandle.findById(goods.getProducter_id()).getName()%>
+  </td>
+      <td class="td-user-name" style="width:15%;">
+时间
+  </td>
+    <td class="td-user-name" style="width:15%;">
+<%=goods.getName()%>
+  </td>
+    <td class="td-user-name" style="width:15%;">
+<abbr title="<%=goods.getContent()%>">[详情]</abbr>
+  </td>
   	<td>
-<div class="btn-group btn-group-sm" role="group">
-  <button type="button" class="btn btn-success">通过</button>
-  <button type="button" class="btn btn-danger">拒绝</button>
+<div id="auditing-button-<%=goods.getId()%>" class="btn-group btn-group-sm" role="group">
+  <button type="button" class="btn btn-success" onclick="passGoods(<%=goods.getId()%>,'pass');">通过</button>
+  <button type="button" class="btn btn-danger" onclick="passGoods(<%=goods.getId()%>,'refuse');">拒绝</button>
 </div>
   	</td>
   </tr>
+
+<%
+}
+%>
+<%}%>
+
+
 </table>
 
 </div>

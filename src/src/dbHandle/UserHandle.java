@@ -4,10 +4,10 @@ import java.sql.* ;
 
 import src.dbc.DatabaseConnection;
 import src.vo.* ;
-public class UserDbHandle{
+public class UserHandle{
 	private Connection conn = null;
 	private PreparedStatement pstmt = null ;
-	public UserDbHandle(){
+	public UserHandle(){
 		try {
 			this.conn=new DatabaseConnection().getConnection();
 		} catch (Exception e) {
@@ -58,7 +58,7 @@ public class UserDbHandle{
 		String sql = "SELECT id,email,pwd,name,stu_num FROM user WHERE id=?" ;
 		this.pstmt = this.conn.prepareStatement(sql) ;
 		this.pstmt.setInt(1,id) ;
-		ResultSet rs = this.pstmt.executeQuery() ;
+		ResultSet rs = this.pstmt.executeQuery();
 		if(rs.next()){
 			user = new User() ;
 			user.setId(rs.getInt(1)) ;

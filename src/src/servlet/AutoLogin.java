@@ -12,7 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import src.dbHandle.UserDbHandle;
+import src.dbHandle.UserHandle;
 import src.vo.User;
 
 /**
@@ -34,7 +34,7 @@ public class AutoLogin implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession ses = req.getSession();
 		Cookie[] cookies = req.getCookies();
-		UserDbHandle userDbHandle = new UserDbHandle();
+		UserHandle userHandle = new UserHandle();
 		String EmailOrUserName = "";
 		String emailCookie = null;
 		/*
@@ -45,16 +45,21 @@ public class AutoLogin implements Filter {
 				if ("LOGIN_EMAIL".equals(cookie.getName())) {
 					emailCookie = cookie.getValue();
 					try {
-						if (userDbHandle.findByEmail(emailCookie) != null) {
-							User user = userDbHandle.findByEmail(emailCookie);
-							if(user.getName()!=null && !user.getName().equals("")){
-								EmailOrUserName=user.getName();
+						if (userHandle.findByEmail(emailCookie) != null) {
+							User user = userHandle.findByEmail(emailCookie);
+							if(user!=null)
+							{
+								if(user.getName()!=null && !user.getName().equals("")){
+									EmailOrUserName=user.getName();
+								}else{
+									EmailOrUserName=user.getEmail();
+								}
+								ses.setAttribute("loginUser",user);
+								ses.setAttribute("EmailOrUserName", EmailOrUserName);
+								ses.setAttribute("isLogined", true);
 							}else{
-								EmailOrUserName=user.getEmail();
+								;
 							}
-							ses.setAttribute("loginUser",user);
-							ses.setAttribute("EmailOrUserName", EmailOrUserName);
-							ses.setAttribute("isLogined", true);
 						}
 					} catch (Exception e) {
 						// TODO: handle exception

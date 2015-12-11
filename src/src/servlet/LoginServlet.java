@@ -26,12 +26,12 @@ public class LoginServlet extends HttpServlet {
 		String inputEmail = request.getParameter("inputEmail");
 		String inputPassword = request.getParameter("inputPassword");
 		String autoLogin = request.getParameter("auto_login");
-		UserDbHandle userDbHandle = new UserDbHandle();
+		UserHandle userHandle = new UserHandle();
 		String EmailOrUserName="";
 		try {
 			// if(DAOFactory.getIUserDAOInstance().findByEmail(inputEmail)!=null){
-			if (userDbHandle.findByEmail(inputEmail) != null) {
-				User user = userDbHandle.findByEmail(inputEmail);
+			if (userHandle.findByEmail(inputEmail) != null) {
+				User user = userHandle.findByEmail(inputEmail);
 				String pass = MD5.getMD5(MD5.getMD5(inputPassword));
 				/*
 				 * 日后修复标记：这里仅用了email作为cookie并用于验证，极不安全
@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
 					if (autoLogin != null && autoLogin.equals("on")) {
 						Cookie cookieE = new Cookie("LOGIN_EMAIL", inputEmail);
 						cookieE.setMaxAge(60 * 60 * 24 * 7);
-						cookieE.setDomain("/");
+						//cookieE.setDomain("/");
 						response.addCookie(cookieE);
 					}
 					HttpSession session = request.getSession();

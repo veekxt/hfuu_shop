@@ -1,6 +1,5 @@
 package src.vo;
 
-import java.awt.Image;
 import java.util.Date;
 
 public class Goods {
