@@ -3,6 +3,8 @@ package src.servlet;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -91,27 +93,32 @@ public class GoodsCheckServlet extends HttpServlet {
 							byte[] bt = new byte[(int) part.getSize()];
 							String imagePathName1 = savePath + "\\" + id
 									+ ".jpg";
-							// System.out.println(imagePathName1);
+					
 							String imagePathName = imagePathName1.replace('\\',
 									'/');
-							// System.out.println(imagePathName);
-							good.setImage("/static/goods_img/" + id + ".jpg");
+				
+							good.setImage("static/goods_img/" + id + ".jpg");
 							fos = new FileOutputStream(imagePathName);
+							//System.out.println(imagePathName);
 
 							part.getInputStream().read(bt);
 							fos.write(bt);
+							Date date=new Date();
+							
+							good.setCreatDate(date);
 							goodsHandle.doCreateGoods(good);
-							// request.setAttribute("flag", flag);
+			
 							response.sendRedirect("user/personal.jsp?tab=push&success=1&info="
 									+ java.net.URLEncoder.encode("添加成功",
 											"UTF-8"));
 							return;
 						} catch (Exception e) {
-							// TODO Auto-generated catch block
+						
 							e.printStackTrace();
 							response.sendRedirect("user/personal.jsp?tab=push&info="
 									+ java.net.URLEncoder.encode("数据库异常",
 											"UTF-8"));
+							return;
 						} finally {
 							if (fos != null) {
 								fos.close();

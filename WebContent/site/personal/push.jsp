@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isThreadSafe="false" %>
 <%
     String path = request.getContextPath();
 	String servletPath=path+"/GoodsCheckServlet";
