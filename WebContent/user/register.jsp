@@ -86,8 +86,7 @@ if(!request.getAttribute("isPwdSame").equals("")){
 				<div class="form-group">
 					<label class="col-sm-2 control-label"></label>
 					<div class="col-sm-10">
-						<button type="submit"
-							class="btn btn-block btn-primary">注册</button>
+						<button type="submit" class="btn btn-block btn-primary">注册</button>
 					</div>
 				</div>
 			</form>

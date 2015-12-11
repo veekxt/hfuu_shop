@@ -39,17 +39,20 @@
 			</li>
 			<%if (isLogined!=null && user!=null &&isLogined==true){
                     	%>
-            
+
 			<li class="dropdown"><a href="javascript:void(0)"
 				class="dropdown-toggle" data-toggle="dropdown" role="button"
 				aria-haspopup="true" aria-expanded="false"><%=email%> <span
 					class="caret"></span> </a>
 				<ul class="dropdown-menu">
-					<li><a href="user/personal.jsp?user=<%=user.getId()%>&tab=info">个人中心</a>
+					<li><a
+						href="user/personal.jsp?user=<%=user.getId()%>&tab=info">个人中心</a>
 					</li>
-					<li><a href="user/personal.jsp?user=<%=user.getId()%>&tab=setting">设置</a>
+					<li><a
+						href="user/personal.jsp?user=<%=user.getId()%>&tab=setting">设置</a>
 					</li>
-					<li><a href="user/personal.jsp?user=<%=user.getId()%>&tab=message">我的消息</a>
+					<li><a
+						href="user/personal.jsp?user=<%=user.getId()%>&tab=message">我的消息</a>
 					</li>
 					<li><a href="ExitLoginServlet">退出登录</a>
 					</li>
