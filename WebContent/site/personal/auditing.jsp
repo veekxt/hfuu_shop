@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="src.dbHandle.*,src.vo.*,java.sql.*,java.util.*"%>
+<%@ page import="src.dbHandle.*,src.vo.*,java.sql.*,java.util.*,java.text.SimpleDateFormat"%>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -35,7 +35,7 @@ function passGoods(goodsid,type){
 	<div class="panel-body">
 		<table class="table table-striped">
 			<tr>
-				<th class="td-user-name" style="width: 10%;">姓名</th>
+				<th class="td-user-name" style="width: 10%;">用户</th>
 				<th class="td-user-name" style="width: 15%;">发布于</th>
 				<th class="td-user-name" style="width: 15%;">物品名</th>
 				<th class="td-user-name" style="width: 15%;">详情</th>
@@ -44,6 +44,7 @@ function passGoods(goodsid,type){
 			<%
 GoodsHandle goodsHandle=new GoodsHandle();
 UserHandle userHandle=new UserHandle();
+try{
 List<Goods> all = goodsHandle.findAllNotAuditing();
 if(all==null){
 	System.out.print("cant find anything");
@@ -51,12 +52,21 @@ if(all==null){
 			<%
 for(Goods goods:all)
 {
+    
 %>
 
 			<tr>
-				<td class="td-user-name" style="width: 10%;"><%=userHandle.findById(goods.getProducter_id()).getName()%>
+				<td class="td-user-name" style="width: 10%;">
+				<%
+				if(userHandle.findById(goods.getProducter_id()).getName()==null){
+				    out.print(userHandle.findById(goods.getProducter_id()).getEmail());
+				}
+				else{
+				    out.print(userHandle.findById(goods.getProducter_id()).getName());
+				}
+				%>
 				</td>
-				<td class="td-user-name" style="width: 15%;">时间</td>
+				<td class="td-user-name" style="width: 15%;"><%=new SimpleDateFormat("yyyy/MM/dd HH:mm").format(goods.getCreatDate())%></td>
 				<td class="td-user-name" style="width: 15%;"><%=goods.getName()%>
 				</td>
 				<td class="td-user-name" style="width: 15%;"><abbr
@@ -76,7 +86,9 @@ for(Goods goods:all)
 			<%
 }
 %>
-			<%}%>
+			<%}}catch(Exception e){
+    out.print("数据库异常");
+}%>
 
 
 		</table>

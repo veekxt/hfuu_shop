@@ -80,13 +80,9 @@ public class GoodsHandle {
         String sql = "SELECT id,num,content,type_id,image,producter_id,price,create_date,name from goods  where status=?";
         this.pstmt = this.conn.prepareStatement(sql);
         this.pstmt.setInt(1, 2);
-
         ResultSet rs = this.pstmt.executeQuery();
-
         while (rs.next()) {
-
             Goods good = new Goods();
-
             good.setId(rs.getInt(1));
             good.setNum(rs.getInt(2));
             good.setContent(rs.getString(3));
