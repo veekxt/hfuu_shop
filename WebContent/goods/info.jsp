@@ -19,7 +19,7 @@ int goodsId=Integer.parseInt(request.getParameter("goodsid"));
 	  <div class="panel panel-info">
 		<div class="panel-heading">
 	<%
-		out.println("==物品详情==");
+		out.println("<span style=\"text-align:center;font-size:16px;\" class=\"center-block\">物品详情</span>");
 	%>
 		</div>
 	<div class="panel-body">
@@ -41,13 +41,13 @@ int goodsId=Integer.parseInt(request.getParameter("goodsid"));
 	<hr />
 	<div class="row">
 	<div class="col-md-4">
-	<button type="button" class="center-block btn btn-info btn-lg">收藏此物品</button>
+	<button type="button" class="center-block btn btn-info">收藏此物品</button>
 	</div>
 	<div class="col-md-4">
-	<button type="button" class="center-block btn btn-info btn-lg">加入购物车</button>
+	<button type="button" class="center-block btn btn-info">加入购物车</button>
 	</div>
 	<div class="col-md-4">
-	<button type="button" class="center-block btn btn-info btn-lg">立刻购买</button>
+	<button type="button" class="center-block btn btn-info">立刻购买</button>
 	</div>
 	</div>
 	</div>
