@@ -51,22 +51,22 @@
 					class="caret"></span> </a>
 				<ul class="dropdown-menu">
 					<li><a
-						href="user/personal.jsp?user=<%=user.getId()%>&tab=info">个人中心</a>
+						href="<%=basePath %>user/personal.jsp?user=<%=user.getId()%>&tab=info">个人中心</a>
 					</li>
 					<li><a
-						href="user/personal.jsp?user=<%=user.getId()%>&tab=setting">设置</a>
+						href="<%=basePath %>user/personal.jsp?user=<%=user.getId()%>&tab=setting">设置</a>
 					</li>
 					<li><a
-						href="user/personal.jsp?user=<%=user.getId()%>&tab=message">我的消息</a>
+						href="<%=basePath %>user/personal.jsp?user=<%=user.getId()%>&tab=message">我的消息</a>
 					</li>
-					<li><a href="ExitLoginServlet">退出登录</a>
+					<li><a href="<%=basePath %>ExitLoginServlet">退出登录</a>
 					</li>
 				</ul></li>
 			<%
                     }else{%>
-			<li><a href="user/login.jsp">登录</a>
+			<li><a href="<%=basePath %>user/login.jsp">登录</a>
 			</li>
-			<li><a href="user/register.jsp">注册</a>
+			<li><a href="<%=basePath %>user/register.jsp">注册</a>
 			</li>
 			<% }%>
 		</ul>
