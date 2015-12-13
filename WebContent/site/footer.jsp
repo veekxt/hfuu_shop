@@ -21,7 +21,7 @@ footer small {
 </style>
 <footer>
 <p>
-	<small> Hfuu物品交易-发布平台，Powered By <a href="about"
+	<small> Hfuu物品交易-发布平台，Powered By <a href="../about.jsp"
 		target="_blank">HfuuShop</a> | <a rel="license" href="license"
 		target="_blank" title="用户协议">©</a> 2015 - 2015 </small>
 </p>

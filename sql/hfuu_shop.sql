@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : hhh
-Source Server Version : 50709
-Source Host           : localhost:3306
+Source Server         : xtvps
+Source Server Version : 50546
+Source Host           : 45.78.60.77:3306
 Source Database       : hfuu_shop
 
 Target Server Type    : MYSQL
-Target Server Version : 50709
+Target Server Version : 50546
 File Encoding         : 65001
 
-Date: 2015-12-11 09:43:50
+Date: 2015-12-13 13:16:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,43 +21,43 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `goods`;
 CREATE TABLE `goods` (
   `id` int(11) NOT NULL,
-  `image` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `type_id` int(11) DEFAULT NULL COMMENT '类型id',
+  `image` char(255) COLLATE utf8_bin NOT NULL,
+  `type_id` int(11) NOT NULL COMMENT '类型id',
   `name` char(255) COLLATE utf8_bin NOT NULL COMMENT '商品名',
-  `num` int(11) COMMENT '数量',
+  `num` int(11) DEFAULT NULL COMMENT '数量',
   `price` float NOT NULL,
-  `status` int NOT NULL,
+  `status` int(11) NOT NULL,
   `content` varchar(255) COLLATE utf8_bin NOT NULL,
-  `producter_id` int(11) DEFAULT NULL,
-  `status` int(1) NOT NULL,
+  `producter_id` int(11) NOT NULL,
+  `create_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-
-
+INSERT INTO `goods` VALUES ('1', '/static/goods_img/1.jpg', '5', '笔记本', '1', '4000', '3', '二手笔记本，8成新，I7处理器', '1017', '2015-12-12 00:00:00');
+INSERT INTO `goods` VALUES ('2', '/static/goods_img/2.jpg', '2', '被套', '1', '30', '2', '二手被套', '1017', '2015-12-16 00:00:00');
+INSERT INTO `goods` VALUES ('3', '/static/goods_img/3.jpg', '2', '自行车', '1', '50', '2', '二手自行车', '1017', '2015-12-11 00:00:00');
 
 -- ----------------------------
 -- Table structure for `user`
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `id` int(32) NOT NULL,
-  `email` varchar(255) COLLATE utf8_bin NOT NULL,
-  `pwd` varchar(255) COLLATE utf8_bin NOT NULL,
-  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `stu_num` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `email` char(255) COLLATE utf8_bin NOT NULL,
+  `pwd` char(255) COLLATE utf8_bin NOT NULL,
+  `name` char(255) COLLATE utf8_bin DEFAULT NULL,
+  `stu_num` char(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-
-
-INSERT INTO `user` VALUES ('9', 'dandan@qq.com', '14e1b600b1fd579f47433b88e8d85291', null, null);
-INSERT INTO `user` VALUES ('10', 'laibao@qq.com', '14e1b600b1fd579f47433b88e8d85291', null, null);
-INSERT INTO `user` VALUES ('11', 'jianguo@qq.com', '14e1b600b1fd579f47433b88e8d85291', null, null);
-INSERT INTO `user` VALUES ('13', 'zijian@qq.com', '14e1b600b1fd579f47433b88e8d85291', null, null);
+INSERT INTO `user` VALUES ('10', 'veekxt@gmail.com', '14e1b600b1fd579f47433b88e8d85291', 'KevinVeek', null);
+INSERT INTO `user` VALUES ('1015', 'xietao@163.com', '8560ef54213c8b32e89a24ccc323a79e', '解涛', null);
+INSERT INTO `user` VALUES ('1016', '2543614555@qq.com', '14e1b600b1fd579f47433b88e8d85291', '解涛2', null);
+INSERT INTO `user` VALUES ('1017', '1050026@qq.com', 'acd09f1f204179b957001f53f411899b', '陈生辉', null);
+INSERT INTO `user` VALUES ('9', 'dandan@qq.com', '14e1b600b1fd579f47433b88e8d85291', '朱雷雷', null);

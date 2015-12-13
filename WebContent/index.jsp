@@ -79,7 +79,7 @@
 							</div>
 								<div class="col-md-9">
 								<div class="row detail-goods lead">
-									<a><%=good.getName()%></a>
+									<a href="goods/info.jsp?goodsid=<%=good.getId()%>"><%=good.getName()%></a>
 								</div>
 								<div class="row detail-goods text-muted">发布者:<%if(user.getName()!=null){ %><%=user.getName() %><%}else{%><%=user.getEmail()%><%}%> </div>
 								<div class="row detail-goods text-danger">

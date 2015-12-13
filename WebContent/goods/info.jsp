@@ -12,7 +12,31 @@
 	<%
 int goodsId=Integer.parseInt(request.getParameter("goodsid"));
 %>
-	<%=goodsId%>
+
+<div class="container">
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+	  <div class="panel panel-info">
+		<div class="panel-heading">
+	<%
+		out.println("==物品详情==");
+	%>
+		</div>
+	<div class="panel-body">
+	<div class="row">
+	<div class="col-md-5">
+	test1
+	</div>
+	<div class="col-md-7">
+	test2
+	</div>
+	</div>
+	</div>
+  </div>
+</div>
+
+</div>
+</div>
 	<jsp:include page="../site/footer.jsp" />
 </body>
 </html>
