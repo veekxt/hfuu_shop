@@ -36,9 +36,9 @@ CREATE TABLE `goods` (
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-INSERT INTO `goods` VALUES ('1', '/static/goods_img/1.jpg', '5', '笔记本', '1', '4000', '3', '二手笔记本，8成新，I7处理器', '1017', '2015-12-12 00:00:00');
-INSERT INTO `goods` VALUES ('2', '/static/goods_img/2.jpg', '2', '被套', '1', '30', '2', '二手被套', '1017', '2015-12-16 00:00:00');
-INSERT INTO `goods` VALUES ('3', '/static/goods_img/3.jpg', '2', '自行车', '1', '50', '2', '二手自行车', '1017', '2015-12-11 00:00:00');
+INSERT INTO `goods` VALUES ('1', 'static/goods_img/1.jpg', '5', '笔记本', '1', '4000', '3', '二手笔记本，8成新，I7处理器', '1017', '2015-12-12 12:10:10');
+INSERT INTO `goods` VALUES ('2', 'static/goods_img/2.jpg', '2', '被套', '1', '30', '2', '二手被套', '1017', '2015-12-16 02:34:01');
+INSERT INTO `goods` VALUES ('3', 'static/goods_img/3.jpg', '2', '自行车', '1', '50', '2', '二手自行车', '1017', '2015-12-11 11:22:33');
 
 -- ----------------------------
 -- Table structure for `user`
