@@ -15,3 +15,15 @@
 .personal-main-info {
 	text-align: center;
 }
+.info-img {
+	width:350px;
+}
+.info-goods{
+	font-size:17px;
+	}
+.info-goods-name{
+	color:#D35473;
+	}
+.info-goods-content{
+	font-size:15px;
+	}
