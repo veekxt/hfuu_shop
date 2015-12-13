@@ -1,3 +1,6 @@
+<%/*
+物品详情页，包含详情和操作按钮
+*/%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>

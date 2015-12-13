@@ -1,3 +1,6 @@
+<%/*
+审核页面，被/personal.jsp包含，查找所有未审核商品（status=1）
+*/%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="src.dbHandle.*,src.vo.*,java.sql.*,java.util.*,java.text.SimpleDateFormat"%>
