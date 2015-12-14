@@ -12,12 +12,14 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+
 <base href="<%=basePath%>">
 <jsp:include page="site/head.jsp" />
 <title>物品交易-合肥学院-首页</title>
 </head>
 <body>
 	<jsp:include page="site/header.jsp" />
+	这是搜索结果页：ToDo
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3">

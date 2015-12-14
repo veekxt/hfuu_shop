@@ -1,8 +1,13 @@
-
+<%/*
+导航栏
+*/%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	import="javax.servlet.http.HttpSession,src.vo.*,src.tools.*"%>
-
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <nav class="navbar navbar-default">
 <div class="container">
 	<!-- Brand and toggle get grouped for better mobile display -->
@@ -13,14 +18,14 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="" style="font-size: 24px">合肥学院物品交易网</a>
+		<a class="navbar-brand" href="<%=basePath %>index.jsp?ceta=0" style="font-size: 24px">合肥学院物品交易网</a>
 	</div>
 
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
 		</ul>
-		<form class="navbar-form navbar-left" role="search">
+		<form action="<%=basePath %>search.jsp?ceta=0" class="navbar-form navbar-left" role="search">
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="关键字">
 			</div>
@@ -39,26 +44,29 @@
 			</li>
 			<%if (isLogined!=null && user!=null &&isLogined==true){
                     	%>
-            
+
 			<li class="dropdown"><a href="javascript:void(0)"
 				class="dropdown-toggle" data-toggle="dropdown" role="button"
 				aria-haspopup="true" aria-expanded="false"><%=email%> <span
 					class="caret"></span> </a>
 				<ul class="dropdown-menu">
-					<li><a href="user/personal.jsp?user=<%=user.getId()%>&tab=info">个人中心</a>
+					<li><a
+						href="<%=basePath %>user/personal.jsp?user=<%=user.getId()%>&tab=info">个人中心</a>
 					</li>
-					<li><a href="user/personal.jsp?user=<%=user.getId()%>&tab=setting">设置</a>
+					<li><a
+						href="<%=basePath %>user/personal.jsp?user=<%=user.getId()%>&tab=setting">设置</a>
 					</li>
-					<li><a href="user/personal.jsp?user=<%=user.getId()%>&tab=message">我的消息</a>
+					<li><a
+						href="<%=basePath %>user/personal.jsp?user=<%=user.getId()%>&tab=message">我的消息</a>
 					</li>
-					<li><a href="ExitLoginServlet">退出登录</a>
+					<li><a href="<%=basePath %>ExitLoginServlet">退出登录</a>
 					</li>
 				</ul></li>
 			<%
                     }else{%>
-			<li><a href="user/login.jsp">登录</a>
+			<li><a href="<%=basePath %>user/login.jsp">登录</a>
 			</li>
-			<li><a href="user/register.jsp">注册</a>
+			<li><a href="<%=basePath %>user/register.jsp">注册</a>
 			</li>
 			<% }%>
 		</ul>

@@ -49,7 +49,7 @@ public class GoodsCheckServlet extends HttpServlet {
 		request.setAttribute("isCheck", false);
 		// 存储路径
 		String savePath = request.getServletContext().getRealPath(
-				"/static/goods_img");
+				"static/goods_img");
 		// 处理表单
 		String goodsName = getForm(request, "name-goods");
 		String goodsContent = getForm(request, "content-goods");

@@ -7,9 +7,23 @@
 .detail-goods {
 	margin: 10px 0px;
 }
-.img-personal-main-info{
+
+.img-personal-main-info {
 	width: 80px;
 }
-.personal-main-info{
-	text-align:center;
+
+.personal-main-info {
+	text-align: center;
 }
+.info-img {
+	width:350px;
+}
+.info-goods{
+	font-size:17px;
+	}
+.info-goods-name{
+	color:#D35473;
+	}
+.info-goods-content{
+	font-size:15px;
+	}
