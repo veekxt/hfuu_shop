@@ -20,13 +20,14 @@ public class UserHandle{
 		ResultSet max_id=this.conn.prepareStatement("select max(id) from user").executeQuery();
 		max_id.next();
 		String maxId=max_id.getString("max(id)");
-		String sql = "INSERT INTO user(id,email,pwd,name,stu_num) VALUES (?,?,?,?,?)" ;
+		String sql = "INSERT INTO user(id,email,pwd,name,stu_num,phone) VALUES (?,?,?,?,?,?)" ;
 		this.pstmt = this.conn.prepareStatement(sql) ;
 		this.pstmt.setInt(1,1+Integer.parseInt(maxId));
 		this.pstmt.setString(2,user.getEmail()) ;
 		this.pstmt.setString(3,user.getPwd()) ;
 		this.pstmt.setString(4,user.getName()) ;
 		this.pstmt.setString(5,user.getStu_num()) ;
+		this.pstmt.setString(6,user.getPhone()) ;
 		if(this.pstmt.executeUpdate() > 0){
 			flag = true ;
 		}
@@ -55,7 +56,7 @@ public class UserHandle{
 	}
 	public User findById(int id) throws Exception{
 		User user = null ;
-		String sql = "SELECT id,email,pwd,name,stu_num FROM user WHERE id=?" ;
+		String sql = "SELECT id,email,pwd,name,stu_num ,phone FROM user WHERE id=?" ;
 		this.pstmt = this.conn.prepareStatement(sql) ;
 		this.pstmt.setInt(1,id) ;
 		ResultSet rs = this.pstmt.executeQuery();
@@ -66,13 +67,14 @@ public class UserHandle{
 			user.setPwd(rs.getString(3)) ;
 			user.setName(rs.getString(4)) ;
 			user.setStu_num(rs.getString(5)) ;
+			user.setPhone(rs.getString(6)) ;
 		}
 		this.pstmt.close();
 		return user ;
 	}
 	public User findByEmail(String str) throws Exception{
 		User user = null ;
-		String sql = "SELECT id,email,pwd,name,stu_num FROM user WHERE email=?" ;
+		String sql = "SELECT id,email,pwd,name,stu_num,phone FROM user WHERE email=?" ;
 		this.pstmt = this.conn.prepareStatement(sql) ;
 		this.pstmt.setString(1,str) ;
 		ResultSet rs = this.pstmt.executeQuery() ;
@@ -83,6 +85,7 @@ public class UserHandle{
 			user.setPwd(rs.getString(3)) ;
 			user.setName(rs.getString(4)) ;
 			user.setStu_num(rs.getString(5)) ;
+			user.setPhone(rs.getString(6)) ;
 		}
 		this.pstmt.close();
 		return user ;

@@ -84,8 +84,10 @@
 								<div class="row detail-goods text-danger">
 								时间：
 								<%
-								SimpleDateFormat s = new SimpleDateFormat("yyyy年MM月dd日  HH:mm");
-								out.print(s.format(good.getCreatDate()));
+								java.util.Date date=good.getCreatDate();
+								SimpleDateFormat myFmt=new SimpleDateFormat("yyyy年MM月dd日 HH时mm分");
+								String dateStr =myFmt.format(date);
+								out.print(dateStr);
 								%>
 								</div>
 							</div>
