@@ -1,4 +1,4 @@
-<%@page import="src.dbHandle.UserDbHandle"%>
+<%@page import="src.dbHandle.UserHandle"%>
 <%@page import="org.w3c.dom.UserDataHandler"%>
 <%@page import="src.dbHandle.GoodsHandle"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -44,7 +44,7 @@
 					
 				<% 
 				GoodsHandle goods=new GoodsHandle();
-				UserDbHandle users =new UserDbHandle();
+				UserHandle users =new UserHandle();
 			      List <Goods> list=goods.findAll();
 				 // System.out.println(list.size());
 			      if(list.size()!=0){
