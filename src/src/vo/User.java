@@ -6,6 +6,24 @@ public class User {
 	private String pwd;
 	private String name;
 	private String stu_num;
+	private String qq;
+	private String phone;
+
+	public String getQq() {
+		return qq;
+	}
+
+	public void setQq(String qq) {
+		this.qq = qq;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
 	public void setName(String tmp) {
 		name = tmp;
