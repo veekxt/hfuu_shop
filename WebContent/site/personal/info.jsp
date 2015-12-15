@@ -8,18 +8,17 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <%@ page import="java.text.SimpleDateFormat,java.sql.*,src.dbHandle.*,src.tools.*,javax.servlet.http.HttpSession,java.util.*,src.vo.*"%>
+
 <%
-UserHandle userHandle =new UserHandle();
-String userid=request.getParameter("user");
-User user=null;
-if(userid!=null){
-    user=userHandle.findById(Integer.parseInt(userid));
-}
-else{
-    //
-}
+UserHandle userHandle=new UserHandle();
+User user=userHandle.findById(Integer.parseInt(request.getParameter("userid")));
+Boolean isLogined=LoginVerify.isLogin(request);
+User me=(User)session.getAttribute("loginUser");
+%>
+
+<%
 String cantAlter="";
-if(Integer.parseInt(request.getParameter("user"))!=((User)session.getAttribute("loginUser")).getId()){
+if(!isLogined || (isLogined && user.getId()!=me.getId())){	
     cantAlter="disabled";
 }
 %>
@@ -52,8 +51,9 @@ if(Integer.parseInt(request.getParameter("user"))!=((User)session.getAttribute("
      <input type="text" class="form-control" value="<%=user.getPhone()==null?"":user.getPhone() %>" <%=cantAlter %>>
 	</div>
 	</div>
-	
+	<%if(isLogined && user.getId()==me.getId()){ %>
 	<button type="submit" class="btn btn-primary">更新我的资料</button>
+	<%}%>
 	</form>
 	</div>
 </div>

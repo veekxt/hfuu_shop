@@ -57,7 +57,7 @@
 					class="caret"></span> </a>
 				<ul class="dropdown-menu">
 					<li><a
-						href="<%=basePath %>user/personal.jsp?user=<%=user.getId()%>&tab=info">个人中心</a>
+						href="<%=basePath %>user/personal.jsp?userid=<%=user.getId()%>&tab=info">个人中心</a>
 					</li>
 					<li><a
 						href="<%=basePath %>user/personal.jsp?user=<%=user.getId()%>&tab=setting">设置</a>

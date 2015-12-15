@@ -102,6 +102,7 @@ Integer goodsNum=0;
 							<div class="col-md-7 info-goods">
 								<p>
 								<h3 class="info-goods-name"></h3>
+								<p>
 								${good.getName()}
 								</p>
 								<p>
@@ -110,8 +111,14 @@ Integer goodsNum=0;
 									<br />
 								</p>
 								<p>
+									            价格：${good.price}<br />
+									<br />
+								</p>
+								
+								
+								<p>
 									发布者：<a target="_blank"
-										href="user/personal.jsp?tab=info&userid=1015">${Procuteuser.getName()}</a>(联系:<a href="mailto:<%=Procuteuser.getEmail()%>">
+										href="user/personal.jsp?tab=info&userid=<%=Procuteuser.getId()%>">${Procuteuser.getName()}</a>(联系:<a href="mailto:<%=Procuteuser.getEmail()%>">
 									${Procuteuser.getEmail()})</a><br /> <br />
 								</p>
 								<p>
