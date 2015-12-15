@@ -9,5 +9,29 @@
 	out.println("个人资料");
 %>
 	</div>
-	<div class="panel-body">to do:个人信息页</div>
+	<div class="panel-body">
+	<form>
+	
+	 <div class="form-group">
+	<div class="input-group">
+     <span class="input-group-addon" id="basic-addon1">姓名</span>
+     <input type="text" class="form-control" placeholder="Username" value="解涛" aria-describedby="basic-addon1">
+	</div>
+	</div>
+	
+		 <div class="form-group">
+	<div class="input-group">
+     <span class="input-group-addon" id="basic-addon1">邮箱</span>
+     <input type="text" class="form-control" placeholder="Username" value="解涛" aria-describedby="basic-addon1">
+	</div>
+	</div>
+	
+		 <div class="form-group">
+	<div class="input-group">
+     <span class="input-group-addon" id="basic-addon1">姓名</span>
+     <input type="text" class="form-control" placeholder="Username" value="解涛" aria-describedby="basic-addon1">
+	</div>
+	</div>
+	</form>
+	</div>
 </div>
