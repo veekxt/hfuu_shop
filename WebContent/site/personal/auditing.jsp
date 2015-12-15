@@ -92,8 +92,6 @@ for(Goods goods:all)
 			<%}}catch(Exception e){
     out.print("数据库异常");
 }%>
-
-
 		</table>
 
 	</div>

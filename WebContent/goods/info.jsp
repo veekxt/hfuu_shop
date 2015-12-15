@@ -69,7 +69,7 @@ int goodsId=Integer.parseInt(request.getParameter("goodsid"));
 	</div>
 	<div class="col-md-7 info-goods">
 	<p><h3 class="info-goods-name"></h3>${good.getName()}</p>
-	<p><br />类型：<a target="_blank" href="../index.jsp?ceta=1"><%=typeName %></a><br /><br /></p>
+	<p><br />类型：<a target="_blank" href="index.jsp?ceta=${good.getType_id()}"><%=typeName %></a><br /><br /></p>
 	<p>发布者：<a target="_blank" href="user/personal.jsp?tab=info&userid=1015" >${user.getName()}</a>(联系: ${user.getEmail()})<br /><br /></p>
 	<p>发布时间：<%=dateStr %> <br /><br /></p>
 	<p>物品说明：<span class="info-goods-content">
@@ -77,7 +77,7 @@ int goodsId=Integer.parseInt(request.getParameter("goodsid"));
 	</span></p>
 	</div>
 	</div>
-	<hr />"D:/JAVAW/Rupengwang/bin/com/rupeng/net"
+	<hr />
 	<div class="row">
 	<div class="col-md-4">
 	<button type="button" class="center-block btn btn-info">收藏此物品</button>

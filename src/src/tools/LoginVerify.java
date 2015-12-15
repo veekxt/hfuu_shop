@@ -6,10 +6,8 @@ import src.vo.*;
 public class LoginVerify {
 	public static boolean isAdmin(HttpServletRequest request){
 		HttpSession ses=request.getSession();
-		if(ses.getAttribute("isLogined")!=null
-			&& ses.getAttribute("loginUser")!=null
-			&& ((User)ses.getAttribute("loginUser")).getId()<1000){
-			return true;
+		if(isLogin(request) && ((User)ses.getAttribute("loginUser")).getId()<1000){
+		    return true;
 		}
 		return false;
 	}
