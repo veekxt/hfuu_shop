@@ -12,6 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import src.dbHandle.ShopHandle;
 import src.dbHandle.UserHandle;
 import src.vo.User;
 
@@ -54,6 +55,9 @@ public class AutoLogin implements Filter {
 								}else{
 									EmailOrUserName=user.getEmail();
 								}
+								  ShopHandle shopHandle=new ShopHandle();
+									int   goodsNum=	shopHandle.findByUserId(user.getId());
+									ses.setAttribute("goodsNum", goodsNum);
 								ses.setAttribute("loginUser",user);
 								ses.setAttribute("EmailOrUserName", EmailOrUserName);
 								ses.setAttribute("isLogined", true);
