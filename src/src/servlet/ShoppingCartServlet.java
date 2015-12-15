@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import src.dbHandle.ShopHandle;
+import src.tools.LoginVerify;
+import src.vo.User;
 
 /**
  * Servlet implementation class ShoppingCartServlet
@@ -15,40 +17,44 @@ import src.dbHandle.ShopHandle;
 @WebServlet("/ShoppingCartServlet")
 public class ShoppingCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-    public ShoppingCartServlet() {
-        super();
-       
-    }
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-    int userId=	Integer.parseInt(request.getParameter("userId"));
-  
-    int goodsId=Integer.parseInt(request.getParameter("goodsId"));
-   int goodsNum=(Integer) request.getSession().getAttribute("goodsNum");
-   goodsNum=goodsNum+1;
-   ShopHandle shopHandle=new ShopHandle();
-   request.getSession().setAttribute("goodsNum",goodsNum);
-   try {
-	shopHandle.doSaveShoppingCart(goodsNum, goodsId, userId);
-	// request.getSession().setAttribute("goodsNum",goodsNum);
-	response.getWriter().print("success");
-	
-} catch (Exception e) {
-	
-	e.printStackTrace();
-	response.getWriter().print("false");
-}
-	
-	
+	public ShoppingCartServlet() {
+		super();
+
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request,response);
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		if (LoginVerify.isLogin(request)) {
+			User user = (User) request.getSession().getAttribute("loginUser");
+
+			int userId = user.getId();
+			int goodsId = Integer.parseInt(request.getParameter("goodsId"));
+			int goodsNum = (Integer) request.getSession().getAttribute(
+					"goodsNum");
+			goodsNum = goodsNum + 1;
+			ShopHandle shopHandle = new ShopHandle();
+			request.getSession().setAttribute("goodsNum", goodsNum);
+			try {
+				if(shopHandle.doSaveShoppingCart(goodsNum, goodsId, userId)){
+					response.getWriter().print("success");
+				}
+				else{
+					response.getWriter().print("error");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				response.getWriter().print("error");
+			}
+		} else {
+			response.getWriter().print("unLogin");
+		}
+	}
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 	}
 
 }

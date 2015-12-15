@@ -15,7 +15,7 @@ public class LoginVerify {
 	public static boolean isLogin(HttpServletRequest request){
 		HttpSession ses=request.getSession();
 		if(ses.getAttribute("isLogined")!=null
-			&& ses.getAttribute("loginUser")!=null){
+			&& ses.getAttribute("isLogined").equals(true) && ses.getAttribute("loginUser")!=null){
 			return true;
 		}
 		return false;

@@ -34,8 +34,14 @@ public class ShopHandle {
     }
     public boolean doSaveShoppingCart( int goodsNum,int goodsId,int userId) throws Exception {
         boolean flag = false;
-
-        String sql = "INSERT INTO shoppingCart(id,goodsId,userId) VALUES (?,?,?)";
+        String sql="select id from shoppingcart where goodsId="+goodsId;
+        this.pstmt = this.conn.prepareStatement(sql);
+        ResultSet rs = this.pstmt.executeQuery();
+        if(rs.next()){
+        	flag = false;
+        	return flag;
+        }
+        sql = "INSERT INTO shoppingcart(id,goodsId,userId) VALUES (?,?,?)";
         this.pstmt = this.conn.prepareStatement(sql);
         pstmt.setInt(1, goodsNum);
         pstmt.setInt(2, goodsId);

@@ -1,3 +1,4 @@
+
 <%/*
 导航栏
 */%>
@@ -18,14 +19,16 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="<%=basePath %>index.jsp?ceta=0" style="font-size: 24px">合肥学院物品交易网</a>
+		<a class="navbar-brand" href="<%=basePath %>index.jsp?ceta=0"
+			style="font-size: 24px">合肥学院物品交易网</a>
 	</div>
 
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
 		</ul>
-		<form action="<%=basePath %>search.jsp?ceta=0" class="navbar-form navbar-left" role="search">
+		<form action="<%=basePath %>search.jsp?ceta=0"
+			class="navbar-form navbar-left" role="search">
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="关键字">
 			</div>
@@ -38,22 +41,16 @@
            User user=(User)session.getAttribute("loginUser");
                 %>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#">我的收藏</a>
-			</li>
 			<%int goodsNum=3; 
 			if(session.getAttribute("goodsNum")!=null){
 				
 				goodsNum=(Integer)session.getAttribute("goodsNum");
 			}
 			%>
-			<li ><a href="#">购物车(<span style="color:#d00;" id="goodsNum"><%=goodsNum %></span>)</a>
-			</li>
 			<%if (isLogined!=null && user!=null &&isLogined==true){
-				
-				
-				
-                    	%>
-
+			%>
+			<li><a href="#">购物车(<span style="color: #d00;"
+					id="goodsNum"><%=goodsNum %></span>)</a></li>
 			<li class="dropdown"><a href="javascript:void(0)"
 				class="dropdown-toggle" data-toggle="dropdown" role="button"
 				aria-haspopup="true" aria-expanded="false"><%=email%> <span
@@ -68,15 +65,13 @@
 					<li><a
 						href="<%=basePath %>user/personal.jsp?user=<%=user.getId()%>&tab=message">我的消息</a>
 					</li>
-					<li><a href="<%=basePath %>ExitLoginServlet">退出登录</a>
-					</li>
-				</ul></li>
+					<li><a href="<%=basePath %>ExitLoginServlet">退出登录</a></li>
+				</ul>
+			</li>
 			<%
                     }else{%>
-			<li><a href="<%=basePath %>user/login.jsp">登录</a>
-			</li>
-			<li><a href="<%=basePath %>user/register.jsp">注册</a>
-			</li>
+			<li><a href="<%=basePath %>user/login.jsp">登录</a></li>
+			<li><a href="<%=basePath %>user/register.jsp">注册</a></li>
 			<% }%>
 		</ul>
 	</div>
