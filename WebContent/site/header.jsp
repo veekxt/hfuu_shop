@@ -40,9 +40,18 @@
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="#">我的收藏</a>
 			</li>
-			<li><a href="#">购物车(0)</a>
+			<%int goodsNum=3; 
+			if(session.getAttribute("goodsNum")!=null){
+				
+				goodsNum=(Integer)session.getAttribute("goodsNum");
+			}
+			%>
+			<li ><a href="#">购物车(<span style="color:#d00;" id="goodsNum"><%=goodsNum %></span>)</a>
 			</li>
 			<%if (isLogined!=null && user!=null &&isLogined==true){
+				
+				
+				
                     	%>
 
 			<li class="dropdown"><a href="javascript:void(0)"
