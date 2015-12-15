@@ -35,7 +35,7 @@ if(request.getParameter("userid")==null && session.getAttribute("isLogined").equ
 								<div class="row detail-goods text-muted">邮箱：wklzhizhen@163.com</div>
 							</div>
 							<a href="user/personal.jsp?tab=info" class="list-group-item">个人信息</a>
-							<a href="user/personal.jsp?tab=shopcart" class="list-group-item">购物车</a>
+							
 							<%if((session.getAttribute("isLogined").equals(true))){%>
 							<%if(((User) session.getAttribute("loginUser")).getId()<1000){%>
 							<a href="user/personal.jsp?tab=auditing" class="list-group-item">物品审核</a>
