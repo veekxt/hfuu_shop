@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import src.dbHandle.ShopHandle;
+import src.dbHandle.ShopCartHandle;
 import src.tools.LoginVerify;
 import src.vo.User;
 
@@ -34,10 +34,10 @@ public class ShoppingCartServlet extends HttpServlet {
 			int goodsNum = (Integer) request.getSession().getAttribute(
 					"goodsNum");
 			goodsNum = goodsNum + 1;
-			ShopHandle shopHandle = new ShopHandle();
+			ShopCartHandle shopCartHandle = new ShopCartHandle();
 			request.getSession().setAttribute("goodsNum", goodsNum);
 			try {
-				if(shopHandle.doSaveShoppingCart(goodsNum, goodsId, userId)){
+				if(shopCartHandle.doSaveShoppingCart(goodsNum, goodsId, userId)){
 					response.getWriter().print("success");
 				}
 				else{

@@ -8,11 +8,11 @@ import java.util.List;
 import src.dbc.DatabaseConnection;
 import src.vo.Goods;
 
-public class ShopHandle {
+public class ShopCartHandle {
 	private Connection conn = null;
     private PreparedStatement pstmt = null;
 
-    public ShopHandle() {
+    public ShopCartHandle() {
         try {
             this.conn = new DatabaseConnection().getConnection();
         } catch (Exception e) {
@@ -21,7 +21,7 @@ public class ShopHandle {
         }
     }
 
-    public int findByUserId(int id) throws Exception {
+    public int shopCartNum(int id) throws Exception {
     int i=0;
         String sql = "SELECT goodsId FROM ShoppingCart WHERE userId=?";
         this.pstmt = this.conn.prepareStatement(sql);
@@ -46,7 +46,6 @@ public class ShopHandle {
         pstmt.setInt(1, goodsNum);
         pstmt.setInt(2, goodsId);
         pstmt.setInt(3, userId);
-      
         if (this.pstmt.executeUpdate() > 0) {
             flag = true;
         }
