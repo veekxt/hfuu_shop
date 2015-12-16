@@ -10,9 +10,7 @@ import java.util.Date;
 import src.dbHandle.*;
 import src.tools.*;
 import src.vo.*;
-/**
- * Servlet implementation class OrderCheckServlet
- */
+
 @WebServlet("/OrderCheckServlet")
 public class OrderCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -38,8 +36,8 @@ public class OrderCheckServlet extends HttpServlet {
 		        order.setDate(new Date());
 		        
                 if(orderHandle.doCreate(order)){
-                    
                     response.sendRedirect(fromURL[0]+"&info="+java.net.URLEncoder.encode("购买成功，消息已发送至卖家","UTF-8"));
+                    return;
                 }
             } catch (Exception e) {
                 response.sendRedirect(fromURL[0]+"&info="+java.net.URLEncoder.encode("购买失败","UTF-8"));
@@ -49,6 +47,7 @@ public class OrderCheckServlet extends HttpServlet {
 		}
 		else{
 		    response.sendRedirect(fromURL[0]+"&info="+java.net.URLEncoder.encode("购买失败","UTF-8"));
+		    return;
 		}
 	}
 
