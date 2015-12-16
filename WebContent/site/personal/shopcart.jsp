@@ -38,7 +38,7 @@ list=shopCartHandle.findGoodsByUser(me);
 					<div class="row detail-goods lead">
 						<div>
 						<a href="goods/info.jsp?goodsid=<%=good.getId()%>"><%=good.getName()%></a>
-						<button class="pull-right btn btn-default">
+						<button class="pull-right btn btn-success">
 						移除
 						</button>
 						</div>
@@ -58,7 +58,7 @@ list=shopCartHandle.findGoodsByUser(me);
 	    	</div>
 	    	<%}%>
 	    	<div>
-	    	<button class="pull-right btn btn-default">
+	    	<button class="pull-right btn btn-success">
 			购买全部
 			</button>
 			</div>

@@ -11,7 +11,6 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import src.dbHandle.ShopCartHandle;
 import src.dbHandle.UserHandle;
 import src.vo.User;
@@ -21,17 +20,13 @@ import src.vo.User;
  */
 @WebFilter("/AutoLogin")
 public class AutoLogin implements Filter {
-
 	public AutoLogin() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public void destroy() {
-		// TODO Auto-generated method stub
 	}
 
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response,FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession ses = req.getSession();
 		Cookie[] cookies = req.getCookies();
@@ -55,28 +50,25 @@ public class AutoLogin implements Filter {
 								}else{
 									EmailOrUserName=user.getEmail();
 								}
-								  ShopCartHandle shopCartHandle=new ShopCartHandle();
-									int   goodsNum=	shopCartHandle.shopCartNum(user.getId());
-									ses.setAttribute("goodsNum", goodsNum);
+								ShopCartHandle shopCartHandle=new ShopCartHandle();
+								int goodsNum = shopCartHandle.shopCartNum(user.getId());
+								ses.setAttribute("goodsNum", goodsNum);
 								ses.setAttribute("loginUser",user);
 								ses.setAttribute("EmailOrUserName", EmailOrUserName);
 								ses.setAttribute("isLogined", true);
 							}else{
-								;
+								//未检测到cookie，不做任何事
 							}
 						}
 					} catch (Exception e) {
-						// TODO: handle exception
+						e.printStackTrace();
 					}
-
 				}
 			}
 		}
-		// pass the request along the filter chain
 		chain.doFilter(request, response);
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
 	}
 }

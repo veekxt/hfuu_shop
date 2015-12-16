@@ -16,7 +16,6 @@ public class GoodsHandle {
         try {
             this.conn = new DatabaseConnection().getConnection();
         } catch (Exception e) {
-
             e.printStackTrace();
         }
     }
@@ -48,7 +47,6 @@ public class GoodsHandle {
 
     public boolean doCreate(Goods good) throws Exception {
         boolean flag = false;
-
         String sql = "INSERT INTO `goods`(name,price,image,content,status,id,type_id,producter_id,create_date,num) VALUES (?,?,?,?,?,?,?,?,?,?)";
         this.pstmt = this.conn.prepareStatement(sql);
         pstmt.setString(1, good.getName());

@@ -76,8 +76,7 @@ public class GoodsCheckServlet extends HttpServlet {
 					    Goods good = new Goods();
 					    good.setType_id(type);
 					    good.setProducter_id(user.getId());
-						goodsQuantity = Float.parseFloat(getForm(request,
-								"quantity-goods"));
+						goodsQuantity = Float.parseFloat(getForm(request,"quantity-goods"));
 						good.setName(goodsName);
 						good.setContent(goodsContent);
 						good.setPrice(goodsQuantity);
@@ -90,78 +89,53 @@ public class GoodsCheckServlet extends HttpServlet {
 							good.setId(maxid + 1);
 							int id = good.getId();
 							byte[] bt = new byte[(int) part.getSize()];
-							String imagePathName1 = savePath + "\\" + id
-									+ ".jpg";
-					
-							String imagePathName = imagePathName1.replace('\\',
-									'/');
-				
+							String imagePathName1 = savePath + "\\" + id + ".jpg";
+							String imagePathName = imagePathName1.replace('\\','/');
 							good.setImage("static/goods_img/" + id + ".jpg");
 							fos = new FileOutputStream(imagePathName);
-							//System.out.println(imagePathName);
-
 							part.getInputStream().read(bt);
 							fos.write(bt);
 							Date date=new Date();
-							
 							good.setCreatDate(date);
 							goodsHandle.doCreate(good);
-			
 							response.sendRedirect("user/personal.jsp?tab=push&success=1&info="
-									+ java.net.URLEncoder.encode("添加成功",
-											"UTF-8"));
+							        +java.net.URLEncoder.encode("添加成功","UTF-8"));
 							return;
 						} catch (Exception e) {
-						
 							e.printStackTrace();
 							response.sendRedirect("user/personal.jsp?tab=push&info="
-									+ java.net.URLEncoder.encode("数据库异常",
-											"UTF-8"));
+									+java.net.URLEncoder.encode("数据库异常","UTF-8"));
 							return;
 						} finally {
 							if (fos != null) {
 								fos.close();
 							}
 						}
-
 					} else {
-
 						fileCheck = "需要上传物品图片";
 						request.setAttribute("fileCheck", fileCheck);
-						request.getRequestDispatcher(
-								"user/personal.jsp?tab=push&success=0").forward(request,
-								response);
+						request.getRequestDispatcher("user/personal.jsp?tab=push&success=0").forward(request,response);
 					}
 				} else {
-
 					contentCheck = "物品简介不能为空";
 					request.setAttribute("contentCheck", contentCheck);
 					request.getRequestDispatcher("user/personal.jsp?tab=push&success=0")
-							.forward(request, response);
+						   .forward(request, response);
 				}
 
 			} else {
 				quantityCheck = "物品价格不能为空且要大于0";
 			}
-
 			request.setAttribute("quantityCheck", quantityCheck);
-			request.getRequestDispatcher("user/personal.jsp?tab=push&success=0").forward(
-					request, response);
-
+			request.getRequestDispatcher("user/personal.jsp?tab=push&success=0").forward(request, response);
 		} else {
 			nameCheck = "物品名称不能为空";
-
 			request.setAttribute("nameCheck", nameCheck);
-			request.getRequestDispatcher("user/personal.jsp?tab=push&success=0").forward(
-					request, response);
+			request.getRequestDispatcher("user/personal.jsp?tab=push&success=0").forward(request, response);
 		}
-
-		// todo,更多信息
-
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		this.doGet(request, response);
 	}
 }

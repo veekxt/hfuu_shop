@@ -17,7 +17,6 @@ public class ShopCartHandle {
         try {
             this.conn = new DatabaseConnection().getConnection();
         } catch (Exception e) {
-
             e.printStackTrace();
         }
     }
