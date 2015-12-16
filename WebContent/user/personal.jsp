@@ -12,6 +12,7 @@ UserHandle userHandle=new UserHandle();
 User user=userHandle.findById(Integer.parseInt(request.getParameter("userid")));
 Boolean isLogined=LoginVerify.isLogin(request);
 User me=(User)session.getAttribute("loginUser");
+String tab = request.getParameter("tab");
 %>
 <!DOCTYPE html>
 <html>
@@ -36,25 +37,34 @@ User me=(User)session.getAttribute("loginUser");
 								<div class="row detail-goods text-muted">姓名：<%=user.getName() %></div>
 								<div class="row detail-goods text-muted">邮箱：<%=user.getEmail() %></div>
 							</div>
-							<a href="user/personal.jsp?tab=info&userid=<%=user.getId() %>" class="list-group-item">个人信息</a>
+							<a href="user/personal.jsp?tab=info&userid=<%=user.getId() %>" 
+							class="list-group-item <%=tab.equals("info")?"active":"" %>">
+							个人信息</a>
 							
 							<%if(isLogined && user.getId()==me.getId()){	
 							%>
 							<%if(LoginVerify.isAdmin(request)){	
 							%>
 							
-							<a href="user/personal.jsp?tab=auditing&userid=<%=user.getId() %>" class="list-group-item">物品审核</a>
-							<%} %>
+							<a href="user/personal.jsp?tab=auditing&userid=<%=user.getId() %>"
+							class="list-group-item <%=tab.equals("auditing")?"active":"" %>">
+							物品审核</a>
+							<%}%>
 							<a href="user/personal.jsp?tab=shopcart&userid=<%=user.getId() %>"
-								class="list-group-item">购物车</a>
-							<a href="user/personal.jsp?tab=push&userid=<%=user.getId() %>" class="list-group-item">发布商品</a>
-							<a href="user/personal.jsp?tab=history&page=1&userid=<%=user.getId() %>"
-								class="list-group-item">购买历史</a>
-								
-								 <a
-								href="user/personal.jsp?tab=setting&userid=<%=user.getId() %>" class="list-group-item">设置
-							</a> <a href="user/personal.jsp?tab=like&page=1&userid=<%=user.getId() %>"
-								class="list-group-item">收藏夹 </a>
+							class="list-group-item <%=tab.equals("shopcart")?"active":"" %>">
+							购物车</a>
+							<a href="user/personal.jsp?tab=history&userid=<%=user.getId() %>"
+							class="list-group-item <%=tab.equals("history")?"active":"" %>">
+							购买历史</a>
+							<a href="user/personal.jsp?tab=push&userid=<%=user.getId() %>"
+							class="list-group-item <%=tab.equals("push")?"active":"" %>">
+							发布商品</a>
+							<a href="user/personal.jsp?tab=like&page=1&userid=<%=user.getId() %>"
+							class="list-group-item <%=tab.equals("like")?"active":"" %>">
+							收藏夹 </a>
+							<a href="user/personal.jsp?tab=setting&userid=<%=user.getId() %>" 
+							class="list-group-item <%=tab.equals("setting")?"active":"" %>">
+							设置</a>
 							<%}else{%>
 							<%}%>
 						</div>
@@ -62,14 +72,18 @@ User me=(User)session.getAttribute("loginUser");
 				</div>
 			</div>
 				<div class="col-md-8">
-				<%if(request.getParameter("tab").equals("push")){%>
+				<%if(tab.equals("push")){%>
 				<jsp:include page="../site/personal/push.jsp" />
-				<%} else if(request.getParameter("tab").equals("info")){%>
+				<%}else if(tab.equals("info")){%>
 				<jsp:include page="../site/personal/info.jsp" />
-				<%}else if(request.getParameter("tab").equals("auditing")){%>
+				<%}else if(tab.equals("auditing")){%>
 				<jsp:include page="../site/personal/auditing.jsp" />
-				<%}else if(request.getParameter("tab").equals("shopcart")){%>
+				<%}else if(tab.equals("shopcart")){%>
 				<jsp:include page="../site/personal/shopcart.jsp" />
+				<%}else if(tab.equals("like")){%>
+				<jsp:include page="../site/personal/like.jsp" />
+				<%}else if(tab.equals("history")){%>
+				<jsp:include page="../site/personal/history.jsp" />
 				<%}%>
 		</div>
 	</div>

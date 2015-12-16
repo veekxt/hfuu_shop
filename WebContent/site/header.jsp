@@ -49,7 +49,7 @@
 			%>
 			<%if (isLogined!=null && user!=null &&isLogined==true){
 			%>
-			<li><a href="#">购物车(<span style="color: #d00;"
+			<li><a href="user/personal.jsp?tab=shopcart&userid=<%=user.getId()%>">购物车(<span style="color: #d00;"
 					id="goodsNum"><%=goodsNum %></span>)</a></li>
 			<li class="dropdown"><a href="javascript:void(0)"
 				class="dropdown-toggle" data-toggle="dropdown" role="button"

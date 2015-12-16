@@ -21,13 +21,13 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `goods`;
 CREATE TABLE `goods` (
   `id` int(11) NOT NULL,
-  `image` char(255) COLLATE utf8_bin NOT NULL,
+  `image` char(255)  NOT NULL,
   `type_id` int(11) NOT NULL COMMENT '类型id',
-  `name` char(255) COLLATE utf8_bin NOT NULL COMMENT '商品名',
+  `name` char(255)  NOT NULL COMMENT '商品名',
   `num` int(11) DEFAULT NULL COMMENT '数量',
   `price` float NOT NULL,
   `status` int(11) NOT NULL,
-  `content` varchar(255) COLLATE utf8_bin NOT NULL,
+  `content` varchar(255)  NOT NULL,
   `producter_id` int(11) NOT NULL,
   `create_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
@@ -49,7 +49,7 @@ CREATE TABLE `order` (
   `goods_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `date` datetime NOT NULL,
-  `message` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `message` varchar(255)  DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -78,12 +78,12 @@ CREATE TABLE `shoppingcart` (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `email` char(255) COLLATE utf8_bin NOT NULL,
-  `pwd` char(255) COLLATE utf8_bin NOT NULL,
-  `name` char(255) COLLATE utf8_bin DEFAULT NULL,
-  `stu_num` char(255) COLLATE utf8_bin DEFAULT NULL,
-  `qq` char(255) COLLATE utf8_bin DEFAULT NULL,
-  `phone` char(255) COLLATE utf8_bin DEFAULT NULL,
+  `email` char(255)  NOT NULL,
+  `pwd` char(255)  NOT NULL,
+  `name` char(255)  DEFAULT NULL,
+  `stu_num` char(255)  DEFAULT NULL,
+  `qq` char(255)  DEFAULT NULL,
+  `phone` char(255)  DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
