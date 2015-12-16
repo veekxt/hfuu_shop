@@ -105,7 +105,7 @@ public class GoodsCheckServlet extends HttpServlet {
 							Date date=new Date();
 							
 							good.setCreatDate(date);
-							goodsHandle.doCreateGoods(good);
+							goodsHandle.doCreate(good);
 			
 							response.sendRedirect("user/personal.jsp?tab=push&success=1&info="
 									+ java.net.URLEncoder.encode("添加成功",

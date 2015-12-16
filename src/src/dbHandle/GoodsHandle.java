@@ -46,10 +46,10 @@ public class GoodsHandle {
         return goods;
     }
 
-    public boolean doCreateGoods(Goods good) throws Exception {
+    public boolean doCreate(Goods good) throws Exception {
         boolean flag = false;
 
-        String sql = "INSERT INTO goods(name,price,image,content,status,id,type_id,producter_id,create_date,num) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO `goods`(name,price,image,content,status,id,type_id,producter_id,create_date,num) VALUES (?,?,?,?,?,?,?,?,?,?)";
         this.pstmt = this.conn.prepareStatement(sql);
         pstmt.setString(1, good.getName());
         pstmt.setFloat(2, good.getPrice());

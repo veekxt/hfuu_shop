@@ -20,6 +20,12 @@
 
 <title>物品详情</title>
 <script type="text/javascript">
+function toLogin(isLogin){
+	if(!isLogin)
+	{
+		window.location.href="user/login.jsp?login-info="+"请先登录";
+	}
+}
 function shoppingCart(isLogin,goodsNum,goodsId){
 
 	if(isLogin){
@@ -97,7 +103,7 @@ Integer goodsNum=0;
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-5">
-								<img class="info-img" src="<%=good.getImage()%>">
+								<img title="右键查看原图" class="info-img" src="<%=good.getImage()%>">
 							</div>
 							<div class="col-md-7 info-goods">
 								<p>
@@ -131,6 +137,48 @@ Integer goodsNum=0;
 								</p>
 							</div>
 						</div>
+						<!-- 确认购买区域 -->
+						<script type="text/javascript">
+						$(document).ready(function(){
+						  $("#buy").click(function(){
+						  $(".buy-confirm").show(200);
+						  });
+						});
+						</script>
+						<div style="display:none;" class="buy-confirm">
+						<hr />
+						<div class="row">
+						<div class="col-md-8 col-md-offset-2">
+							<div class="panel panel-info">
+								<div class="panel-heading">
+								<span class="center-block" style="text-align:center;font-size:15px;">确定购买</span>
+								</div>
+								<div class="panel-body">
+								<p>
+								请输入给卖家的附加消息，然后点击 "确定" 按钮，我们将会通知卖家。
+								</p>
+								
+								<form action="OrderCheckServlet?goodsid=<%=request.getParameter("goodsid")%>&userid=<%=((User)session.getAttribute("loginUser")).getId()%>" method="post">
+								  <div class="form-group">
+								    <textarea class="form-control" name="message-to-seller" id="message-to-seller"></textarea>
+								  </div>
+								  <button type="submit" class="pull-left btn btn-default">确认购买</button>
+								</form>
+								
+								</div>
+							</div>
+						</div>
+						</div>
+						</div>
+						<!-- end of 确认购买区域 -->
+						
+						<!-- 提示消息 -->
+						<%
+						if(request.getParameter("info")!=null){
+						%>
+						<div class="alert alert-warning"><%=request.getParameter("info") %></div>
+						<%}%>
+						
 						<hr />
 						<div class="row">
 							<div class="col-md-4">
@@ -143,7 +191,15 @@ Integer goodsNum=0;
 							</div>
 
 							<div class="col-md-4">
-								<button type="button" class="center-block btn btn-info">立刻购买</button>
+								<button <%=good.getStates()==2?"":"disabled=\"disabled\"" %> id="buy" type="button" class="center-block btn btn-info" onclick="toLogin(<%=isLogin %>)">
+								<%
+								if(good.getStates()!=2){
+								    out.print("[不可用]已被购买或未通过审核");
+								}else{
+								    out.print("立即购买");
+								}
+								%>
+								</button>
 							</div>
 						</div>
 					</div>

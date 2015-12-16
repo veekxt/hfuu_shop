@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : hhh
-Source Server Version : 50709
+Source Server         : xt_db
+Source Server Version : 50621
 Source Host           : localhost:3306
 Source Database       : hfuu_shop
 
 Target Server Type    : MYSQL
-Target Server Version : 50709
+Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-12-14 11:19:59
+Date: 2015-12-16 13:34:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,9 +36,9 @@ CREATE TABLE `goods` (
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-INSERT INTO `goods` VALUES ('1', 'static/goods_img/1.jpg', '5', '笔记本', '1', '4000', '3', '二手笔记本，8成新，I7处理器', '1017', '2015-12-12 12:10:10');
+INSERT INTO `goods` VALUES ('1', 'static/goods_img/1.jpg', '5', '笔记本', '1', '4000', '1', '二手笔记本，8成新，I7处理器', '1017', '2015-12-12 12:10:10');
 INSERT INTO `goods` VALUES ('2', 'static/goods_img/2.jpg', '2', '被套', '1', '30', '2', '二手被套', '1017', '2015-12-16 02:34:01');
-INSERT INTO `goods` VALUES ('3', 'static/goods_img/3.jpg', '2', '自行车', '1', '50', '2', '二手自行车', '1017', '2015-12-11 11:22:33');
+INSERT INTO `goods` VALUES ('3', 'static/goods_img/3.jpg', '2', '自行车', '1', '50', '4', '二手自行车', '1017', '2015-12-11 11:22:33');
 
 -- ----------------------------
 -- Table structure for `order`
@@ -56,7 +56,21 @@ CREATE TABLE `order` (
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES ('1', '1', '10', '2015-12-13 22:02:32', '测试消息');
+
+-- ----------------------------
+-- Table structure for `shoppingcart`
+-- ----------------------------
+DROP TABLE IF EXISTS `shoppingcart`;
+CREATE TABLE `shoppingcart` (
+  `id` int(11) NOT NULL,
+  `goodsId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of shoppingcart
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `user`
@@ -80,3 +94,8 @@ INSERT INTO `user` VALUES ('9', 'dandan@qq.com', '14e1b600b1fd579f47433b88e8d852
 INSERT INTO `user` VALUES ('10', 'veekxt@gmail.com', '14e1b600b1fd579f47433b88e8d85291', 'KevinVeek', null, null, null);
 INSERT INTO `user` VALUES ('1015', 'xietao@163.com', '8560ef54213c8b32e89a24ccc323a79e', '解涛', null, null, null);
 INSERT INTO `user` VALUES ('1017', '1050026@qq.com', 'acd09f1f204179b957001f53f411899b', '陈生辉', null, null, '13245634567');
+DROP TRIGGER IF EXISTS `update_goods_status`;
+DELIMITER ;;
+CREATE TRIGGER `update_goods_status` AFTER INSERT ON `order` FOR EACH ROW update goods set status=4 where id=new.goods_id
+;;
+DELIMITER ;

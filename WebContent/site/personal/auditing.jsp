@@ -1,5 +1,11 @@
 <%/*
 审核页面，被/personal.jsp包含，查找所有未审核商品（status=1）
+status说明：
+1-未审核
+2-审核通过
+3-审核未通过
+4-已被购买(交易中)
+5-交易完成
 */%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>

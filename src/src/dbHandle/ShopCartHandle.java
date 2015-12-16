@@ -3,11 +3,7 @@ package src.dbHandle;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.List;
-
 import src.dbc.DatabaseConnection;
-import src.vo.Goods;
-
 public class ShopCartHandle {
 	private Connection conn = null;
     private PreparedStatement pstmt = null;
