@@ -12,11 +12,9 @@ import javax.servlet.annotation.WebFilter;
 @WebFilter("/CharSet")
 public class CharSet implements Filter {
     public CharSet() {
-        // TODO Auto-generated constructor stub
     }
 
 	public void destroy() {
-		// TODO Auto-generated method stub
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -26,7 +24,6 @@ public class CharSet implements Filter {
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
 	}
 
 }

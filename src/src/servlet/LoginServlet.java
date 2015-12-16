@@ -21,15 +21,13 @@ public class LoginServlet extends HttpServlet {
 
 	}
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		String inputEmail = request.getParameter("inputEmail");
 		String inputPassword = request.getParameter("inputPassword");
 		String autoLogin = request.getParameter("auto_login");
 		UserHandle userHandle = new UserHandle();
 		String EmailOrUserName="";
 		try {
-			// if(DAOFactory.getIUserDAOInstance().findByEmail(inputEmail)!=null){
 			if (userHandle.findByEmail(inputEmail) != null) {
 				User user = userHandle.findByEmail(inputEmail);
 				String pass = MD5.getMD5(MD5.getMD5(inputPassword));
@@ -37,7 +35,6 @@ public class LoginServlet extends HttpServlet {
 				 * 日后修复标记：这里仅用了email作为cookie并用于验证，极不安全
 				 */
 				if (user.getPwd().equals(pass)) {
-
 					if (autoLogin != null && autoLogin.equals("on")) {
 						Cookie cookieE = new Cookie("LOGIN_EMAIL", inputEmail);
 						cookieE.setMaxAge(60 * 60 * 24 * 7);
@@ -51,7 +48,7 @@ public class LoginServlet extends HttpServlet {
 						EmailOrUserName=user.getEmail();
 					}
 					  ShopCartHandle shopCartHandle=new ShopCartHandle();
-				int   goodsNum=	shopCartHandle.shopCartNum(user.getId());
+				int goodsNum = shopCartHandle.shopCartNum(user.getId());
 				session.setAttribute("goodsNum", goodsNum);
 					session.setAttribute("EmailOrUserName", EmailOrUserName);
 					session.setAttribute("loginUser",user);
@@ -68,7 +65,6 @@ public class LoginServlet extends HttpServlet {
 						request, response);
 			}
 		} catch (Exception e) {
-
 			e.printStackTrace();
 		}
 	}

@@ -11,6 +11,6 @@
 <title>404</title>
 </head>
 <body>
-	<h2>404 not found.</h2>
+	<h2>合肥学院物品交易<br />页面未找到<br />检查你的URL</h2>
 </body>
 </html>

@@ -18,7 +18,7 @@ public class OrderCheckServlet extends HttpServlet {
     public OrderCheckServlet() {
         super();
     }
-
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String messageToSeller = request.getParameter("message-to-seller");
 		Boolean isLogined = LoginVerify.isLogin(request);
@@ -34,7 +34,6 @@ public class OrderCheckServlet extends HttpServlet {
 		        order.setUserId(userId);
 		        order.setMessage(messageToSeller);
 		        order.setDate(new Date());
-		        
                 if(orderHandle.doCreate(order)){
                     response.sendRedirect(fromURL[0]+"&info="+java.net.URLEncoder.encode("购买成功，消息已发送至卖家","UTF-8"));
                     return;
