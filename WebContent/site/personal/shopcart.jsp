@@ -21,13 +21,14 @@ list=shopCartHandle.findGoodsByUser(me);
 			我的购物车
 	</div>
 	<div class="panel-body">
+	<div class="list-group">
 	<%
 	if(list.size()!=0){
 		for(Goods good:list){
 	    	if(good.getProducter_id()==null)continue;
 	    	User user = userHandle.findById(good.getProducter_id());
 	    	%>
-	    	<div class="list-group-item">
+	    	<div id="list-goods-<%=good.getId() %>" class="list-group-item">
 				<div class="row">
 					<div class="col-md-3">
 						<img class="img-rounded img-item-goods"
@@ -35,7 +36,12 @@ list=shopCartHandle.findGoodsByUser(me);
 					</div>
 					<div class="col-md-9">
 					<div class="row detail-goods lead">
+						<div>
 						<a href="goods/info.jsp?goodsid=<%=good.getId()%>"><%=good.getName()%></a>
+						<button class="pull-right btn btn-default">
+						移除
+						</button>
+						</div>
 					</div>
 					<div class="row detail-goods text-muted">发布者:<%if(user.getName()!=null){ %><%=user.getName() %><%}else{%><%=user.getEmail()%><%}%> </div>
 					<div class="row detail-goods text-danger">
@@ -50,6 +56,13 @@ list=shopCartHandle.findGoodsByUser(me);
 					</div>
 				</div>
 	    	</div>
-	    	<%}} %>
+	    	<%}%>
+	    	<div>
+	    	<button class="pull-right btn btn-default">
+			购买全部
+			</button>
+			</div>
+			<%}%>
+	    	</div>
 	</div>
 </div>
