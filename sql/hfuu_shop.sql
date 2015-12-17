@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-12-17 14:47:21
+Date: 2015-12-17 16:11:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -76,6 +76,24 @@ CREATE TABLE `shoppingcart` (
 -- Records of shoppingcart
 -- ----------------------------
 INSERT INTO `shoppingcart` VALUES ('1', '2', '10');
+
+-- ----------------------------
+-- Table structure for `shop_message`
+-- ----------------------------
+DROP TABLE IF EXISTS `shop_message`;
+CREATE TABLE `shop_message` (
+  `mess_from_id` int(11) NOT NULL,
+  `mess_to_id` int(11) NOT NULL,
+  `mess_text` varchar(255) COLLATE utf8_bin NOT NULL,
+  `send_time` datetime NOT NULL,
+  `mess_id` int(11) NOT NULL,
+  `mess_type` int(11) DEFAULT NULL,
+  PRIMARY KEY (`mess_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of shop_message
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `user`
