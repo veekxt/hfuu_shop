@@ -62,12 +62,12 @@ if(request.getParameter("info")!=null && !request.getParameter("info").equals(""
 			<div class="form-group">
 				<p>选择一个分类：</p>
 				<select name="type_id-goods" class="form-control">
-					<option value="other">其他</option>
 					<option value="book">书籍</option>
 					<option value="live">生活出行</option>
-					<option value="sport">体育运动</option>
 					<option value="clothes">衣服鞋包</option>
 					<option value="eletronic">电子产品</option>
+					<option value="sport">体育运动</option>
+					<option value="other">其他</option>
 				</select>
 			</div>
 			<div class="form-group">

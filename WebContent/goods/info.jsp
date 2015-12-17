@@ -70,17 +70,17 @@ Integer goodsNum=0;
 	 int typeId= good.getType_id();
 	 String typeName="";
 	 switch(typeId){
-	 case 0:typeName="其他";
+	 case 6:typeName="其他";
 	 break;
 	 case 1:typeName="书籍";
 	 break;
 	 case 2:typeName="生活用品";
 	 break;
-	 case 3:typeName="体育";
+	 case 5:typeName="体育";
 	 break;
-	 case 4:typeName="衣装";
+	 case 3:typeName="衣装";
 	 break;
-	 case 6:typeName="电子";
+	 case 4:typeName="电子";
 	 break;
 	}
 	Date date=good.getCreatDate();

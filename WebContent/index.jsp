@@ -62,6 +62,9 @@
 			    }else if(ceta.equals("5")){
 			    	out.println("<span class=\"list-group-item list-group-item-info\">分类-体育运动</span>");
 			    	list=goods.findByCeta(5);
+			    }else if(ceta.equals("6")){
+			    	out.println("<span class=\"list-group-item list-group-item-info\">分类-其他</span>");
+			    	list=goods.findByCeta(5);
 			    }else{
 			    	out.println("<span class=\"list-group-item list-group-item-info\">分类-全部</span>");
 					list=goods.findAll();

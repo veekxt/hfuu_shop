@@ -69,7 +69,7 @@ public class GoodsCheckServlet extends HttpServlet {
 						int type=0;
 						for(int i=0;i<typeId.length;i++){
 							if(type_id.equals(typeId[i])){
-								type=i;
+								type=i+1;
 							}
 						}
 						User user =(User)request.getSession().getAttribute("loginUser");

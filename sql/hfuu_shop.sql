@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : xtvps
-Source Server Version : 50546
-Source Host           : 45.78.60.77:3306
+Source Server         : xt_db
+Source Server Version : 50621
+Source Host           : localhost:3306
 Source Database       : hfuu_shop
 
 Target Server Type    : MYSQL
-Target Server Version : 50546
+Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-12-17 11:17:48
+Date: 2015-12-17 14:47:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,13 +36,12 @@ CREATE TABLE `goods` (
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-INSERT INTO `goods` VALUES ('1', 'static/goods_img/1.jpg', '5', '笔记本', '1', '4000', '1', '二手笔记本，8成新，I7处理器', '1017', '2015-12-12 12:10:10');
-INSERT INTO `goods` VALUES ('2', 'static/goods_img/2.jpg', '2', '被套', '1', '30', '2', '二手被套', '1017', '2015-12-16 02:34:01');
+INSERT INTO `goods` VALUES ('1', 'static/goods_img/1.jpg', '4', '笔记本', '1', '4000', '1', '二手笔记本，8成新，I7处理器', '1017', '2015-12-12 12:10:10');
+INSERT INTO `goods` VALUES ('2', 'static/goods_img/2.jpg', '2', '被套', '1', '30', '4', '二手被套', '1017', '2015-12-16 02:34:01');
 INSERT INTO `goods` VALUES ('3', 'static/goods_img/3.jpg', '2', '自行车', '1', '50', '4', '二手自行车', '1017', '2015-12-11 11:22:33');
-INSERT INTO `goods` VALUES ('4', 'static/goods_img/4.jpg', '3', '网球拍', '1', '50', '2', '二手网球拍，用过几天，九成新', '1018', '2015-12-17 11:00:16');
-INSERT INTO `goods` VALUES ('5', 'static/goods_img/5.jpg', '3', '篮球', '1', '80', '2', '全牛皮篮球，', '1018', '2015-12-17 11:02:57');
+INSERT INTO `goods` VALUES ('4', 'static/goods_img/4.jpg', '5', '网球拍', '1', '50', '2', '二手网球拍，用过几天，九成新', '1018', '2015-12-17 11:00:16');
+INSERT INTO `goods` VALUES ('5', 'static/goods_img/5.jpg', '5', '篮球', '1', '80', '2', '全牛皮篮球，', '1018', '2015-12-17 11:02:57');
 INSERT INTO `goods` VALUES ('6', 'static/goods_img/6.jpg', '2', '懒人桌', '1', '15', '2', '加固型懒人桌，九成新', '1018', '2015-12-17 11:05:00');
-INSERT INTO `goods` VALUES ('7', 'static/goods_img/7.jpg', '2', '懒人桌', '1', '15', '2', '加固型懒人桌，九成新', '1018', '2015-12-17 11:05:04');
 
 -- ----------------------------
 -- Table structure for `order`
@@ -60,6 +59,7 @@ CREATE TABLE `order` (
 -- ----------------------------
 -- Records of order
 -- ----------------------------
+INSERT INTO `order` VALUES ('1', '2', '10', '2015-12-17 14:36:00', '大家');
 
 -- ----------------------------
 -- Table structure for `shoppingcart`
@@ -75,6 +75,7 @@ CREATE TABLE `shoppingcart` (
 -- ----------------------------
 -- Records of shoppingcart
 -- ----------------------------
+INSERT INTO `shoppingcart` VALUES ('1', '2', '10');
 
 -- ----------------------------
 -- Table structure for `user`
