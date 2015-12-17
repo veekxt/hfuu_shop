@@ -41,7 +41,7 @@
            User user=(User)session.getAttribute("loginUser");
                 %>
 		<ul class="nav navbar-nav navbar-right">
-			<%int goodsNum=3; 
+			<%int goodsNum=0; 
 			if(session.getAttribute("goodsNum")!=null){
 				
 				goodsNum=(Integer)session.getAttribute("goodsNum");

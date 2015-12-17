@@ -30,7 +30,7 @@ public class RemoveShopCartServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(1);       
+    
 		Integer    goodsId=Integer.parseInt(request.getParameter("goodsId"));
 		          if (LoginVerify.isLogin(request)) {
 		   User   loginUser = (User)request.getSession().getAttribute("loginUser");

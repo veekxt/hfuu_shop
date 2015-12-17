@@ -17,25 +17,25 @@ list=shopCartHandle.findGoodsByUser(me);
 %>
 
 
-<script type="text/javascript">
+<script>
 function remove(goodsId){
 	xmlRemove=new XMLHttpRequest();
-	
 	xmlRemove.onreadystatechange=function()
-	  {
-		  if ((xmlRemove.readyState==4)&&(xmlRemove.status==200))
-		    {
-		    if(xmlRemove.responseText=="success")
-		    	{
-		    	document.getElementById("list-goods-"+goodsId).remove(); 		
-		    	}
-		 
-		  
-		  else{
-			  //document.getElementById("auditing-button-"+goodsid).innerHTML="=操作中=";
-		  }
-		  
-		    }
+	{
+	  if ((xmlRemove.readyState==4)&&(xmlRemove.status==200))
+	    {
+	    if(xmlRemove.responseText=="success")
+	    	{
+	    	cnode = document.getElementById("list-goods-"+goodsId);
+	    	cnode.parentNode.removeChild(cnode); 	
+	    	if(!(document.getElementById("list-goods")).hasChildNodes())
+	    		{
+	    		cnode=document.getElementById("buyAll");
+	    		cnode.parentNode.removeChild(cnode);
+	    		}
+	    	document.getElementById("goodsNum").innerHTML=(parseInt(document.getElementById("goodsNum").innerHTML)-1).toString();
+	    	}
+	    }
 	}
 	xmlRemove.open("GET","RemoveShopCartServlet?goodsId="+goodsId+"&t="+Math.random(),true);
 	xmlRemove.send(null);
@@ -48,12 +48,12 @@ function remove(goodsId){
 	<div class="panel-body">
 	<div class="list-group">
 	<%
-	if(list.size()!=0){
+	if(list.size()!=0){%>
+		<div id="list-goods"><%
 		for(Goods good:list){
 	    	if(good.getProducter_id()==null)continue;
 	    	User user = userHandle.findById(good.getProducter_id());
-	    	%>
-	    	<div id="list-goods-<%=good.getId() %>" class="list-group-item">
+	    	%><div id="list-goods-<%=good.getId() %>" class="list-group-item">
 				<div class="row">
 					<div class="col-md-3">
 						<img class="img-rounded img-item-goods"
@@ -61,9 +61,9 @@ function remove(goodsId){
 					</div>
 					<div class="col-md-9">
 					<div class="row detail-goods lead">
-						<div>
-						<a href="goods/info.jsp?goodsid=<%=good.getId()%>"><%=good.getName()%></a>
-						<button  onclick="remove(<%=good.getId()%>)"class="pull-right btn btn-success">
+					<div>
+					<a href="goods/info.jsp?goodsid=<%=good.getId()%>"><%=good.getName()%></a>
+						<button  type="button" onclick="remove('<%=good.getId()%>')" class="pull-right btn btn-success">
 						移除
 						</button>
 						</div>
@@ -82,10 +82,8 @@ function remove(goodsId){
 					</div>
 					</div>
 				</div>
-	    	</div>
-	    	<%}%>
+	    	</div><%}%></div>
 	    	<div>
-	    	
 	    	<button id ="buyAll"class="pull-right btn btn-success">
 			购买全部
 			</button>

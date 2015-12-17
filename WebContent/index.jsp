@@ -80,7 +80,7 @@
 								<div class="row detail-goods lead">
 									<a href="goods/info.jsp?goodsid=<%=good.getId()%>"><%=good.getName()%></a>
 								</div>
-									<div class="row detail-goods text-muted">价格:<%=good.getPrice()%>
+									<div class="row detail-goods text-muted">价格:<%=good.getPrice()%></div>
 								<div class="row detail-goods text-muted">发布者:<%if(user.getName()!=null){%><%=user.getName() %><%}else{%><%=user.getEmail()%><%}%> </div>
 								<div class="row detail-goods text-danger">
 								时间：
