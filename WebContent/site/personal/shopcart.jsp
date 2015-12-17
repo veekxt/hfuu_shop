@@ -16,31 +16,6 @@ List <Goods> list=null;
 list=shopCartHandle.findGoodsByUser(me);
 %>
 
-
-<script>
-function remove(goodsId){
-	xmlRemove=new XMLHttpRequest();
-	xmlRemove.onreadystatechange=function()
-	{
-	  if ((xmlRemove.readyState==4)&&(xmlRemove.status==200))
-	    {
-	    if(xmlRemove.responseText=="success")
-	    	{
-	    	cnode = document.getElementById("list-goods-"+goodsId);
-	    	cnode.parentNode.removeChild(cnode); 	
-	    	if(!(document.getElementById("list-goods")).hasChildNodes())
-	    		{
-	    		cnode=document.getElementById("buyAll");
-	    		cnode.parentNode.removeChild(cnode);
-	    		}
-	    	document.getElementById("goodsNum").innerHTML=(parseInt(document.getElementById("goodsNum").innerHTML)-1).toString();
-	    	}
-	    }
-	}
-	xmlRemove.open("GET","RemoveShopCartServlet?goodsId="+goodsId+"&t="+Math.random(),true);
-	xmlRemove.send(null);
-}
-</script>
 <div class="panel panel-info">
 	<div class="panel-heading">
 			我的购物车
@@ -63,7 +38,7 @@ function remove(goodsId){
 					<div class="row detail-goods lead">
 					<div>
 					<a href="goods/info.jsp?goodsid=<%=good.getId()%>"><%=good.getName()%></a>
-						<button  type="button" onclick="remove('<%=good.getId()%>')" class="pull-right btn btn-success">
+						<button  type="button" onclick="shopcart_remove(<%=good.getId() %>)" class="pull-right btn btn-success">
 						移除
 						</button>
 						</div>
@@ -94,3 +69,27 @@ function remove(goodsId){
 	    	</div>
 	</div>
 </div>
+<script>
+function shopcart_remove(goodsId){
+	xmlRemove=new XMLHttpRequest();
+	xmlRemove.onreadystatechange=function()
+	{
+	  if ((xmlRemove.readyState==4)&&(xmlRemove.status==200))
+	    {
+	    if(xmlRemove.responseText=="success")
+	    	{
+	    	cnode = document.getElementById("list-goods-"+goodsId);
+	    	cnode.parentNode.removeChild(cnode); 	
+	    	if(!(document.getElementById("list-goods")).hasChildNodes())
+	    		{
+	    		cnode=document.getElementById("buyAll");
+	    		cnode.parentNode.removeChild(cnode);
+	    		}
+	    	document.getElementById("goodsNum").innerHTML=(parseInt(document.getElementById("goodsNum").innerHTML)-1).toString();
+	    	}
+	    }
+	}
+	xmlRemove.open("GET","RemoveShopCartServlet?goodsId="+goodsId+"&t="+Math.random(),true);
+	xmlRemove.send(null);
+}
+</script>
