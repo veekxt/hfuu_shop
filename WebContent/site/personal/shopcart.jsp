@@ -9,7 +9,6 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <%
-//findGoodsByUser
 ShopCartHandle shopCartHandle=new ShopCartHandle();
 User me =(User)session.getAttribute("loginUser");
 UserHandle userHandle=new UserHandle();
@@ -62,6 +61,8 @@ list=shopCartHandle.findGoodsByUser(me);
 			购买全部
 			</button>
 			</div>
+			<%}else {%>
+			购物车是空的！
 			<%}%>
 	    	</div>
 	</div>

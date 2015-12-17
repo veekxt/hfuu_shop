@@ -9,7 +9,11 @@
 %>
 <%
 UserHandle userHandle=new UserHandle();
-User user=userHandle.findById(Integer.parseInt(request.getParameter("userid")));
+Integer userid=0;
+if(request.getParameter("userid")!=null){
+    userid=Integer.parseInt(request.getParameter("userid"));
+}
+User user=userHandle.findById(userid);
 Boolean isLogined=LoginVerify.isLogin(request);
 User me=(User)session.getAttribute("loginUser");
 String tab = request.getParameter("tab");

@@ -72,7 +72,7 @@
 			    	User user = users.findById(good.getProducter_id());
 			    	%><div class="list-group-item">
 						<div class="row">
-							<div class="col-md-3">
+							<div class="goods-img col-md-3">
 								<img class="img-rounded img-item-goods"
 									src="<%=good.getImage()%>" />
 							</div>
