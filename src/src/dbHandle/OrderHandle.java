@@ -28,6 +28,9 @@ public class OrderHandle {
         try {
             ResultSet max_id=this.conn.prepareStatement("select max(id) from `order`").executeQuery();
             if(max_id.next())maxId=max_id.getString("max(id)");
+            if(maxId==null){
+                maxId="0";
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

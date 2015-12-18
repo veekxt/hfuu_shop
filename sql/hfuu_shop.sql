@@ -121,8 +121,8 @@ DROP TRIGGER IF EXISTS `update_goods_status`;
 DELIMITER ;;
 CREATE TRIGGER `update_goods_status` AFTER INSERT ON `order` FOR EACH ROW begin
 set @sellerid = (select producter_id from goods where id=new.goods_id);
-INSERT INTO `message`(mess_from_id,mess_to_id,mess_text,send_time) VALUES (1,@sellerid,CONCAT("你的商品被购买，以下为附加信息
-====
+INSERT INTO `message`(mess_from_id,mess_to_id,mess_text,send_time) VALUES (1,@sellerid,CONCAT("你的商品被购买，请尽快联系买家，以下为买家的附加信息（可能为空）
+==============
 ",new.message),new.date);
 update goods set status=4 where id=new.goods_id;
 end
