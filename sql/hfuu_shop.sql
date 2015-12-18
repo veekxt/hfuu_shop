@@ -60,8 +60,7 @@ CREATE TABLE `message` (
 -- ----------------------------
 -- Records of message
 -- ----------------------------
-INSERT INTO `message` VALUES ('10', '9', '呜呜呜呜当初', '2015-12-18 11:44:46', '1', null);
-INSERT INTO `message` VALUES ('10', '9', '呜呜呜呜当初', '2015-12-18 11:45:05', '2', null);
+INSERT INTO `message` VALUES ('10', '9', '消息测试', '2015-12-18 11:44:46', '1', null);
 
 -- ----------------------------
 -- Table structure for `order`
