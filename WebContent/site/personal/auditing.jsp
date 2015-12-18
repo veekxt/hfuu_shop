@@ -76,7 +76,7 @@ for(Goods goods:all)
 				%>
 				</td>
 				<td class="td-user-name" style="width: 15%;"><%=new SimpleDateFormat("yyyy/MM/dd HH:mm").format(goods.getCreatDate())%></td>
-				<td class="td-user-name" style="width: 15%;"><%=goods.getName()%>
+				<td class="td-user-name" style="width: 15%;"><%="<a target='_blank' href="+"goods/info.jsp?goodsid="+goods.getId()+">"+goods.getName()+"</a>"%>
 				</td>
 				<td class="td-user-name" style="width: 15%;"><abbr
 					title="<%=goods.getContent()%>">[详情]</abbr>
