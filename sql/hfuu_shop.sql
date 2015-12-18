@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-12-18 11:45:40
+Date: 2015-12-19 02:16:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -55,12 +55,11 @@ CREATE TABLE `message` (
   `mess_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `mess_type` int(11) DEFAULT NULL,
   PRIMARY KEY (`mess_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of message
 -- ----------------------------
-INSERT INTO `message` VALUES ('10', '9', '消息测试', '2015-12-18 11:44:46', '1', null);
 
 -- ----------------------------
 -- Table structure for `order`
@@ -112,14 +111,20 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO `user` VALUES ('1', 'hfuu_shop@163.com', '8560ef54213c8b32e89a24ccc323a79e', '交易系统', null, null, null);
 INSERT INTO `user` VALUES ('9', 'dandan@qq.com', '14e1b600b1fd579f47433b88e8d85291', '朱雷雷', null, null, null);
-INSERT INTO `user` VALUES ('10', 'veekxt@gmail.com', '14e1b600b1fd579f47433b88e8d85291', 'KevinVeek', null, null, null);
-INSERT INTO `user` VALUES ('1015', 'xietao@163.com', '8560ef54213c8b32e89a24ccc323a79e', '解涛', null, null, null);
+INSERT INTO `user` VALUES ('10', 'veekxt@gmail.com', '14e1b600b1fd579f47433b88e8d85291', '涛哥', null, null, null);
 INSERT INTO `user` VALUES ('1017', '1050026@qq.com', 'acd09f1f204179b957001f53f411899b', '陈生辉', null, null, '13245634567');
 INSERT INTO `user` VALUES ('1018', '1300573251@qq.com', '191016dc3346309bee3403f55f77e871', '张剑', null, null, null);
 INSERT INTO `user` VALUES ('1019', '18256989168@163.com', '191016dc3346309bee3403f55f77e871', '张剑', null, null, null);
 DROP TRIGGER IF EXISTS `update_goods_status`;
 DELIMITER ;;
-CREATE TRIGGER `update_goods_status` AFTER INSERT ON `order` FOR EACH ROW update goods set status=4 where id=new.goods_id
+CREATE TRIGGER `update_goods_status` AFTER INSERT ON `order` FOR EACH ROW begin
+set @sellerid = (select producter_id from goods where id=new.goods_id);
+INSERT INTO `message`(mess_from_id,mess_to_id,mess_text,send_time) VALUES (1,@sellerid,CONCAT("你的商品被购买，以下为附加信息
+====
+",new.message),new.date);
+update goods set status=4 where id=new.goods_id;
+end
 ;;
 DELIMITER ;
