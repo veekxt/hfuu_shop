@@ -23,9 +23,11 @@ list=shopCartHandle.findGoodsByUser(me);
 	<div class="panel-body">
 	<div class="list-group">
 	<%
-	if(list.size()!=0){%>
+	if(list.size()!=0){
+	String goodsIdList="";%>
 		<div id="list-goods"><%
 		for(Goods good:list){
+			goodsIdList=goodsIdList+good.getId()+",";
 	    	if(good.getProducter_id()==null)continue;
 	    	User user = userHandle.findById(good.getProducter_id());
 	    	%><div id="list-goods-<%=good.getId() %>" class="list-group-item">
@@ -59,7 +61,7 @@ list=shopCartHandle.findGoodsByUser(me);
 				</div>
 	    	</div><%}%></div>
 	    	<div>
-	    	<button id ="buyAll"class="pull-right btn btn-success">
+	    	<button id ="buyAll"class="pull-right btn btn-success" onclick="window.location.href='OrderCheckServlet?goodsid=<%=goodsIdList%>&userid=<%=((User)session.getAttribute("loginUser")).getId()%>'">
 			购买全部
 			</button>
 			</div>

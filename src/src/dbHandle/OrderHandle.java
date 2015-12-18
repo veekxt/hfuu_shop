@@ -26,7 +26,7 @@ public class OrderHandle {
         String sql = "INSERT INTO `order`(id,goods_id,user_id,date,message) VALUES (?,?,?,?,?)";
         String maxId="0";
         try {
-            ResultSet max_id=this.conn.prepareStatement("select max(id) from order").executeQuery();
+            ResultSet max_id=this.conn.prepareStatement("select max(id) from `order`").executeQuery();
             if(max_id.next())maxId=max_id.getString("max(id)");
         } catch (Exception e) {
             // TODO: handle exception

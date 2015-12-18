@@ -26,6 +26,7 @@ public class ShopCartHandle {
         String sql = "SELECT goodsId FROM ShoppingCart WHERE userId=?";
         this.pstmt = this.conn.prepareStatement(sql);
         this.pstmt.setInt(1, id);
+  
         ResultSet rs = this.pstmt.executeQuery();
        while(rs.next()){
     	   i++;
