@@ -123,9 +123,14 @@ Integer goodsNum=0;
 								
 								
 								<p>
-									发布者：<a target="_blank"
-										href="user/personal.jsp?tab=info&userid=<%=Procuteuser.getId()%>">${Procuteuser.getName()}</a>(联系:<a href="mailto:<%=Procuteuser.getEmail()%>">
-									${Procuteuser.getEmail()})</a><br /> <br />
+									发布者：
+									<a target="_blank"
+										href="user/personal.jsp?tab=info&userid=<%=Procuteuser.getId()%>">${Procuteuser.getName()}</a>
+										(联系:<a href="mailto:<%=Procuteuser.getEmail()%>">${Procuteuser.getEmail()}
+									</a>
+									或
+									<a target="_blank" href="user/personal.jsp?tab=mess&handle=write&toemail=<%=Procuteuser.getEmail() %>">站内信</a>)
+									<br /> <br />
 								</p>
 								<p>
 									发布时间：<%=dateStr %>
