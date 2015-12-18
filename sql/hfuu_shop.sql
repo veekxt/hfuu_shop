@@ -36,9 +36,9 @@ CREATE TABLE `goods` (
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-INSERT INTO `goods` VALUES ('1', 'static/goods_img/1.jpg', '4', '笔记本', '1', '4000', '1', '二手笔记本，8成新，I7处理器', '1017', '2015-12-12 12:10:10');
-INSERT INTO `goods` VALUES ('2', 'static/goods_img/2.jpg', '2', '被套', '1', '30', '4', '二手被套', '1017', '2015-12-16 02:34:01');
-INSERT INTO `goods` VALUES ('3', 'static/goods_img/3.jpg', '2', '自行车', '1', '50', '4', '二手自行车', '1017', '2015-12-11 11:22:33');
+INSERT INTO `goods` VALUES ('1', 'static/goods_img/1.jpg', '4', '笔记本', '1', '4000', '2', '二手笔记本，8成新，I7处理器', '1017', '2015-12-12 12:10:10');
+INSERT INTO `goods` VALUES ('2', 'static/goods_img/2.jpg', '2', '被套', '1', '30', '2', '二手被套', '1017', '2015-12-16 02:34:01');
+INSERT INTO `goods` VALUES ('3', 'static/goods_img/3.jpg', '2', '自行车', '1', '50', '2', '二手自行车', '1017', '2015-12-11 11:22:33');
 INSERT INTO `goods` VALUES ('4', 'static/goods_img/4.jpg', '5', '网球拍', '1', '50', '2', '二手网球拍，用过几天，九成新', '1018', '2015-12-17 11:00:16');
 INSERT INTO `goods` VALUES ('5', 'static/goods_img/5.jpg', '5', '篮球', '1', '80', '2', '全牛皮篮球，', '1018', '2015-12-17 11:02:57');
 INSERT INTO `goods` VALUES ('6', 'static/goods_img/6.jpg', '2', '懒人桌', '1', '15', '2', '加固型懒人桌，九成新', '1018', '2015-12-17 11:05:00');
@@ -55,7 +55,7 @@ CREATE TABLE `message` (
   `mess_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `mess_type` int(11) DEFAULT NULL,
   PRIMARY KEY (`mess_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of message
@@ -78,7 +78,6 @@ CREATE TABLE `order` (
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES ('1', '2', '10', '2015-12-17 14:36:00', '大家');
 
 -- ----------------------------
 -- Table structure for `shoppingcart`

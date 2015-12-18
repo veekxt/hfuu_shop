@@ -70,7 +70,7 @@
 					list=goods.findAll();
 			    }
 			      if(list.size()!=0){
-			    	  for(Goods good:list){
+			    	for(Goods good:list){
 			    	if(good.getProducter_id()==null)continue;
 			    	User user = users.findById(good.getProducter_id());
 			    	%><div class="list-group-item">
