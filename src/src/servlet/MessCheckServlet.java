@@ -31,7 +31,7 @@ public class MessCheckServlet extends HttpServlet {
 	    }
 	    UserHandle userHandle=new UserHandle();
 	    MessHandle messHandle=new MessHandle();
-	    String toEmail = request.getParameter("InputEmail");
+	    String toEmail = request.getParameter("InputEmail").split(" ")[0];
 	    String toMess = request.getParameter("InputMess");
 	    User fromUser=((User)request.getSession().getAttribute("loginUser"));;
 	    User toUser=null;

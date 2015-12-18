@@ -4,7 +4,7 @@
 <%
 UserHandle userHandle=new UserHandle();
 MessHandle messHandle= new MessHandle();
-User user=userHandle.findById(Integer.parseInt(request.getParameter("userid")));
+User user=null;
 if(!LoginVerify.isLogin(request)){
     request.getRequestDispatcher("../../user/login.jsp?login-info="+java.net.URLEncoder.encode("你应该先登录，之后从个人中心进入消息页","UTF-8")).forward(request,response);
 	return;
@@ -40,24 +40,45 @@ List<Mess> allMess = messHandle.findAllMessByUser(me);
 <!-- 这里写消息列表 -->
 <%
 if(allMess.size()!=0){
-    for(Mess mess:allMess){
+    
+    for(int i=0;i<allMess.size();i++){
+        Mess mess=allMess.get(i);
 %>
 
 <!-- 一条消息 -->	
-<div onMouseOut="hide(this,'cz-bt-1')" onMouseOver="show(this,'cz-bt-1')" id="mess-1" class="media">
+<div onMouseOut="hide(this,'cz-bt-<%=i %>')" onMouseOver="show(this,'cz-bt-<%=i %>')" id="mess-<%=i %>" class="media">
   <div class="media-left">
     <a href="#">
-      <img width="65px" class="media-object" src="static/image/ac_24.png" alt="sss">
+      <img width="65px" class="media-object" 
+      src="static/image/ac_31.png"<%//获取该用户头像 %>
+       alt="sss">
     </a>
   </div>
   <div class="media-body">
-    <span class="media-heading">来自<a><%=mess.getMessId() %></a>，2015年3月10日 4:78　　</span>
-    <div style="display:none" id="cz-bt-1">
+    <span class="media-heading">
+    <%user=userHandle.findById(mess.getMessFromId()); %>
+    来自<a target="_blank" href="<%=basePath %>user/personal.jsp?tab=info&userid=<%=user.getId() %>">
+    <%
+    if(user.getName()==null || user.getName().length()==0){
+        out.print(user.getEmail());
+    }else{
+        out.print(user.getName());
+    }
+    %>
+    </a>，
+    <%
+	java.util.Date date=mess.getSendDate();
+	SimpleDateFormat myFmt=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	String dateStr =myFmt.format(date);
+	out.print(dateStr);
+    %>
+    </span>
+    <div style="display:none" id="cz-bt-<%=i %>">
     <button type="button" class="btn btn-xs btn-success"
-	onclick="window.open('<%=basePath%>user/personal.jsp?tab=mess&handle=write&toemail=<%="wlzhizhen@163.com"%>&userid=<%=me.getId()%>')">回复</button><button type="button" class="btn btn-xs btn-danger"
+	onclick="window.open('<%=basePath%>user/personal.jsp?tab=mess&handle=write&toemail=<%=user.getEmail()%>%20==>%20<%=user.getName()%>&userid=<%=me.getId()%>')">回复</button><button type="button" class="btn btn-xs btn-danger"
 	onclick="">删除此条消息</button>
     </div>
-
+ 
     <pre><%=mess.getMessText() %></pre>
   </div>
 </div>
@@ -92,7 +113,7 @@ if(request.getParameter("toemail")!=null && !request.getParameter("toemail").equ
 <form action="MessCheckServlet" method="post">
   <div class="form-group">
     <label for="InputEmail">发送给用户：</label>
-    <input value="<%=toEmail%>" type="email" class="form-control" name="InputEmail" placeholder="输入用户邮箱">
+    <input value="<%=toEmail%>" type="text" class="form-control" name="InputEmail" placeholder="输入用户邮箱">
   </div>
   <div class="form-group">
     <label for="InputMess">消息正文：</label>
