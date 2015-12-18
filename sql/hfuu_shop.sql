@@ -121,7 +121,10 @@ DROP TRIGGER IF EXISTS `update_goods_status`;
 DELIMITER ;;
 CREATE TRIGGER `update_goods_status` AFTER INSERT ON `order` FOR EACH ROW begin
 set @sellerid = (select producter_id from goods where id=new.goods_id);
-INSERT INTO `message`(mess_from_id,mess_to_id,mess_text,send_time) VALUES (1,@sellerid,CONCAT("你的商品被购买，请尽快联系买家，以下为买家的附加信息（可能为空）
+set @goodsid = (select id from goods where id=new.goods_id);
+set @goodsname = (select name from goods where id=new.goods_id);
+set @sellername = (select name from `user` where id=@sellerid);
+INSERT INTO `message`(mess_from_id,mess_to_id,mess_text,send_time) VALUES (1,@sellerid,CONCAT("你的商品","<a target='_blank' href='goods/info.jsp?goodsid=",@goodsid,"'>",@goodsname,"</a>","被购买，请尽快联系买家","<a target='_blank' href='user/personal.jsp?tab=info&userid=",@sellerid,"'>",@sellername,"</a>","，以下为买家的附加信息（可能为空）
 ==============
 ",new.message),new.date);
 update goods set status=4 where id=new.goods_id;
