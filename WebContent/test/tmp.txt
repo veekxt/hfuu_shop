@@ -1,0 +1,4 @@
+declare @sellerid int;
+set @sellerid = (select producter_id from goods where id=new.goods_id);
+INSERT INTO `message`(mess_from_id,mess_to_id,mess_text,send_time) VALUES (1,@sellerid,new.message,new.date);
+update goods set status=4 where id=new.goods_id;

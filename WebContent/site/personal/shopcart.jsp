@@ -52,7 +52,7 @@ list=shopCartHandle.findGoodsByUser(me);
 					时间：
 					<%
 					java.util.Date date=good.getCreatDate();
-					SimpleDateFormat myFmt=new SimpleDateFormat("yyyy年MM月dd日 HH时mm分");
+					SimpleDateFormat myFmt=new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
 					String dateStr =myFmt.format(date);
 					out.print(dateStr);
 					%>

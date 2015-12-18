@@ -29,7 +29,7 @@ public class OrderHandle {
             ResultSet max_id=this.conn.prepareStatement("select max(id) from `order`").executeQuery();
             if(max_id.next())maxId=max_id.getString("max(id)");
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
         this.pstmt = this.conn.prepareStatement(sql);
         this.pstmt.setInt(1,1+Integer.parseInt(maxId));

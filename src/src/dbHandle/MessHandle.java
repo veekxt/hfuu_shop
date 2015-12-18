@@ -56,4 +56,17 @@ public class MessHandle {
         this.pstmt.close();
         return all;
     }
+    
+    public boolean removeOneMess(int messId,int userId) throws Exception{
+        Boolean flag=false;
+        String sql="Delete from `message` where mess_id=? and mess_to_id=?";
+        pstmt=conn.prepareStatement(sql);
+        pstmt.setInt(1, messId);
+        pstmt.setInt(2,userId);
+        if (this.pstmt.executeUpdate() > 0) {
+            flag = true;
+        }
+        this.pstmt.close();
+        return flag;
+    }
 }

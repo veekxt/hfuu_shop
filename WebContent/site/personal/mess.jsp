@@ -35,7 +35,7 @@ List<Mess> allMess = messHandle.findAllMessByUser(me);
 	<div class="panel-body">
 <%if(!isWrite){%>
 <div class="alert alert-warning" role="alert">
-注意：系统消息会带有“sys”标签，其他皆为用户消息。
+注意：系统消息会带有“sys”标签，其他皆为用户消息,带有“user”标签。
 </div>
 <!-- 这里写消息列表 -->
 <%
@@ -46,7 +46,7 @@ if(allMess.size()!=0){
 %>
 
 <!-- 一条消息 -->	
-<div onMouseOut="hide(this,'cz-bt-<%=i %>')" onMouseOver="show(this,'cz-bt-<%=i %>')" id="mess-<%=i %>" class="media">
+<div onMouseLeave="hide(this,'cz-bt-<%=mess.getMessId() %>','is-bt-<%=mess.getMessId() %>');" onMouseOver="show(this,'cz-bt-<%=mess.getMessId() %>');" id="mess-<%=mess.getMessId() %>" class="media">
   <div class="media-left">
     <a href="#">
       <img width="65px" class="media-object" 
@@ -57,7 +57,15 @@ if(allMess.size()!=0){
   <div class="media-body">
     <span class="media-heading">
     <%user=userHandle.findById(mess.getMessFromId()); %>
-    来自<a target="_blank" href="<%=basePath %>user/personal.jsp?tab=info&userid=<%=user.getId() %>">
+    <%
+    if(user.getId()==1){
+        out.print("<span class=\"label label-danger\">SYS</span>");
+    }else{
+        out.print("<span class=\"label label-primary\">user</span>");
+    }
+    %>
+    来自
+    <a target="_blank" href="<%=basePath %>user/personal.jsp?tab=info&userid=<%=user.getId() %>">
     <%
     if(user.getName()==null || user.getName().length()==0){
         out.print(user.getEmail());
@@ -73,10 +81,16 @@ if(allMess.size()!=0){
 	out.print(dateStr);
     %>
     </span>
-    <div style="display:none" id="cz-bt-<%=i %>">
+    <div style="display:none" id="cz-bt-<%=mess.getMessId() %>">
     <button type="button" class="btn btn-xs btn-success"
-	onclick="window.open('<%=basePath%>user/personal.jsp?tab=mess&handle=write&toemail=<%=user.getEmail()%>%20==>%20<%=user.getName()%>&userid=<%=me.getId()%>')">回复</button><button type="button" class="btn btn-xs btn-danger"
-	onclick="">删除此条消息</button>
+	onclick="window.open('<%=basePath%>user/personal.jsp?tab=mess&handle=write&toemail=<%=user.getEmail()%>%20==>%20<%=user.getName()%>&userid=<%=me.getId()%>')">回复</button>
+	<button type="button" class="btn btn-xs btn-danger"
+	onclick="is_delete('is-bt-<%=mess.getMessId()%>')">删除此条消息</button>
+    </div>
+ 
+    <div style="display:none" id="is-bt-<%=mess.getMessId() %>">
+	<button type="button" class="btn btn-xs btn-danger"
+	onclick="delete_mess('<%=mess.getMessId() %>')">点此确认删除</button>
     </div>
  
     <pre><%=mess.getMessText() %></pre>
@@ -127,14 +141,38 @@ if(request.getParameter("toemail")!=null && !request.getParameter("toemail").equ
 </div>
 
 <script>
-function show(obj,id) {
-var objDiv = $("#"+id+"");
-$(objDiv).css("display","inline");
-$(objDiv).css("left", event.clientX);
-$(objDiv).css("top", event.clientY + 10);
+function show(obj,id1) {
+	var objDiv = $("#"+id1+"");
+	$(objDiv).css("display","inline");
 }
-function hide(obj,id) {
-var objDiv = $("#"+id+"");
+
+function hide(obj,id1,id2) {
+var objDiv = $("#"+id1+"");
 $(objDiv).css("display", "none");
+var objDiv2 = $("#"+id2+"");
+$(objDiv2).css("display", "none");
+}
+
+function is_delete(id){
+	var objDiv = $("#"+id+"");
+	$(objDiv).css("display","inline");
+}
+
+function delete_mess(messid){
+	xmlMess=new XMLHttpRequest();
+	xmlMess.onreadystatechange=function()
+	  {
+	  if (xmlMess.readyState==4 && xmlMess.status==200)
+	    {
+	    if(xmlMess.responseText=="success")
+	    	{
+				//移除节点
+		    	cnode = document.getElementById("mess-"+messid);
+		    	cnode.parentNode.removeChild(cnode);
+	    	}
+	    }
+	  }
+	xmlMess.open("GET","RemoveMessServlet?messid="+messid+"&t="+Math.random(),true);
+	xmlMess.send(null);
 }
 </script> 
