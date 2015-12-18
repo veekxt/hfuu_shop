@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-12-17 14:47:21
+Date: 2015-12-18 11:45:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -44,6 +44,26 @@ INSERT INTO `goods` VALUES ('5', 'static/goods_img/5.jpg', '5', '篮球', '1', '
 INSERT INTO `goods` VALUES ('6', 'static/goods_img/6.jpg', '2', '懒人桌', '1', '15', '2', '加固型懒人桌，九成新', '1018', '2015-12-17 11:05:00');
 
 -- ----------------------------
+-- Table structure for `message`
+-- ----------------------------
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE `message` (
+  `mess_from_id` int(11) NOT NULL,
+  `mess_to_id` int(11) NOT NULL,
+  `mess_text` varchar(255) COLLATE utf8_bin NOT NULL,
+  `send_time` datetime NOT NULL,
+  `mess_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `mess_type` int(11) DEFAULT NULL,
+  PRIMARY KEY (`mess_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of message
+-- ----------------------------
+INSERT INTO `message` VALUES ('10', '9', '呜呜呜呜当初', '2015-12-18 11:44:46', '1', null);
+INSERT INTO `message` VALUES ('10', '9', '呜呜呜呜当初', '2015-12-18 11:45:05', '2', null);
+
+-- ----------------------------
 -- Table structure for `order`
 -- ----------------------------
 DROP TABLE IF EXISTS `order`;
@@ -75,7 +95,6 @@ CREATE TABLE `shoppingcart` (
 -- ----------------------------
 -- Records of shoppingcart
 -- ----------------------------
-INSERT INTO `shoppingcart` VALUES ('1', '2', '10');
 
 -- ----------------------------
 -- Table structure for `user`

@@ -54,6 +54,9 @@ String tab = request.getParameter("tab");
 							class="list-group-item <%=tab.equals("auditing")?"active":"" %>">
 							物品审核</a>
 							<%}%>
+							<a href="user/personal.jsp?tab=mess&userid=<%=user.getId() %>" 
+							class="list-group-item <%=tab.equals("mess")?"active":"" %>">
+							站内消息</a>
 							<a href="user/personal.jsp?tab=shopcart&userid=<%=user.getId() %>"
 							class="list-group-item <%=tab.equals("shopcart")?"active":"" %>">
 							购物车</a>
@@ -86,6 +89,8 @@ String tab = request.getParameter("tab");
 				<jsp:include page="../site/personal/shopcart.jsp" />
 				<%}else if(tab.equals("like")){%>
 				<jsp:include page="../site/personal/like.jsp" />
+				<%}else if(tab.equals("mess")){%>
+				<jsp:include page="../site/personal/mess.jsp" />
 				<%}else if(tab.equals("history")){%>
 				<jsp:include page="../site/personal/history.jsp" />
 				<%}%>

@@ -11,7 +11,6 @@ import src.vo.Goods;
 public class GoodsHandle {
     private Connection conn = null;
     private PreparedStatement pstmt = null;
-
     public GoodsHandle() {
         try {
             this.conn = new DatabaseConnection().getConnection();
