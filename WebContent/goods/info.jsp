@@ -129,7 +129,7 @@ Integer goodsNum=0;
 										(联系:<a href="mailto:<%=Procuteuser.getEmail()%>">${Procuteuser.getEmail()}
 									</a>
 									或
-									<a target="_blank" href="user/personal.jsp?tab=mess&handle=write&toemail=<%=Procuteuser.getEmail() %>">站内信</a>)
+									<a target="_blank" href="user/personal.jsp?tab=mess&handle=write&toemail=<%=Procuteuser.getEmail() %>%20==>%20<%=Procuteuser.getName()%>">站内信</a>)
 									<br /> <br />
 								</p>
 								<p>
