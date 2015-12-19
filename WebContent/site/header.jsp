@@ -61,15 +61,14 @@
 				aria-haspopup="true" aria-expanded="false"><%=email%> <span
 					class="caret"></span> </a>
 				<ul class="dropdown-menu">
-					<li><a
-						href="<%=basePath %>user/personal.jsp?userid=<%=user.getId()%>&tab=info">个人中心</a>
-					</li>
-					<li><a
-						href="<%=basePath %>user/personal.jsp?user=<%=user.getId()%>&tab=setting">设置</a>
-					</li>
-					<li><a
-						href="<%=basePath %>user/personal.jsp?user=<%=user.getId()%>&tab=message">我的消息</a>
-					</li>
+					<li><a href="<%=basePath %>user/personal.jsp?userid=<%=user.getId()%>&tab=info">个人中心</a></li>
+					<%if(LoginVerify.isAdmin(request)){%>
+					<li><a href="<%=basePath %>user/personal.jsp?userid=<%=user.getId()%>&tab=auditing">物品审核</a></li>
+					<%}%>
+					<li><a href="<%=basePath %>user/personal.jsp?userid=<%=user.getId()%>&tab=history">购买历史</a></li>
+					<li><a href="<%=basePath %>user/personal.jsp?userid=<%=user.getId()%>&tab=push">发布物品</a></li>
+					<li><a href="<%=basePath %>user/personal.jsp?userid=<%=user.getId()%>&tab=like">收藏夹</a></li>
+					<li><a href="<%=basePath %>user/personal.jsp?userid=<%=user.getId()%>&tab=setting">设置</a></li>
 					<li><a href="<%=basePath %>ExitLoginServlet">退出登录</a></li>
 				</ul>
 			</li>
