@@ -47,6 +47,9 @@
 					goodsNum=(Integer)session.getAttribute("goodsNum");
 				}
 				if(session.getAttribute("messNum")!=null){
+				    if(request.getParameter("tab")!=null && request.getParameter("tab").equals("mess")){
+				        session.setAttribute("messNum", 0);
+				    }
 					messNum=(Integer)session.getAttribute("messNum");
 				}
 			%>
