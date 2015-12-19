@@ -11,7 +11,6 @@ public class UserHandle{
 		try {
 			this.conn=new DatabaseConnection().getConnection();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
@@ -54,9 +53,20 @@ public class UserHandle{
 		this.pstmt.close() ;
 		return all ;
 	}
+	
+	public boolean emptyMessnum(User user) throws Exception{
+	    String sql = "update user set mess_num=0 WHERE id="+user.getId();
+	    this.pstmt = this.conn.prepareStatement(sql) ;
+	    if(this.pstmt.executeUpdate(sql)>0){
+	        user.setMessnum(0);
+	        return true;
+	    }
+	    return false;
+	}
+	
 	public User findById(int id) throws Exception{
 		User user = null ;
-		String sql = "SELECT id,email,pwd,name,stu_num ,phone FROM user WHERE id=?" ;
+		String sql = "SELECT id,email,pwd,name,stu_num ,phone,mess_num FROM user WHERE id=?" ;
 		this.pstmt = this.conn.prepareStatement(sql) ;
 		this.pstmt.setInt(1,id) ;
 		ResultSet rs = this.pstmt.executeQuery();
@@ -68,13 +78,14 @@ public class UserHandle{
 			user.setName(rs.getString(4)) ;
 			user.setStu_num(rs.getString(5)) ;
 			user.setPhone(rs.getString(6)) ;
+			user.setMessnum(rs.getInt(7)) ;
 		}
 		this.pstmt.close();
 		return user ;
 	}
 	public User findByEmail(String str) throws Exception{
 		User user = null ;
-		String sql = "SELECT id,email,pwd,name,stu_num,phone FROM user WHERE email=?" ;
+		String sql = "SELECT id,email,pwd,name,stu_num,phone,mess_num FROM user WHERE email=?" ;
 		this.pstmt = this.conn.prepareStatement(sql) ;
 		this.pstmt.setString(1,str) ;
 		ResultSet rs = this.pstmt.executeQuery() ;
@@ -86,6 +97,7 @@ public class UserHandle{
 			user.setName(rs.getString(4)) ;
 			user.setStu_num(rs.getString(5)) ;
 			user.setPhone(rs.getString(6)) ;
+			user.setMessnum(rs.getInt(7)) ;
 		}
 		this.pstmt.close();
 		return user ;

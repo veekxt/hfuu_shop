@@ -41,16 +41,21 @@
            User user=(User)session.getAttribute("loginUser");
                 %>
 		<ul class="nav navbar-nav navbar-right">
-			<%int goodsNum=0; 
-			if(session.getAttribute("goodsNum")!=null){
-				
-				goodsNum=(Integer)session.getAttribute("goodsNum");
-			}
+			<%  int goodsNum = 0; 
+			    int messNum = 0;
+				if(session.getAttribute("goodsNum")!=null){
+					goodsNum=(Integer)session.getAttribute("goodsNum");
+				}
+				if(session.getAttribute("messNum")!=null){
+					messNum=(Integer)session.getAttribute("messNum");
+				}
 			%>
 			<%if (isLogined!=null && user!=null &&isLogined==true){
 			%>
 			<li><a href="user/personal.jsp?tab=shopcart&userid=<%=user.getId()%>">购物车(<span style="color: #d00;"
 					id="goodsNum"><%=goodsNum %></span>)</a></li>
+			<li><a href="user/personal.jsp?tab=mess&userid=<%=user.getId()%>">消息(<span style="color: #e00;"
+					id="messNum"><%=messNum %></span>)</a></li>
 			<li class="dropdown"><a href="javascript:void(0)"
 				class="dropdown-toggle" data-toggle="dropdown" role="button"
 				aria-haspopup="true" aria-expanded="false"><%=email%> <span

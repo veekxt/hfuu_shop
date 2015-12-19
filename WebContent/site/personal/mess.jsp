@@ -10,9 +10,8 @@ if(!LoginVerify.isLogin(request)){
 	return;
 }
 User me=(User)session.getAttribute("loginUser");
-
+userHandle.emptyMessnum(me);
 List<Mess> allMess = messHandle.findAllMessByUser(me);
-
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>

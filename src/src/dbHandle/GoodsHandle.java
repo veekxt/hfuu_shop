@@ -75,7 +75,7 @@ public class GoodsHandle {
 
     public List<Goods> findAll() throws Exception {
         List<Goods> all = new ArrayList<Goods>();
-        String sql = "SELECT id,num,content,type_id,image,producter_id,price,create_date,name from goods  where status=?";
+        String sql = "SELECT id,num,content,type_id,image,producter_id,price,create_date,name from goods  where status=? order by create_date desc";
         this.pstmt = this.conn.prepareStatement(sql);
         this.pstmt.setInt(1, 2);
         ResultSet rs = this.pstmt.executeQuery();
@@ -148,7 +148,7 @@ public class GoodsHandle {
 
     public List<Goods> findByCeta(int cetaId) throws Exception {
         List<Goods> all = new ArrayList<Goods>();
-        String sql = "SELECT id,num,content,type_id,image,producter_id,price,name,create_date from goods where status=2 and type_id="+cetaId;
+        String sql = "SELECT id,num,content,type_id,image,producter_id,price,name,create_date from goods where status=2 and type_id="+cetaId+" order by create_date desc";
         this.pstmt = this.conn.prepareStatement(sql);
         ResultSet rs = this.pstmt.executeQuery();
         Goods good = null;

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-12-19 02:16:22
+Date: 2015-12-19 15:35:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -55,7 +55,7 @@ CREATE TABLE `message` (
   `mess_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `mess_type` int(11) DEFAULT NULL,
   PRIMARY KEY (`mess_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of message
@@ -105,18 +105,24 @@ CREATE TABLE `user` (
   `stu_num` char(255) COLLATE utf8_bin DEFAULT NULL,
   `qq` char(255) COLLATE utf8_bin DEFAULT NULL,
   `phone` char(255) COLLATE utf8_bin DEFAULT NULL,
+  `mess_num` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'hfuu_shop@163.com', '8560ef54213c8b32e89a24ccc323a79e', '交易系统', null, null, null);
-INSERT INTO `user` VALUES ('9', 'dandan@qq.com', '14e1b600b1fd579f47433b88e8d85291', '朱雷雷', null, null, null);
-INSERT INTO `user` VALUES ('10', 'veekxt@gmail.com', '14e1b600b1fd579f47433b88e8d85291', '涛哥', null, null, null);
-INSERT INTO `user` VALUES ('1017', '1050026@qq.com', 'acd09f1f204179b957001f53f411899b', '陈生辉', null, null, '13245634567');
-INSERT INTO `user` VALUES ('1018', '1300573251@qq.com', '191016dc3346309bee3403f55f77e871', '张剑', null, null, null);
-INSERT INTO `user` VALUES ('1019', '18256989168@163.com', '191016dc3346309bee3403f55f77e871', '张剑', null, null, null);
+INSERT INTO `user` VALUES ('1', 'hfuu_shop@163.com', '8560ef54213c8b32e89a24ccc323a79e', '交易系统', null, null, null, '0');
+INSERT INTO `user` VALUES ('9', 'dandan@qq.com', '14e1b600b1fd579f47433b88e8d85291', '朱雷雷', null, null, null, '0');
+INSERT INTO `user` VALUES ('10', 'veekxt@gmail.com', '14e1b600b1fd579f47433b88e8d85291', '涛哥', null, null, null, '0');
+INSERT INTO `user` VALUES ('1017', '1050026@qq.com', 'acd09f1f204179b957001f53f411899b', '陈生辉', null, null, '13245634567', '0');
+INSERT INTO `user` VALUES ('1018', '1300573251@qq.com', '191016dc3346309bee3403f55f77e871', '张剑', null, null, null, '0');
+INSERT INTO `user` VALUES ('1019', '18256989168@163.com', '191016dc3346309bee3403f55f77e871', '张剑', null, null, null, '0');
+DROP TRIGGER IF EXISTS `change_user_mess_num`;
+DELIMITER ;;
+CREATE TRIGGER `change_user_mess_num` AFTER INSERT ON `message` FOR EACH ROW update user set mess_num=mess_num+1 where id=new.mess_to_id
+;;
+DELIMITER ;
 DROP TRIGGER IF EXISTS `update_goods_status`;
 DELIMITER ;;
 CREATE TRIGGER `update_goods_status` AFTER INSERT ON `order` FOR EACH ROW begin
