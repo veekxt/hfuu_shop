@@ -31,35 +31,26 @@ public class RemoveShopCartServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     
-		Integer    goodsId=Integer.parseInt(request.getParameter("goodsId"));
-		          if (LoginVerify.isLogin(request)) {
-		   User   loginUser = (User)request.getSession().getAttribute("loginUser");
-		 int   loginUserId=loginUser.getId();
-		 ShopCartHandle shopCartHandle=new ShopCartHandle();
-		 try {
-		if(shopCartHandle.removeList(goodsId, loginUserId)){
-			response.getWriter().print("success");
-			
-		}else{
-			response.getWriter().print("false");
-		}
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-			response.getWriter().print("false");
-		}
-		        	
-		        }  else{
-		        	response.getWriter().print("false");
-		        	
-		        }
-		          
-		          
+		Integer goodsId = Integer.parseInt(request.getParameter("goodsId"));
+		if (LoginVerify.isLogin(request)) {
+    		User loginUser = (User)request.getSession().getAttribute("loginUser");
+    		int loginUserId = loginUser.getId();
+    		ShopCartHandle shopCartHandle=new ShopCartHandle();
+    		try {
+    		if(shopCartHandle.removeList(goodsId, loginUserId)){
+    			response.getWriter().print("success");
+    		}else{
+    			response.getWriter().print("false");
+    		}
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    			response.getWriter().print("false");
+    		}
+        }else{
+        	response.getWriter().print("false");
+        }   
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request,response);
 	}

@@ -38,7 +38,7 @@ public class MessHandle {
     
     public List<Mess> findAllMessByUser(User user) throws Exception {
         List<Mess> all = new ArrayList<Mess>();
-        String sql = "SELECT mess_id,mess_from_id,mess_to_id,send_time,mess_text from `message`  where mess_to_id=?";
+        String sql = "SELECT mess_id,mess_from_id,mess_to_id,send_time,mess_text from `message`  where mess_to_id=? order by send_time desc";
         this.pstmt = this.conn.prepareStatement(sql);
         this.pstmt.setInt(1,user.getId());
         ResultSet rs = this.pstmt.executeQuery();
@@ -55,5 +55,18 @@ public class MessHandle {
         }
         this.pstmt.close();
         return all;
+    }
+    
+    public boolean removeOneMess(int messId,int userId) throws Exception{
+        Boolean flag=false;
+        String sql="Delete from `message` where mess_id=? and mess_to_id=?";
+        pstmt=conn.prepareStatement(sql);
+        pstmt.setInt(1, messId);
+        pstmt.setInt(2,userId);
+        if (this.pstmt.executeUpdate() > 0) {
+            flag = true;
+        }
+        this.pstmt.close();
+        return flag;
     }
 }

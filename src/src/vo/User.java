@@ -8,8 +8,18 @@ public class User {
 	private String stu_num;
 	private String qq;
 	private String phone;
+	private int messnum;
+	
 
-	public String getQq() {
+    public int getMessnum() {
+        return messnum;
+    }
+
+    public void setMessnum(int messnum) {
+        this.messnum = messnum;
+    }
+
+    public String getQq() {
 		return qq;
 	}
 

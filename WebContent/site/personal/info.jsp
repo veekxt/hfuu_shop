@@ -11,9 +11,14 @@
 
 <%
 UserHandle userHandle=new UserHandle();
-User user=userHandle.findById(Integer.parseInt(request.getParameter("userid")));
 Boolean isLogined=LoginVerify.isLogin(request);
 User me=(User)session.getAttribute("loginUser");
+User user=null;
+if(request.getAttribute("isMe")!=null){
+    user=me;
+}else{
+    user=userHandle.findById(Integer.parseInt(request.getParameter("userid")));
+}
 %>
 
 <%

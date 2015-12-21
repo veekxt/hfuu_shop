@@ -8,14 +8,29 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <%
-UserHandle userHandle=new UserHandle();
+Boolean isMe=false;
+Boolean isLogin=LoginVerify.isLogin(request);
+User me=null;
+User user=null;
 Integer userid=0;
-if(request.getParameter("userid")!=null){
+UserHandle userHandle=new UserHandle();
+if(request.getParameter("userid")!=null && request.getParameter("userid").length()!=0){
     userid=Integer.parseInt(request.getParameter("userid"));
+    user=userHandle.findById(userid);
 }
-User user=userHandle.findById(userid);
-Boolean isLogined=LoginVerify.isLogin(request);
-User me=(User)session.getAttribute("loginUser");
+
+if(isLogin){
+    me=(User)session.getAttribute("loginUser");
+    if((userid!=0 && me.getId()==user.getId()) || userid==0){
+        isMe=true;
+        user=me;
+        request.setAttribute("isMe",true);
+    }
+}else{
+    request.getRequestDispatcher("../user/login.jsp?login-info="+java.net.URLEncoder.encode("你应该先登录，之后才可查看自己或其他人的个人信息页","UTF-8")).forward(request,response);
+	return;
+}
+
 String tab = request.getParameter("tab");
 %>
 <!DOCTYPE html>
@@ -35,17 +50,18 @@ String tab = request.getParameter("tab");
 					<div class="col-md-12">
 						<div class="list-group">
 							<div class="list-group-item personal-main-info">
+								
 								<img class="img-rounded img-personal-main-info"
-									src="static/image/ac_24.png" />
-									
+								src="static/image/ac_24.png" />
 								<div class="row detail-goods text-muted">姓名：<%=user.getName() %></div>
 								<div class="row detail-goods text-muted">邮箱：<%=user.getEmail() %></div>
+								
 							</div>
 							<a href="user/personal.jsp?tab=info&userid=<%=user.getId() %>" 
 							class="list-group-item <%=tab.equals("info")?"active":"" %>">
 							个人信息</a>
 							
-							<%if(isLogined && user.getId()==me.getId()){	
+							<%if(isMe){	
 							%>
 							<%if(LoginVerify.isAdmin(request)){	
 							%>

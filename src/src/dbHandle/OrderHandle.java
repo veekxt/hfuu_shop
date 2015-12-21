@@ -24,13 +24,18 @@ public class OrderHandle {
     public boolean doCreate(Order order) throws Exception {
         boolean flag = false;
         String sql = "INSERT INTO `order`(id,goods_id,user_id,date,message) VALUES (?,?,?,?,?)";
-        int maxId=0;
+        Integer maxId=0;
         try {
             ResultSet max_id=this.conn.prepareStatement("select max(id) from `order`").executeQuery();
             if(max_id.next())
-            	{maxId=max_id.getInt("max(id)");}
+            	{
+            		maxId=max_id.getInt("max(id)");
+	                if(maxId==null){
+	                    maxId=0;
+	                }
+            	}
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
         this.pstmt = this.conn.prepareStatement(sql);
         this.pstmt.setInt(1,1+maxId);

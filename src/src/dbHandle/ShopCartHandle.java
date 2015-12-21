@@ -92,21 +92,15 @@ public class ShopCartHandle {
     }
     public boolean removeList(int goodId,int userId) throws Exception{
 		Boolean flag=false;
-    	
-		
 		String sql="Delete from shoppingcart where goodsId=? and userId=?";
-	           pstmt=conn.prepareStatement(sql);
-	           pstmt.setInt(1, goodId);
-    	       pstmt.setInt(2,userId);
-    	       if (this.pstmt.executeUpdate() > 0) {
-    	            flag = true;
-    	        }
-    	        this.pstmt.close();
-    	        return flag;
-    
-    	
-    	
-    	
+	    pstmt=conn.prepareStatement(sql);
+	    pstmt.setInt(1, goodId);
+	    pstmt.setInt(2,userId);
+	    if (this.pstmt.executeUpdate() > 0) {
+            flag = true;
+        }
+        this.pstmt.close();
+        return flag;
     } 
     
 }

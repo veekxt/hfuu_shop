@@ -52,6 +52,8 @@ public class AutoLogin implements Filter {
 								}
 								ShopCartHandle shopCartHandle=new ShopCartHandle();
 								int goodsNum = shopCartHandle.shopCartNum(user.getId());
+								int messNum = user.getMessnum();
+								ses.setAttribute("messNum", messNum);
 								ses.setAttribute("goodsNum", goodsNum);
 						        ses.setAttribute("loginUser",user);
 								ses.setAttribute("EmailOrUserName", EmailOrUserName);
