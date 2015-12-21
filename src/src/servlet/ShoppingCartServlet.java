@@ -20,7 +20,6 @@ public class ShoppingCartServlet extends HttpServlet {
 
 	public ShoppingCartServlet() {
 		super();
-
 	}
 
 	protected void doGet(HttpServletRequest request,
