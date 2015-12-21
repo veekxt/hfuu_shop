@@ -14,6 +14,7 @@ User me =(User)session.getAttribute("loginUser");
 UserHandle userHandle=new UserHandle();
 List <Goods> list=null;
 list=shopCartHandle.findGoodsByUser(me);
+
 %>
 
 <div class="panel panel-info">
@@ -65,9 +66,19 @@ list=shopCartHandle.findGoodsByUser(me);
 			购买全部
 			</button>
 			</div>
-			<%}else {%>
+			<%}else {
+			if(request.getParameter("info")==null){
+			%>
+			
 			购物车是空的！
-			<%}%>
+			<%}else{%>
+			<div class=\"alert alert-success\" role=\"alert\"><%=new String(request.getParameter("info").getBytes("Iso-8859-1"),"Utf-8")%></div>
+			
+		
+				<%
+				
+			}}
+			%>
 	    	</div>
 	</div>
 </div>

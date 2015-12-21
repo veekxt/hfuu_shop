@@ -152,7 +152,7 @@ public class GoodsHandle {
         this.pstmt = this.conn.prepareStatement(sql);
         ResultSet rs = this.pstmt.executeQuery();
         Goods good = null;
-        while (rs.next()) {
+        while (rs.next()){
             good = new Goods();
             good.setId(rs.getInt(1));
             good.setNum(rs.getInt(2));
