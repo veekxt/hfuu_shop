@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import src.dbHandle.GoodsHandle;
 import src.dbHandle.ShopCartHandle;
 import src.tools.LoginVerify;
+import src.vo.Goods;
 import src.vo.User;
 
 /**
@@ -34,9 +36,16 @@ public class ShoppingCartServlet extends HttpServlet {
 					"goodsNum");
 			goodsNum = goodsNum + 1;
 			ShopCartHandle shopCartHandle = new ShopCartHandle();
+			GoodsHandle goodsHandle = new GoodsHandle();
+			Goods goods=null;
+			try {
+                goods=goodsHandle.findById(goodsId);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
 			request.getSession().setAttribute("goodsNum", goodsNum);
 			try {
-				if(shopCartHandle.doSaveShoppingCart(goodsNum, goodsId, userId)){
+				if(goods!=null && goods.getStates()==2 && shopCartHandle.doSaveShoppingCart(goodsNum, goodsId, userId)){
 					response.getWriter().print("success");
 				}
 				else{
