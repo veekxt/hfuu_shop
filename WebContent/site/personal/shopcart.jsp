@@ -21,7 +21,7 @@ list=shopCartHandle.findGoodsByUser(me);
 	<div class="panel-heading">
 			我的购物车
 	</div>
-	<div class="panel-body">
+	<div id="panel-body" class="panel-body">
 	<div class="list-group">
 	<%
 	if(list.size()!=0){
@@ -62,21 +62,17 @@ list=shopCartHandle.findGoodsByUser(me);
 				</div>
 	    	</div><%}%></div>
 	    	<div>
-	    	<button id ="buyAll"class="pull-right btn btn-success" onclick="window.location.href='OrderCheckServlet?goodsid=<%=goodsIdList%>&userid=<%=((User)session.getAttribute("loginUser")).getId()%>'">
+	    	<button id ="buyAll"class="pull-right btn btn-success" onclick="buy_all()">
 			购买全部
 			</button>
 			</div>
 			<%}else {
 			if(request.getParameter("info")==null){
 			%>
-			
 			购物车是空的！
 			<%}else{%>
-			<div class=\"alert alert-success\" role=\"alert\"><%=new String(request.getParameter("info").getBytes("Iso-8859-1"),"Utf-8")%></div>
-			
-		
-				<%
-				
+			<div class="alert alert-success" role="alert"><%=new String(request.getParameter("info").getBytes("UTF-8"),"UTF-8")%></div>
+			<%
 			}}
 			%>
 	    	</div>
@@ -104,5 +100,19 @@ function shopcart_remove(goodsId){
 	}
 	xmlRemove.open("GET","RemoveShopCartServlet?goodsId="+goodsId+"&t="+Math.random(),true);
 	xmlRemove.send(null);
+}
+
+function buy_all(){
+    xmlBuy=new XMLHttpRequest();
+    xmlBuy.onreadystatechange=function()
+    {
+      if ((xmlBuy.readyState==4)&&(xmlBuy.status==200))
+        {
+    	  document.getElementById("panel-body").innerHTML=xmlBuy.responseText;
+    	  document.getElementById("goodsNum").innerHTML="0";
+        }
+    }
+    xmlBuy.open("GET","BuyAllShopcartServlet"+"?t="+Math.random(),true);
+    xmlBuy.send(null);
 }
 </script>

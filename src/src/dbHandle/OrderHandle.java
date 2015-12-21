@@ -30,9 +30,6 @@ public class OrderHandle {
             if(max_id.next())
             	{
             		maxId=max_id.getInt("max(id)");
-	                if(maxId==null){
-	                    maxId=0;
-	                }
             	}
         } catch (Exception e) {
             e.printStackTrace();
