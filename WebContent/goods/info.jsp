@@ -187,16 +187,16 @@ Integer goodsNum=0;
 						<hr />
 						<div class="row">
 							<div class="col-md-4">
-								<button type="button" class="center-block btn btn-info">收藏此物品</button>
+								<button type="button" class="center-block btn btn-default">收藏此物品</button>
 							</div>
 							<div class="col-md-4">
 								<button type="button" id="addCastButton"
-									class="center-block btn btn-info"
+									class="center-block btn btn-default"
 									onclick="shoppingCart(<%=isLogin %>,<%=goodsNum %>,<%=good.getId()%>)">加入购物车</button>
 							</div>
 
 							<div class="col-md-4">
-								<button <%=good.getStates()==2?"":"disabled=\"disabled\"" %> id="buy" type="button" class="center-block btn btn-info" onclick="toLogin(<%=isLogin %>)">
+								<button <%=good.getStates()==2?"":"disabled=\"disabled\"" %> id="buy" type="button" class="center-block btn btn-default" onclick="toLogin(<%=isLogin %>)">
 								<%
 								if(good.getStates()!=2){
 								    out.print("[不可用]已被购买或未通过审核");

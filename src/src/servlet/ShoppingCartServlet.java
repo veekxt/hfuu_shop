@@ -32,9 +32,7 @@ public class ShoppingCartServlet extends HttpServlet {
 
 			int userId = user.getId();
 			int goodsId = Integer.parseInt(request.getParameter("goodsId"));
-			int goodsNum = (Integer) request.getSession().getAttribute(
-					"goodsNum");
-			goodsNum = goodsNum + 1;
+			int goodsNum = (Integer) request.getSession().getAttribute("goodsNum");
 			ShopCartHandle shopCartHandle = new ShopCartHandle();
 			GoodsHandle goodsHandle = new GoodsHandle();
 			Goods goods=null;
@@ -47,6 +45,7 @@ public class ShoppingCartServlet extends HttpServlet {
 			try {
 				if(goods!=null && goods.getStates()==2 && shopCartHandle.doSaveShoppingCart(goodsNum, goodsId, userId)){
 					response.getWriter().print("success");
+					goodsNum = goodsNum + 1;
 				}
 				else{
 					response.getWriter().print("error");
