@@ -19,6 +19,7 @@ import src.vo.*;
 @WebServlet("/BuyAllShopcartServlet")
 public class BuyAllShopcartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
     public BuyAllShopcartServlet() {
         super();
     }
@@ -43,10 +44,8 @@ public class BuyAllShopcartServlet extends HttpServlet {
             OrderHandle orderHandle=new OrderHandle();
             Order order=new Order();
             Date date=new Date();
-            
             List <Goods> listSuc = new ArrayList<Goods>();
             List <Goods> listErr = new ArrayList<Goods>();
-            
             for(Goods goods:list){
                 order.setGoodsId(goods.getId());
                 order.setUserId(user.getId());
