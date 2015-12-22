@@ -61,7 +61,7 @@ public class GoodsCheckServlet extends HttpServlet {
 		// 处理文件
 		Part part = request.getPart("file");
 		String type_id=getForm(request,"type_id-goods");
-		String [] typeId={"other","book","live","sport","clothes","eletronic"};//id对应01234
+		String [] typeId={"book","live","clothes","eletronic","sport","other"};//id对应123456
 		if (goodsName != null && (!goodsName.equals(""))) {
 			if ((goodsQuantitystr != null && !goodsQuantitystr.equals(""))) {
 				if (goodsContent != null && (!goodsContent.equals(""))) {

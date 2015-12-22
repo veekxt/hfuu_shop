@@ -31,6 +31,7 @@
 							<a href="index.jsp?ceta=5" class="list-group-item"><span class="badge"></span>体育运动</a> 
 							<a href="index.jsp?ceta=4" class="list-group-item"><span class="badge"></span>电子产品</a>
 							<a href="index.jsp?ceta=3" class="list-group-item"><span class="badge"></span>衣物鞋包</a>
+							<a href="index.jsp?ceta=6" class="list-group-item"><span class="badge"></span>其他</a>
 						</div>
 					</div>
 				</div>
@@ -64,7 +65,7 @@
 			    	list=goods.findByCeta(5);
 			    }else if(ceta.equals("6")){
 			    	out.println("<span class=\"list-group-item list-group-item-info\">分类-其他</span>");
-			    	list=goods.findByCeta(5);
+			    	list=goods.findByCeta(6);
 			    }else{
 			    	out.println("<span class=\"list-group-item list-group-item-info\">分类-全部</span>");
 					list=goods.findAll();
