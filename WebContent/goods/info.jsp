@@ -136,9 +136,8 @@ Integer goodsNum=0;
 									发布时间：<%=dateStr %>
 									<br /> <br />
 								</p>
-								<p>
-									物品说明：<span class="info-goods-content">
-										${good.getContent()} </span>
+								<p class="info-goods-content">
+									物品说明：<%=good.getContent().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br />") %>
 								</p>
 							</div>
 						</div>
