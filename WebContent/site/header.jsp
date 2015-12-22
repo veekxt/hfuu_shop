@@ -71,7 +71,9 @@
 					<li><a href="<%=basePath %>user/personal.jsp?userid=<%=user.getId()%>&tab=history">购买历史</a></li>
 					<li><a href="<%=basePath %>user/personal.jsp?userid=<%=user.getId()%>&tab=push">发布物品</a></li>
 					<li><a href="<%=basePath %>user/personal.jsp?userid=<%=user.getId()%>&tab=like">收藏夹</a></li>
+					<!-- 并不需要设置页 
 					<li><a href="<%=basePath %>user/personal.jsp?userid=<%=user.getId()%>&tab=setting">设置</a></li>
+					-->
 					<li><a href="<%=basePath %>ExitLoginServlet">退出登录</a></li>
 				</ul>
 			</li>

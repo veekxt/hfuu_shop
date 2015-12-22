@@ -24,7 +24,7 @@ if(request.getAttribute("isMe")!=null){
 <%
 String cantAlter="";
 if(!isLogined || (isLogined && user.getId()!=me.getId())){	
-    cantAlter="disabled";
+    cantAlter="readonly";
 }
 %>
 <div class="panel panel-info">
@@ -34,7 +34,7 @@ if(!isLogined || (isLogined && user.getId()!=me.getId())){
 %>
 	</div>
 	<div class="panel-body">
-	<form>
+	<form action="UpdateUserInfoServlet" method="post">
 	
 	 <div class="form-group">
 	<div class="input-group">
@@ -46,19 +46,46 @@ if(!isLogined || (isLogined && user.getId()!=me.getId())){
 		 <div class="form-group">
 	<div class="input-group">
      <span class="input-group-addon" id="basic-addon1">邮箱</span>
-     <input type="text" class="form-control" value="<%=user.getEmail() %>" <%=cantAlter %>>
+     <input readonly type="text" class="form-control" value="<%=user.getEmail() %>" <%=cantAlter %>>
 	</div>
 	</div>
 	
-		 <div class="form-group">
-	<div class="input-group">
+	<div class="form-group">
+    <div class="input-group">
      <span class="input-group-addon" id="basic-addon1">电话</span>
      <input type="text" class="form-control" value="<%=user.getPhone()==null?"":user.getPhone() %>" <%=cantAlter %>>
-	</div>
+    </div>
+    </div>
+    
+    <div class="form-group" style="display:none" id="set-pwd-input">
+    
+    <div class="input-group">
+     <span class="input-group-addon" id="pwd1">新的密码</span>
+     <input placeholder="不更新密码留空此项即可" type="password" class="form-control" value="" <%=cantAlter %>>
+    </div>
+    
+
+    <div class="input-group">
+     <span class="input-group-addon" id="pwd2">密码重复</span>
+     <input type="password" class="form-control" value="" <%=cantAlter %>>
+    </div>
+    
 	</div>
 	<%if(isLogined && user.getId()==me.getId()){ %>
+	<button id="set-pwd" type="button" class="btn btn-primary">设置密码</button>
 	<button type="submit" class="btn btn-primary">更新我的资料</button>
+	<%}else{%>
+	<button onclick='window.open("user/personal.jsp?tab=mess&handle=write&toemail=<%=user.getEmail() %>%20==>%20<%=user.getName()%>")' id="send-mess-to-he" type="button" class="btn btn-primary">给他发送消息</button>
 	<%}%>
 	</form>
 	</div>
 </div>
+
+<script>
+$(document).ready(function(){
+    $("#set-pwd").click(function(){
+    $("#set-pwd-input").show(200);
+    $("#set-pwd").hide(200);
+    });
+  });
+</script>

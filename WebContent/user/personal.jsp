@@ -79,16 +79,24 @@ String tab = request.getParameter("tab");
 							<a href="user/personal.jsp?tab=history&userid=<%=user.getId() %>"
 							class="list-group-item <%=tab.equals("history")?"active":"" %>">
 							购买历史</a>
+							<a href="user/personal.jsp?tab=pushed&userid=<%=user.getId() %>"
+                            class="list-group-item <%=tab.equals("pushed")?"active":"" %>">
+                                                        我发布的</a>
 							<a href="user/personal.jsp?tab=push&userid=<%=user.getId() %>"
 							class="list-group-item <%=tab.equals("push")?"active":"" %>">
 							发布商品</a>
 							<a href="user/personal.jsp?tab=like&page=1&userid=<%=user.getId() %>"
 							class="list-group-item <%=tab.equals("like")?"active":"" %>">
 							收藏夹 </a>
+							<!-- 并不需要设置页 
 							<a href="user/personal.jsp?tab=setting&userid=<%=user.getId() %>" 
 							class="list-group-item <%=tab.equals("setting")?"active":"" %>">
 							设置</a>
+							-->
 							<%}else{%>
+							<a href="user/personal.jsp?tab=pushed&userid=<%=user.getId() %>"
+                            class="list-group-item <%=tab.equals("pushed")?"active":"" %>">
+                                                        他发布的商品</a>
 							<%}%>
 						</div>
 					</div>
@@ -106,7 +114,9 @@ String tab = request.getParameter("tab");
 				<%}else if(tab.equals("like")){%>
 				<jsp:include page="../site/personal/like.jsp" />
 				<%}else if(tab.equals("mess")){%>
-				<jsp:include page="../site/personal/mess.jsp" />
+                <jsp:include page="../site/personal/mess.jsp" />
+                <%}else if(tab.equals("pushed")){%>
+                <jsp:include page="../site/personal/pushed.jsp" />
 				<%}else if(tab.equals("history")){%>
 				<jsp:include page="../site/personal/history.jsp" />
 				<%}%>
