@@ -20,7 +20,7 @@ public class UpdateUserInfoServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    //TODO：验证更新信息并写入数据库
-	    response.getWriter().print("success");
+	    //之后重定向到个人页
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
