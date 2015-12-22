@@ -98,8 +98,11 @@ if(allMess.size()!=0){
 <!-- end of 一条消息 -->
 
 <%}%>
+<%}else{%>
+<div class="alert alert-warning" role="alert">
+你尚未收到任何消息
+</div>
 <%}%>
-
 <!-- end of 消息列表 -->
 <%} else{ %>
 <!-- 这里写消息发送页 -->

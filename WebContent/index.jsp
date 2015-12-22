@@ -97,13 +97,14 @@
 								</div>
 							</div>
 						</div>
-			    	</div>
-			    		  
+			    	</div>	  
 			    	<%	  
 			    	  }
-			    	  
-			      }
-			%>
+			      }else{%>
+			<div class="list-group-item">
+			此分类下暂无物品
+			</div>
+			<%}%>
 				</div>
 			</div>
 		</div>

@@ -42,6 +42,23 @@ function passGoods(goodsid,type){
 %>
 	</div>
 	<div class="panel-body">
+<%
+GoodsHandle goodsHandle=new GoodsHandle();
+UserHandle userHandle=new UserHandle();
+List<Goods> all=null;
+try{
+all = goodsHandle.findAllNotAuditing();
+}catch(Exception e){
+    System.out.print("数据库异常");
+}
+if(all.size()==0){
+%>
+<div class="alert alert-info" role="alert">
+还没有需要审核的物品
+</div>
+<%
+}else{
+%>
 		<table class="table table-striped">
 			<tr>
 				<th class="td-user-name" style="width: 10%;">用户</th>
@@ -50,20 +67,10 @@ function passGoods(goodsid,type){
 				<th class="td-user-name" style="width: 15%;">详情</th>
 				<th class="td-user-name" style="width: 15%;">操作</th>
 			</tr>
-			<%
-GoodsHandle goodsHandle=new GoodsHandle();
-UserHandle userHandle=new UserHandle();
-try{
-List<Goods> all = goodsHandle.findAllNotAuditing();
-if(all==null){
-	System.out.print("cant find anything");
-}else{%>
-			<%
+<%
 for(Goods goods:all)
 {
-    
 %>
-
 			<tr>
 				<td class="td-user-name" style="width: 10%;">
 				<%
@@ -84,20 +91,16 @@ for(Goods goods:all)
 				<td>
 					<div id="auditing-button-<%=goods.getId()%>"
 						class="btn-group btn-group-sm">
-						<button type="button" class="btn btn-success"
+					<button type="button" class="btn btn-success"
 							onclick="passGoods(<%=goods.getId()%>,'pass');">通过</button>
-						<button type="button" class="btn btn-danger"
+					<button type="button" class="btn btn-danger"
 							onclick="passGoods(<%=goods.getId()%>,'refuse');">拒绝</button>
 					</div>
 				</td>
 			</tr>
 
-			<%
-}
-%>
-			<%}}catch(Exception e){
-    out.print("数据库异常");
-}%>
+<%}%>
+<%}%>
 		</table>
 
 	</div>
