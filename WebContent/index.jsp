@@ -76,11 +76,11 @@
 			    	User user = users.findById(good.getProducter_id());
 			    	%><div class="list-group-item">
 						<div class="row">
-							<div class="goods-img col-md-3">
+							<div class="goods-img col-md-2">
 								<img class="img-rounded img-item-goods"
 									src="<%=good.getImage()%>" />
 							</div>
-								<div class="col-md-9">
+								<div class="col-md-10">
 								<div class="row detail-goods lead">
 									<a href="goods/info.jsp?goodsid=<%=good.getId()%>"><%=good.getName()%></a>
 								</div>

@@ -170,4 +170,30 @@ public class GoodsHandle {
         this.pstmt.close();
         return all;
     }
+    
+    public List<Goods> findByUserId(int userId) throws Exception {
+        List<Goods> all = new ArrayList<Goods>();
+        String sql = "SELECT id,num,content,type_id,image,producter_id,price,name,create_date,status from goods where (status=2 or status=4) and producter_id="+userId+" order by create_date desc";
+        this.pstmt = this.conn.prepareStatement(sql);
+        ResultSet rs = this.pstmt.executeQuery();
+        Goods good = null;
+        while (rs.next()){
+            good = new Goods();
+            good.setId(rs.getInt(1));
+            good.setNum(rs.getInt(2));
+            good.setContent(rs.getString(3));
+            good.setType_id(rs.getInt(4));
+            good.setImage(rs.getString(5));
+            good.setProducter_id(rs.getInt(6));
+            good.setPrice(rs.getFloat(7));
+            good.setName(rs.getString(8));
+            java.sql.Timestamp timeStamp=rs.getTimestamp(9);
+            java.util.Date date=new  java.util.Date(timeStamp.getTime());
+            good.setCreatDate(date);
+            good.setStates(rs.getInt(10));
+            all.add(good);
+        }
+        this.pstmt.close();
+        return all;
+    }
 }

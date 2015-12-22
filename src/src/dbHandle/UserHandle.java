@@ -33,6 +33,22 @@ public class UserHandle{
 		this.pstmt.close() ;
 		return flag ;
 	}
+	
+	public boolean doUpdate(User user) throws Exception{
+		boolean flag = false ;
+		String sql = "update user set pwd=?,name=?,phone=? where id=?" ;
+		this.pstmt = this.conn.prepareStatement(sql) ;
+		this.pstmt.setString(1,user.getPwd());
+		this.pstmt.setString(2,user.getName()) ;
+		this.pstmt.setString(3,user.getPhone()) ;
+		this.pstmt.setInt(4,user.getId()) ;
+		if(this.pstmt.executeUpdate() > 0){
+			flag = true ;
+		}
+		this.pstmt.close() ;
+		return flag ;
+	}
+	
 	public List<User> findAll(String keyWord) throws Exception{
 		List<User> all = new ArrayList<User>() ;
 		String sql = "SELECT id,email,pwd,name,stu_num FROM user WHERE name LIKE ? OR email LIKE ?" ;

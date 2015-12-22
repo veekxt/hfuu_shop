@@ -34,12 +34,17 @@ if(!isLogined || (isLogined && user.getId()!=me.getId())){
 %>
 	</div>
 	<div class="panel-body">
+<%if(request.getParameter("info")!=null && request.getParameter("info").length()>0){
+String info=new String(request.getParameter("info").getBytes("UTF-8"),"UTF-8");
+out.print("<div class=\"alert alert-danger\" role=\"alert\">"+info+"</div>");
+}
+%>
 	<form action="UpdateUserInfoServlet" method="post">
 	
 	 <div class="form-group">
 	<div class="input-group">
      <span class="input-group-addon" id="basic-addon1">姓名</span>
-    <input type="text" class="form-control" value="<%=user.getName() %>" <%=cantAlter %>>
+    <input type="text" class="form-control" name="name" value="<%=user.getName() %>" <%=cantAlter %>>
 	</div>
 	</div>
 	
@@ -53,7 +58,7 @@ if(!isLogined || (isLogined && user.getId()!=me.getId())){
 	<div class="form-group">
     <div class="input-group">
      <span class="input-group-addon" id="basic-addon1">电话</span>
-     <input type="text" class="form-control" value="<%=user.getPhone()==null?"":user.getPhone() %>" <%=cantAlter %>>
+     <input type="text" class="form-control" name="phone" value="<%=user.getPhone()==null?"":user.getPhone() %>" <%=cantAlter %>>
     </div>
     </div>
     
@@ -61,13 +66,13 @@ if(!isLogined || (isLogined && user.getId()!=me.getId())){
     
     <div class="input-group">
      <span class="input-group-addon" id="pwd1">新的密码</span>
-     <input placeholder="不更新密码留空此项即可" type="password" class="form-control" value="" <%=cantAlter %>>
+     <input placeholder="不更新密码留空此项即可" name="pwd1" type="password" class="form-control" value="">
     </div>
     
 
     <div class="input-group">
      <span class="input-group-addon" id="pwd2">密码重复</span>
-     <input type="password" class="form-control" value="" <%=cantAlter %>>
+     <input type="password" name="pwd2" class="form-control" value="">
     </div>
     
 	</div>
