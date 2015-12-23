@@ -35,12 +35,12 @@
 			<button type="submit" class="btn btn-default">查找物品</button>
 		</form>
 
-		<% Boolean isLogined=(Boolean)session.getAttribute("isLogined");
+		<% Boolean isLogined=LoginVerify.isLogin(request);
 			User user=null;
 			String email="";
 			
 				//email 是邮箱或用户名（如果存在）
-		   if(isLogined!=null){
+		   if(isLogined){
 			   user=(User)session.getAttribute("loginUser");
 			   email=(user.getName()==null || user.getName().length()==0)?user.getEmail():user.getName();
 		   }
@@ -51,13 +51,7 @@
                 if(user!=null){
                 	ShopCartHandle shopCartHandle=new ShopCartHandle();
                 	goodsNum = shopCartHandle.shopCartNum(user.getId());
-                }
-                
-				if(session.getAttribute("messNum")!=null){
-				    if(request.getParameter("tab")!=null && request.getParameter("tab").equals("mess")){
-				        session.setAttribute("messNum", 0);
-				    }
-					messNum=(Integer)session.getAttribute("messNum");
+					messNum=user.getMessnum();
 				}
 			%>
 			<%if (isLogined!=null && user!=null &&isLogined==true){

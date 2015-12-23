@@ -12,6 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import src.dbHandle.UserHandle;
+import src.tools.LoginVerify;
 import src.vo.User;
 
 /**
@@ -28,9 +29,14 @@ public class AutoLogin implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession ses = req.getSession();
+		
+		if(LoginVerify.isLogin(req)){
+			chain.doFilter(request, response);
+			return;
+		}
+		
 		Cookie[] cookies = req.getCookies();
 		UserHandle userHandle = new UserHandle();
-		String EmailOrUserName = "";
 		String emailCookie = null;
 		/*
 		 * 日后修复标记：这里仅用了email作为cookie并用于验证，极不安全
@@ -44,15 +50,7 @@ public class AutoLogin implements Filter {
 							User user = userHandle.findByEmail(emailCookie);
 							if(user!=null)
 							{
-								if(user.getName()!=null && !user.getName().equals("")){
-									EmailOrUserName=user.getName();
-								}else{
-									EmailOrUserName=user.getEmail();
-								}
-								int messNum = user.getMessnum();
-								ses.setAttribute("messNum", messNum);
 						        ses.setAttribute("loginUser",user);
-								ses.setAttribute("EmailOrUserName", EmailOrUserName);
 								ses.setAttribute("isLogined", true);
 							}else{
 								//未检测到cookie，不做任何事

@@ -26,7 +26,6 @@ public class LoginServlet extends HttpServlet {
 		String inputPassword = request.getParameter("inputPassword");
 		String autoLogin = request.getParameter("auto_login");
 		UserHandle userHandle = new UserHandle();
-		String EmailOrUserName="";
 		try {
 			if (userHandle.findByEmail(inputEmail) != null) {
 				User user = userHandle.findByEmail(inputEmail);
@@ -42,17 +41,6 @@ public class LoginServlet extends HttpServlet {
 						response.addCookie(cookieE);
 					}
 					HttpSession session = request.getSession();
-					if(user.getName()!=null && !user.getName().equals("")){
-						EmailOrUserName=user.getName();
-					}else{
-						EmailOrUserName=user.getEmail();
-					}
-					  ShopCartHandle shopCartHandle=new ShopCartHandle();
-					  int goodsNum = shopCartHandle.shopCartNum(user.getId());
-					  int messNum = user.getMessnum();
-					session.setAttribute("messNum", messNum);
-				    session.setAttribute("goodsNum", goodsNum);
-					session.setAttribute("EmailOrUserName", EmailOrUserName);
 					session.setAttribute("loginUser",user);
 					session.setAttribute("isLogined", true);
 					response.sendRedirect("index.jsp");
