@@ -54,6 +54,7 @@ public class BuyAllShopcartServlet extends HttpServlet {
                 try {
                     if(orderHandle.doCreate(order)){
                         listSuc.add(goods);
+                        shopCartHandle.removeList(goods.getId(), user.getId());
                     }else{
                         listErr.add(goods);
                     }
@@ -67,7 +68,7 @@ public class BuyAllShopcartServlet extends HttpServlet {
                 for(int i=0;i<listSuc.size();i++){
                     resOut.println("<a href=\"goods/info.jsp?goodsid="+listSuc.get(i).getId()+"\">"+listSuc.get(i).getName()+"</a>　");
                 }
-                resOut.println("</p><p>购买成功</p>");
+                resOut.println("</p><p>购买成功!</p>");
             }
             if(listErr.size()>0){
                 resOut.println("<p>物品：</p><p>");

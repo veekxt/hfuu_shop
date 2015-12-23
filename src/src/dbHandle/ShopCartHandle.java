@@ -91,4 +91,16 @@ public class ShopCartHandle {
         return flag;
     } 
     
+    public boolean removeAllByUser(User user) throws Exception{
+		Boolean flag=false;
+		String sql="Delete from shoppingcart where and userId=?";
+	    pstmt=conn.prepareStatement(sql);
+	    pstmt.setInt(1,user.getId());
+	    if (this.pstmt.executeUpdate() > 0) {
+            flag = true;
+        }
+        this.pstmt.close();
+        return flag;
+    } 
+    
 }
