@@ -1,3 +1,4 @@
+<%@page import="org.omg.CORBA.IntHolder"%>
 <%/*
 个人信息页，被/personal包含，非自己只显示公开信息
 */%>
@@ -11,7 +12,21 @@ if(!LoginVerify.isLogin(request)){
 }
 User me=(User)session.getAttribute("loginUser");
 userHandle.emptyMessnum(me);
-List<Mess> allMess = messHandle.findAllMessByUser(me);
+
+int pn=1;
+String tmpString=request.getParameter("pn");
+//获取pn参数
+if(tmpString!=null && tmpString.length()!=0){
+    if(Integer.parseInt(tmpString)>0){
+        pn=Integer.parseInt(tmpString);
+    }
+}
+int perPage=3;//每页显示几条？
+IntHolder num=new IntHolder(0);
+int limitMin=(pn-1)*perPage;
+
+List<Mess> allMess = messHandle.findAllMessByUser(num,me, limitMin, perPage);
+int maxPage=num.value%perPage==0?num.value/perPage:num.value/perPage+1;
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -101,14 +116,14 @@ if(allMess.size()!=0){
 <%}%>
 <nav>
   <ul class="pager">
-    <li class=""><a class="page-cut-btn" href="#"><span aria-hidden="true"></span> 上一页</a></li>
-    　　　　
-    <li class=""><a class="page-cut-btn" href="#">下一页 <span aria-hidden="true"></span></a></li>
+    <li class=""><a class="page-cut-btn" href="user/personal.jsp?tab=mess&userid=<%=user.getId()%>&pn=<%=pn<=1?1:pn-1%>"><span aria-hidden="true"></span><%=pn>1?"上一页":"位于首页"%></a></li>
+    <li style=""><span style="border:0">    　　第<span style="color:red;border:0"><%=pn %></span>页　　</span></li>
+    <li class=""><a class="page-cut-btn" href="user/personal.jsp?tab=mess&userid=<%=user.getId()%>&pn=<%=pn>=maxPage?pn:pn+1%>"><%=pn<maxPage?"下一页":"位于末页"%><span aria-hidden="true"></span></a></li>
   </ul>
 </nav>
 <%}else{%>
 <div class="alert alert-warning" role="alert">
-你尚未收到任何消息
+你尚未收到任何消息，或已经到达最大页数！
 </div>
 <%}%>
 <!-- end of 消息列表 -->

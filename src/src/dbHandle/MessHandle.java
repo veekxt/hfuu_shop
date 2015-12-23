@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.omg.CORBA.IntHolder;
+
 import src.dbc.DatabaseConnection;
 import src.vo.*;
 
@@ -36,11 +38,14 @@ public class MessHandle {
         return flag;
     }
     
-    public List<Mess> findAllMessByUser(User user) throws Exception {
+    public List<Mess> findAllMessByUser(IntHolder num,User user,int limitMin,int perPage) throws Exception {
         List<Mess> all = new ArrayList<Mess>();
-        String sql = "SELECT mess_id,mess_from_id,mess_to_id,send_time,mess_text from `message`  where mess_to_id=? order by send_time desc";
+        String sql = "SELECT SQL_CALC_FOUND_ROWS mess_id,mess_from_id,mess_to_id,send_time,mess_text from `message`  where mess_to_id=? order by send_time desc limit ?,?";
         this.pstmt = this.conn.prepareStatement(sql);
         this.pstmt.setInt(1,user.getId());
+        this.pstmt.setInt(2,limitMin);
+        this.pstmt.setInt(3,perPage);
+        
         ResultSet rs = this.pstmt.executeQuery();
         while (rs.next()) {
             Mess mess = new Mess();
@@ -52,6 +57,10 @@ public class MessHandle {
             mess.setSendDate(date);
             mess.setMessText(rs.getString(5));
             all.add(mess);
+        }
+        rs = this.pstmt.executeQuery("SELECT FOUND_ROWS()");
+        if(rs.next()){
+        	num.value=rs.getInt(1);
         }
         this.pstmt.close();
         return all;

@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.omg.CORBA.IntHolder;
 import src.dbc.DatabaseConnection;
 import src.vo.Goods;
 
@@ -73,11 +75,13 @@ public class GoodsHandle {
         return maxId;
     }
 
-    public List<Goods> findAll() throws Exception {
+    public List<Goods> findAll(IntHolder num,int limitMin,int perPage) throws Exception {
         List<Goods> all = new ArrayList<Goods>();
-        String sql = "SELECT id,num,content,type_id,image,producter_id,price,create_date,name from goods  where status=? order by create_date desc";
+        String sql = "SELECT SQL_CALC_FOUND_ROWS id,num,content,type_id,image,producter_id,price,create_date,name from goods  where status=? order by create_date desc limit ?,?";
         this.pstmt = this.conn.prepareStatement(sql);
         this.pstmt.setInt(1, 2);
+        this.pstmt.setInt(2, limitMin);
+        this.pstmt.setInt(3, perPage);
         ResultSet rs = this.pstmt.executeQuery();
         while (rs.next()) {
             Goods good = new Goods();
@@ -93,6 +97,10 @@ public class GoodsHandle {
             java.util.Date date=new  java.util.Date(timeStamp.getTime());
             good.setCreatDate(date);
             all.add(good);
+        }
+        rs = this.pstmt.executeQuery("SELECT FOUND_ROWS()");
+        if(rs.next()){
+        	num.value=rs.getInt(1);
         }
         this.pstmt.close();
         return all;
@@ -127,6 +135,7 @@ public class GoodsHandle {
         boolean flag = false;
         String sql = "update goods set id=?,image=?,type_id=?,name=?,num=?,price=?,status=?,content=?,producter_id=?,create_date=? where id=?";
         this.pstmt = this.conn.prepareStatement(sql);
+        
         pstmt.setInt(1, good.getId());
         pstmt.setString(2, good.getImage());
         pstmt.setInt(3, good.getType_id());
@@ -146,10 +155,12 @@ public class GoodsHandle {
         return flag;
     }
 
-    public List<Goods> findByCeta(int cetaId) throws Exception {
+    public List<Goods> findByCeta(int cetaId,IntHolder num,int limitMin,int perPage) throws Exception {
         List<Goods> all = new ArrayList<Goods>();
-        String sql = "SELECT id,num,content,type_id,image,producter_id,price,name,create_date from goods where status=2 and type_id="+cetaId+" order by create_date desc";
+        String sql = "SELECT SQL_CALC_FOUND_ROWS id,num,content,type_id,image,producter_id,price,name,create_date from goods where status=2 and type_id="+cetaId+" order by create_date desc limit ?,?";
         this.pstmt = this.conn.prepareStatement(sql);
+        this.pstmt.setInt(1, limitMin);
+        this.pstmt.setInt(2, perPage);
         ResultSet rs = this.pstmt.executeQuery();
         Goods good = null;
         while (rs.next()){
@@ -166,6 +177,10 @@ public class GoodsHandle {
             java.util.Date date=new  java.util.Date(timeStamp.getTime());
             good.setCreatDate(date);
             all.add(good);
+        }
+        rs = this.pstmt.executeQuery("SELECT FOUND_ROWS()");
+        if(rs.next()){
+        	num.value=rs.getInt(1);
         }
         this.pstmt.close();
         return all;

@@ -1,3 +1,4 @@
+<%@page import="org.omg.CORBA.IntHolder"%>
 <%@page import="src.dbHandle.UserHandle"%>
 <%@page import="org.w3c.dom.UserDataHandler"%>
 <%@page import="src.dbHandle.GoodsHandle"%>
@@ -38,37 +39,65 @@
 			</div>
 			<div class="col-md-8">
 				<div class="list-group">
-				<% 
+				<%
+				//判断pn参数
+				int pn=1;
+				int perPage=3;//每页显示几条？
+				int ceta=0;
+				String tmpString=request.getParameter("pn");
+				//获取pn参数
+                if(tmpString!=null && tmpString.length()!=0){
+                    if(Integer.parseInt(tmpString)>0){
+                        pn=Integer.parseInt(tmpString);
+                    }
+                }
+				//获取ceta参数
+				tmpString=request.getParameter("ceta");
+                if(tmpString!=null && tmpString.length()!=0){
+                    if(Integer.parseInt(tmpString)>0){
+                        ceta=Integer.parseInt(tmpString);
+                    }
+                }
+				int limitMin=(pn-1)*perPage;
 				GoodsHandle goodHandle=new GoodsHandle();
 				UserHandle userHandle =new UserHandle();
 			    List <Goods> list=null;
+			    IntHolder num = new IntHolder(0);
 			    %>
 			    <%
-			    String ceta=request.getParameter("ceta");
-			    if(ceta==null || ceta.equals("0")){
-					out.println("<span class=\"list-group-item list-group-item-info\">分类-全部</span>");
-					list=goodHandle.findAll();
-			    }else if(ceta.equals("1")){
-			    	out.println("<span class=\"list-group-item list-group-item-info\">分类-书籍</span>");
-			    	list=goodHandle.findByCeta(1);
-			    }else if(ceta.equals("2")){
-			    	out.println("<span class=\"list-group-item list-group-item-info\">分类-生活出行</span>");
-			    	list=goodHandle.findByCeta(2);
-			    }else if(ceta.equals("3")){
-			    	out.println("<span class=\"list-group-item list-group-item-info\">分类-衣物鞋包</span>");
-			    	list=goodHandle.findByCeta(3);
-			    }else if(ceta.equals("4")){
-			    	out.println("<span class=\"list-group-item list-group-item-info\">分类-电子产品</span>");
-			    	list=goodHandle.findByCeta(4);
-			    }else if(ceta.equals("5")){
-			    	out.println("<span class=\"list-group-item list-group-item-info\">分类-体育运动</span>");
-			    	list=goodHandle.findByCeta(5);
-			    }else if(ceta.equals("6")){
-			    	out.println("<span class=\"list-group-item list-group-item-info\">分类-其他</span>");
-			    	list=goodHandle.findByCeta(6);
-			    }else{
-			    	out.println("<span class=\"list-group-item list-group-item-info\">分类-全部</span>");
-					list=goodHandle.findAll();
+			    switch(ceta){
+                case 0:
+                    out.println("<span class=\"list-group-item list-group-item-info\">分类-全部</span>");
+                    list=goodHandle.findAll(num,limitMin,perPage);
+                    break;
+                case 1:
+                    out.println("<span class=\"list-group-item list-group-item-info\">分类-书籍</span>");
+                    list=goodHandle.findByCeta(1,num,limitMin,perPage);
+                    break;
+                case 2:
+                    out.println("<span class=\"list-group-item list-group-item-info\">分类-生活出行</span>");
+                    list=goodHandle.findByCeta(2,num,limitMin,perPage);
+                    break;
+                case 3:
+                    out.println("<span class=\"list-group-item list-group-item-info\">分类-衣物鞋包</span>");
+                    list=goodHandle.findByCeta(3,num,limitMin,perPage);
+                    break;
+                case 4:
+                    out.println("<span class=\"list-group-item list-group-item-info\">分类-电子产品</span>");
+                    list=goodHandle.findByCeta(4,num,limitMin,perPage);
+                    break;
+                case 5:
+                    out.println("<span class=\"list-group-item list-group-item-info\">分类-体育运动</span>");
+                    list=goodHandle.findByCeta(5,num,limitMin,perPage);
+                    break;
+                case 6:
+                    out.println("<span class=\"list-group-item list-group-item-info\">分类-其他</span>");
+                    list=goodHandle.findByCeta(6,num,limitMin,perPage);
+                    break;
+                default:
+                    out.println("<span class=\"list-group-item list-group-item-info\">分类-全部</span>");
+                    list=goodHandle.findAll(num,limitMin,perPage);
+                	break;
 			    }
 			      if(list.size()!=0){
 			    	for(Goods good:list){
@@ -94,9 +123,7 @@
                                 out.print(dateStr);
                                 %>
 								</span>
-
 								</div>
-								
 							</div>
 						</div>
 			    	</div>	  
@@ -104,19 +131,22 @@
 			    	  }
 			      }else{%>
 			<div class="list-group-item">
-			此分类下暂无物品
+			此分类下暂无物品或页数已经到达最大！
 			</div>
 			<%}%>
 				</div>
+<% 
+int maxPage=num.value%perPage==0?num.value/perPage:num.value/perPage+1;
+%>
 <nav>
   <ul class="pager">
-    <li class=""><a class="page-cut-btn" href="#"><span aria-hidden="true"></span> 上一页</a></li>
-    　　　　
-    <li class=""><a class="page-cut-btn" href="#">下一页 <span aria-hidden="true"></span></a></li>
+    <li class=""><a class="page-cut-btn" href="index.jsp?ceta=<%=ceta%>&pn=<%=pn<=1?pn:pn-1%>"><span aria-hidden="true"></span><%=pn>1?"上一页":"位于首页"%></a></li>
+    <li style=""><span style="border:0">    　　第<span style="color:red;border:0"><%=pn %></span>页　　</span></li>
+    <li class=""><a class="page-cut-btn" href="index.jsp?ceta=<%=ceta%>&pn=<%=pn<maxPage?pn+1:pn%>"><%=pn<maxPage?"下一页":"位于末页"%> <span aria-hidden="true"></span></a></li>
   </ul>
 </nav>
 			</div>
-		</div>
+		</div>  
 	</div>
 	<jsp:include page="site/footer.jsp" />
 </body>
