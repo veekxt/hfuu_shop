@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page language="java"%>
-<%@ page import="java.text.SimpleDateFormat,java.sql.*,src.tools.*,javax.servlet.http.HttpSession,java.util.*,src.vo.*"%>
+<%@ page import="java.text.SimpleDateFormat,java.sql.*,java.lang.Math,src.tools.*,javax.servlet.http.HttpSession,java.util.*,src.vo.*"%>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -84,17 +84,19 @@
 								<div class="row detail-goods lead">
 									<a href="goods/info.jsp?goodsid=<%=good.getId()%>"><%=good.getName()%></a>
 								</div>
-									<div class="row detail-goods text-muted">价格:<%=good.getPrice()%></div>
-								<div class="row detail-goods text-muted">发布者:<%if(user.getName()!=null){%><%=user.getName() %><%}else{%><%=user.getEmail()%><%}%> </div>
-								<div class="row detail-goods text-danger">
-								时间：
-								<%
-								java.util.Date date=good.getCreatDate();
-								SimpleDateFormat myFmt=new SimpleDateFormat("yyyy年MM月dd日 HH时mm分");
-								String dateStr =myFmt.format(date);
-								out.print(dateStr);
-								%>
+								<div class="row detail-goods">￥<span class="text-danger"><%=Math.round(good.getPrice()) %></span>
+								<span class="detail-goods text-muted">　发布者:<%if(user.getName()!=null){%><%=user.getName() %><%}else{%><%=user.getEmail()%><%}%> </span>
+								<span class="detail-goods text-muted">　时间：
+                                <%
+                                java.util.Date date=good.getCreatDate();
+                                SimpleDateFormat myFmt=new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+                                String dateStr =myFmt.format(date);
+                                out.print(dateStr);
+                                %>
+								</span>
+
 								</div>
+								
 							</div>
 						</div>
 			    	</div>	  

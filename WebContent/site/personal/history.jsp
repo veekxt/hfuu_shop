@@ -29,29 +29,33 @@ list=orderHandle.findGoodsByUser(me);
     		if(good.getProducter_id()==null)continue;
 	    	User user = userHandle.findById(good.getProducter_id());
 	    	%>
+	    	
 	    	<div class="list-group-item">
-				<div class="row">
-					<div class="col-md-2">
-						<img class="img-rounded img-item-goods"
-							src="<%=good.getImage()%>" />
-					</div>
-						<div class="col-md-10">
-						<div class="row detail-goods lead">
-							<a href="goods/info.jsp?goodsid=<%=good.getId()%>"><%=good.getName()%></a>
-						</div>
-						<div class="row detail-goods text-muted">发布者:<%if(user.getName()!=null){ %><%=user.getName() %><%}else{%><%=user.getEmail()%><%}%> </div>
-						<div class="row detail-goods text-danger">
-						时间：
-						<%
-						java.util.Date date=good.getCreatDate();
-						SimpleDateFormat myFmt=new SimpleDateFormat("yyyy年MM月dd日 HH时mm分");
-						String dateStr =myFmt.format(date);
-						out.print(dateStr);
-						%>
-						</div>
-					</div>
-				</div>
-	    	</div>
+                        <div class="row">
+                            <div class="goods-img col-md-2">
+                                <img class="img-rounded img-item-goods"
+                                    src="<%=good.getImage()%>" />
+                            </div>
+                                <div class="col-md-10">
+                                <div class="row detail-goods lead">
+                                    <a href="goods/info.jsp?goodsid=<%=good.getId()%>"><%=good.getName()%></a>
+                                </div>
+                                <div class="row detail-goods">￥<span class="text-danger"><%=Math.round(good.getPrice()) %></span>
+                                <span class="detail-goods text-muted">　发布者:<%if(user.getName()!=null){%><%=user.getName() %><%}else{%><%=user.getEmail()%><%}%> </span>
+                                <span class="detail-goods text-muted">　时间：
+                                <%
+                                java.util.Date date=good.getCreatDate();
+                                SimpleDateFormat myFmt=new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+                                String dateStr =myFmt.format(date);
+                                out.print(dateStr);
+                                %>
+                                </span>
+
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
 	    	<%}} %>
 	</div>
 </div>
