@@ -55,11 +55,11 @@ INSERT INTO `goods` VALUES ('3', 'static/goods_img/3.jpg', '2', '自行车', '1'
 INSERT INTO `goods` VALUES ('4', 'static/goods_img/4.jpg', '5', '网球拍', '1', '50', '2', '二手网球拍，用过几天，九成新', '123', '2015-12-17 11:00:16');
 INSERT INTO `goods` VALUES ('5', 'static/goods_img/5.jpg', '5', '篮球', '1', '80', '2', '全牛皮篮球，', '9', '2015-12-17 11:02:57');
 INSERT INTO `goods` VALUES ('6', 'static/goods_img/6.jpg', '2', '懒人桌', '1', '15', '2', '加固型懒人桌，九成新', '123', '2015-12-17 11:05:00');
-INSERT INTO `goods` VALUES ('7', 'static/goods_img/7.jpg', '2', '考研书', '1', '30', '2', '聚星文登考研', '123', '2015-12-21 11:07:22');
-INSERT INTO `goods` VALUES ('8', 'static/goods_img/8.jpg', '2', '公务员书', '1', '30', '2', '公务员考试书籍，9成新', '123', '2015-12-23 16:02:21');
-INSERT INTO `goods` VALUES ('9', 'static/goods_img/9.jpg', '3', '凉席', '1', '60', '2', '寝室牛皮凉席', '123', '2015-12-23 16:20:46');
-INSERT INTO `goods` VALUES ('10', 'static/goods_img/10.jpg', '3', '纯棉枕头', '1', '50', '2', '纯棉枕头', '123', '2015-12-23 16:21:37');
-INSERT INTO `goods` VALUES ('11', 'static/goods_img/11.jpg', '3', 'LED台灯护眼学习卧室床头书桌大学生寝室插电节能USB调光夹子台灯', '1', '100', '2', '灯光颜色默认自然光，轻微偏黄的灯光颜色，台灯默认USB接口，台灯供电方式：1，可用一切手机充电器直接插220V家用插座。 2，可接电脑USB。 3，可接手机充电宝供电。（注：这款不是充电台灯，不带蓄电池，必须连着电源使用）', '123', '2015-12-23 16:29:32');
+INSERT INTO `goods` VALUES ('7', 'static/goods_img/7.jpg', '1', '考研书', '1', '30', '2', '聚星文登考研', '123', '2015-12-21 11:07:22');
+INSERT INTO `goods` VALUES ('8', 'static/goods_img/8.jpg', '1', '公务员书', '1', '30', '2', '公务员考试书籍，9成新', '123', '2015-12-23 16:02:21');
+INSERT INTO `goods` VALUES ('9', 'static/goods_img/9.jpg', '2', '凉席', '1', '60', '2', '寝室牛皮凉席', '123', '2015-12-23 16:20:46');
+INSERT INTO `goods` VALUES ('10', 'static/goods_img/10.jpg', '2', '纯棉枕头', '1', '50', '2', '纯棉枕头', '123', '2015-12-23 16:21:37');
+INSERT INTO `goods` VALUES ('11', 'static/goods_img/11.jpg', '2', 'LED台灯护眼学习卧室床头书桌大学生寝室插电节能USB调光夹子台灯', '1', '100', '2', '灯光颜色默认自然光，轻微偏黄的灯光颜色，台灯默认USB接口，台灯供电方式：1，可用一切手机充电器直接插220V家用插座。 2，可接电脑USB。 3，可接手机充电宝供电。（注：这款不是充电台灯，不带蓄电池，必须连着电源使用）', '123', '2015-12-23 16:29:32');
 
 -- ----------------------------
 -- Table structure for `message`
