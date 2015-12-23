@@ -85,8 +85,7 @@ DROP TABLE IF EXISTS `shoppingcart`;
 CREATE TABLE `shoppingcart` (
   `id` int(11) NOT NULL,
   `goodsId` int(11) NOT NULL,
-  `userId` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `userId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------

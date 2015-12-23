@@ -37,6 +37,7 @@ function shoppingCart(isLogin,goodsNum,goodsId){
 	    if(xmlShop.responseText=="success")
 	    	{
 	    	document.getElementById("goodsNum").innerHTML=(parseInt(document.getElementById("goodsNum").innerHTML)+1).toString(); 		
+	    	document.getElementById("addCastButton").innerHTML="已加入购物车";
 	    	}
 	    else if(xmlShop.responseText=="unLogin"){
 	    	//
