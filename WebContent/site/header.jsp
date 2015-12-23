@@ -27,10 +27,10 @@
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
 		</ul>
-		<form action="<%=basePath %>search.jsp?ceta=0"
+		<form action="search.jsp"
 			class="navbar-form navbar-left" role="search">
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="关键字">
+				<input type="text" name="key" class="form-control" placeholder="关键字">
 			</div>
 			<button type="submit" class="btn btn-default">查找物品</button>
 		</form>

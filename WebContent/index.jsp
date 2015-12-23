@@ -39,41 +39,41 @@
 			<div class="col-md-8">
 				<div class="list-group">
 				<% 
-				GoodsHandle goods=new GoodsHandle();
-				UserHandle users =new UserHandle();
+				GoodsHandle goodHandle=new GoodsHandle();
+				UserHandle userHandle =new UserHandle();
 			    List <Goods> list=null;
 			    %>
 			    <%
 			    String ceta=request.getParameter("ceta");
 			    if(ceta==null || ceta.equals("0")){
 					out.println("<span class=\"list-group-item list-group-item-info\">分类-全部</span>");
-					list=goods.findAll();
+					list=goodHandle.findAll();
 			    }else if(ceta.equals("1")){
 			    	out.println("<span class=\"list-group-item list-group-item-info\">分类-书籍</span>");
-			    	list=goods.findByCeta(1);
+			    	list=goodHandle.findByCeta(1);
 			    }else if(ceta.equals("2")){
 			    	out.println("<span class=\"list-group-item list-group-item-info\">分类-生活出行</span>");
-			    	list=goods.findByCeta(2);
+			    	list=goodHandle.findByCeta(2);
 			    }else if(ceta.equals("3")){
 			    	out.println("<span class=\"list-group-item list-group-item-info\">分类-衣物鞋包</span>");
-			    	list=goods.findByCeta(3);
+			    	list=goodHandle.findByCeta(3);
 			    }else if(ceta.equals("4")){
 			    	out.println("<span class=\"list-group-item list-group-item-info\">分类-电子产品</span>");
-			    	list=goods.findByCeta(4);
+			    	list=goodHandle.findByCeta(4);
 			    }else if(ceta.equals("5")){
 			    	out.println("<span class=\"list-group-item list-group-item-info\">分类-体育运动</span>");
-			    	list=goods.findByCeta(5);
+			    	list=goodHandle.findByCeta(5);
 			    }else if(ceta.equals("6")){
 			    	out.println("<span class=\"list-group-item list-group-item-info\">分类-其他</span>");
-			    	list=goods.findByCeta(6);
+			    	list=goodHandle.findByCeta(6);
 			    }else{
 			    	out.println("<span class=\"list-group-item list-group-item-info\">分类-全部</span>");
-					list=goods.findAll();
+					list=goodHandle.findAll();
 			    }
 			      if(list.size()!=0){
 			    	for(Goods good:list){
 			    	if(good.getProducter_id()==null)continue;
-			    	User user = users.findById(good.getProducter_id());
+			    	User user = userHandle.findById(good.getProducter_id());
 			    	%><div class="list-group-item">
 						<div class="row">
 							<div class="goods-img col-md-2">
