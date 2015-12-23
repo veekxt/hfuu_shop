@@ -52,7 +52,7 @@ String tab = request.getParameter("tab");
 							<div class="list-group-item personal-main-info">
 								
 								<img class="img-rounded img-personal-main-info"
-								src="static/image/ac_24.png" />
+								src="<%=user.getImg() %>" />
 								<div class="row detail-goods text-muted">姓名：<%=user.getName() %></div>
 								<div class="row detail-goods text-muted">邮箱：<%=user.getEmail() %></div>
 								

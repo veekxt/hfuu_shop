@@ -36,12 +36,13 @@ public class UserHandle{
 	
 	public boolean doUpdate(User user) throws Exception{
 		boolean flag = false ;
-		String sql = "update user set pwd=?,name=?,phone=? where id=?" ;
+		String sql = "update user set pwd=?,name=?,phone=?,img=? where id=?" ;
 		this.pstmt = this.conn.prepareStatement(sql) ;
 		this.pstmt.setString(1,user.getPwd());
 		this.pstmt.setString(2,user.getName()) ;
 		this.pstmt.setString(3,user.getPhone()) ;
-		this.pstmt.setInt(4,user.getId()) ;
+		this.pstmt.setString(4,user.getImg()) ;
+		this.pstmt.setInt(5,user.getId()) ;
 		if(this.pstmt.executeUpdate() > 0){
 			flag = true ;
 		}
@@ -82,7 +83,7 @@ public class UserHandle{
 	
 	public User findById(int id) throws Exception{
 		User user = null ;
-		String sql = "SELECT id,email,pwd,name,stu_num ,phone,mess_num FROM user WHERE id=?" ;
+		String sql = "SELECT id,email,pwd,name,stu_num ,phone,mess_num,img FROM user WHERE id=?" ;
 		this.pstmt = this.conn.prepareStatement(sql) ;
 		this.pstmt.setInt(1,id) ;
 		ResultSet rs = this.pstmt.executeQuery();
@@ -94,6 +95,7 @@ public class UserHandle{
 			user.setName(rs.getString(4)) ;
 			user.setStu_num(rs.getString(5)) ;
 			user.setPhone(rs.getString(6)) ;
+			user.setImg(rs.getString(8)) ;
 			user.setMessnum(rs.getInt(7)) ;
 		}
 		this.pstmt.close();
@@ -101,7 +103,7 @@ public class UserHandle{
 	}
 	public User findByEmail(String str) throws Exception{
 		User user = null ;
-		String sql = "SELECT id,email,pwd,name,stu_num,phone,mess_num FROM user WHERE email=?" ;
+		String sql = "SELECT id,email,pwd,name,stu_num,phone,mess_num,img FROM user WHERE email=?" ;
 		this.pstmt = this.conn.prepareStatement(sql) ;
 		this.pstmt.setString(1,str) ;
 		ResultSet rs = this.pstmt.executeQuery() ;
@@ -113,6 +115,7 @@ public class UserHandle{
 			user.setName(rs.getString(4)) ;
 			user.setStu_num(rs.getString(5)) ;
 			user.setPhone(rs.getString(6)) ;
+			user.setImg(rs.getString(8)) ;
 			user.setMessnum(rs.getInt(7)) ;
 		}
 		this.pstmt.close();

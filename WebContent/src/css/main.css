@@ -16,6 +16,10 @@
 .personal-main-info {
 	text-align: center;
 }
+.img-personal-info-info{
+	width: 150px;
+	/*height: 150px;*/
+}
 .info-img {
 	width:350px;
 }

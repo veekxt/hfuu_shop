@@ -45,17 +45,18 @@ if(allMess.size()!=0){
 %>
 
 <!-- 一条消息 -->	
+<%user=userHandle.findById(mess.getMessFromId()); %>
 <div onMouseLeave="hide(this,'cz-bt-<%=mess.getMessId() %>','is-bt-<%=mess.getMessId() %>');" onMouseOver="show(this,'cz-bt-<%=mess.getMessId() %>');" id="mess-<%=mess.getMessId() %>" class="media">
   <div class="media-left">
     <a href="#">
       <img width="65px" class="media-object" 
-      src="static/image/ac_31.png"<%//获取该用户头像 %>
+      src="<%=user.getImg()%>"<%//获取该用户头像 %>
        alt="sss">
     </a>
   </div>
   <div class="media-body">
     <span class="media-heading">
-    <%user=userHandle.findById(mess.getMessFromId()); %>
+    
     <%
     if(user.getId()==1){
         out.print("<span class=\"label label-danger\">SYS</span>");

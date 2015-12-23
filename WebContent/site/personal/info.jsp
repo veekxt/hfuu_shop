@@ -39,8 +39,30 @@ String info=new String(request.getParameter("info").getBytes("UTF-8"),"UTF-8");
 out.print("<div class=\"alert alert-danger\" role=\"alert\">"+info+"</div>");
 }
 %>
+<%if(isLogined && user.getId()==me.getId()){ %>
+<div>
+<button id="set-img" type="button" class="btn btn-primary btn-sm">上传新头像</button>
+</div>
+
+<div id="up-img-body" style="display:none" class="row">
+<div class="col-md-3">
+<img class="img-rounded img-personal-info-info"
+src="<%=user.getImg() %>" />
+</div>
+<div class="col-md-9">
+<fieldset>
+            <form action="UpdateUserImgServlet"
+                method="post" enctype="multipart/form-data">
+                上传文件：
+                <input type="file" name="file" accept="image/gif, image/jpeg, image/x-png" class="btn btn-default btn-sm">
+                <input type="submit" value="更新" class="btn btn-primary btn-sm">
+            </form>
+</fieldset>
+</div>
+</div>
+<br />
+<%}%>
 	<form action="UpdateUserInfoServlet" method="post">
-	
 	 <div class="form-group">
 	<div class="input-group">
      <span class="input-group-addon" id="basic-addon1">姓名</span>
@@ -89,8 +111,12 @@ out.print("<div class=\"alert alert-danger\" role=\"alert\">"+info+"</div>");
 <script>
 $(document).ready(function(){
     $("#set-pwd").click(function(){
-    $("#set-pwd-input").show(200);
-    $("#set-pwd").hide(200);
+        $("#set-pwd-input").show(200);
+        $("#set-pwd").hide(200);
+    });
+    $("#set-img").click(function(){
+    	$("#up-img-body").show();
+    	$("#set-img").hide();
     });
   });
 </script>

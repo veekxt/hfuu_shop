@@ -8,6 +8,20 @@ public class User {
 	private String stu_num;
 	private String qq;
 	private String phone;
+	private String img;
+	public String getImg() {
+		String userImg=img;
+		if(userImg==null || userImg.length()==0){
+			return "static/user_img/0";
+		}else{
+			return userImg;
+		}
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 	private int messnum;
 	
 
