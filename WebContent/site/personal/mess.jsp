@@ -21,7 +21,7 @@ if(tmpString!=null && tmpString.length()!=0){
         pn=Integer.parseInt(tmpString);
     }
 }
-int perPage=3;//每页显示几条？
+int perPage=StaticVar.PERPAGE_MESS;//每页显示几条？
 IntHolder num=new IntHolder(0);
 int limitMin=(pn-1)*perPage;
 
