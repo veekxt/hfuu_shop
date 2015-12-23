@@ -108,7 +108,13 @@ if(allMess.size()!=0){
 	onclick="delete_mess('<%=mess.getMessId() %>')">点此确认删除</button>
     </div>
  
-    <pre><%=mess.getMessText().replaceAll("<", "&lt;").replaceAll(">", "&gt;") %></pre>
+    <pre><%
+    if(user.getId()==1){
+    	out.print(mess.getMessText());
+    }else{
+    	out.print(mess.getMessText().replaceAll("<", "&lt;").replaceAll(">", "&gt;"));
+    }
+    %></pre>
   </div>
 </div>
 <!-- end of 一条消息 -->
