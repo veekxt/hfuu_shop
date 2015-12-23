@@ -1,0 +1,3 @@
+server.xml
+---
+useBodyEncodingForURI="true" URIEncoding="UTF-8"
