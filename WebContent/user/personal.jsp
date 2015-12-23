@@ -85,7 +85,7 @@ String tab = request.getParameter("tab");
 							<a href="user/personal.jsp?tab=push&userid=<%=user.getId() %>"
 							class="list-group-item <%=tab.equals("push")?"active":"" %>">
 							发布商品</a>
-							<a href="user/personal.jsp?tab=like&page=1&userid=<%=user.getId() %>"
+							<a href="user/personal.jsp?tab=like&pn=1&userid=<%=user.getId() %>"
 							class="list-group-item <%=tab.equals("like")?"active":"" %>">
 							收藏夹 </a>
 							<!-- 并不需要设置页 

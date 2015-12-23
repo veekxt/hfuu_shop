@@ -56,6 +56,8 @@ list=orderHandle.findGoodsByUser(me);
                             </div>
                         </div>
                     </div>
-	    	<%}} %>
+	    	<%}}else{%>
+	    	还没有购买过商品
+	    	<%}%>
 	</div>
 </div>
