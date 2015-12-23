@@ -21,28 +21,16 @@ public class ShopCartHandle {
         }
     }
 
-    public int shopCartNum(int id) throws Exception {
-    int i=0;
-        String sql = "SELECT goodsId FROM ShoppingCart WHERE userId=?";
-        
+    public Integer shopCartNum(int id) throws Exception {
+        String sql = "SELECT count(goodsId) FROM ShoppingCart WHERE userId=?";
         this.pstmt = this.conn.prepareStatement(sql);
         this.pstmt.setInt(1, id);
-  GoodsHandle goodsHandle=new GoodsHandle();
         ResultSet rs = this.pstmt.executeQuery();
-       while(rs.next()){
-    	   i++;
-    	 int goodsId= rs.getInt(1);
-    	 if((goodsHandle.findById(goodsId).getStates())!=2){
-    		   String sql1="delete from   shoppingcart Where goodsId=?";
-    		   
-    		   PreparedStatement ps=conn.prepareStatement(sql1);
-    		   ps.setInt(1, goodsId);
-    		 if( ps.executeUpdate()>0){
-    		   i--;}
-    	   }
-    	 
-       }
-       return i;
+        if(rs.next()){
+        	return rs.getInt(1);
+        }else{
+        	return 0;
+        }
     }
     public boolean doSaveShoppingCart( int goodsNum,int goodsId,int userId) throws Exception {
         boolean flag = false;

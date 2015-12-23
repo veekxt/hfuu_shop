@@ -4,7 +4,7 @@
 */%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="javax.servlet.http.HttpSession,src.vo.*,src.tools.*"%>
+	import="javax.servlet.http.HttpSession,src.dbHandle.*,src.vo.*,src.tools.*"%>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -36,16 +36,23 @@
 		</form>
 
 		<% Boolean isLogined=(Boolean)session.getAttribute("isLogined");
+			User user=null;
+			String email="";
+			
 				//email 是邮箱或用户名（如果存在）
-           String email=(String)session.getAttribute("EmailOrUserName");
-           User user=(User)session.getAttribute("loginUser");
+		   if(isLogined!=null){
+			   user=(User)session.getAttribute("loginUser");
+			   email=(user.getName()==null || user.getName().length()==0)?user.getEmail():user.getName();
+		   }
                 %>
 		<ul class="nav navbar-nav navbar-right">
-			<%  int goodsNum = 0; 
-			    int messNum = 0;
-				if(session.getAttribute("goodsNum")!=null){
-					goodsNum=(Integer)session.getAttribute("goodsNum");
-				}
+			<%  Integer goodsNum = 0; 
+			    Integer messNum = 0;
+                if(user!=null){
+                	ShopCartHandle shopCartHandle=new ShopCartHandle();
+                	goodsNum = shopCartHandle.shopCartNum(user.getId());
+                }
+                
 				if(session.getAttribute("messNum")!=null){
 				    if(request.getParameter("tab")!=null && request.getParameter("tab").equals("mess")){
 				        session.setAttribute("messNum", 0);
