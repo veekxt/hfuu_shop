@@ -14,7 +14,7 @@
                 //判断pn参数
                 User user=(User)session.getAttribute("loginUser");
                 int pn=1;
-                int perPage=2;//StaticVar.PERPAGE_COLLECT;//每页显示几条？
+                int perPage=StaticVar.PERPAGE_COLLECT;//每页显示几条？
                 int ceta=0;
                 String tmpString=request.getParameter("pn");
                 //获取pn参数
