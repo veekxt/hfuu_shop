@@ -12,7 +12,7 @@ import src.tools.LoginVerify;
 import src.vo.User;
 
 /**
- * Servlet implementation class RemoveShopCartServlet
+ * 从购物车移除一个物品
  */
 @WebServlet("/RemoveShopCartServlet")
 public class RemoveShopCartServlet extends HttpServlet {

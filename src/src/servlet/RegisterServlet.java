@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import src.dbHandle.UserHandle;
 import src.tools.MD5;
 import src.vo.User;
-
+//注册验证
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request,

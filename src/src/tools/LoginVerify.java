@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import src.vo.*;
 
 public class LoginVerify {
+	//登录验证方法
 	public static boolean isAdmin(HttpServletRequest request){
 		HttpSession ses=request.getSession();
 		if(isLogin(request) && ((User)ses.getAttribute("loginUser")).getId()<1000){

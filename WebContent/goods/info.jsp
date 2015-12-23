@@ -75,6 +75,10 @@ Integer goodsNum=0;
 	GoodsHandle goodsHandle=new GoodsHandle();
 	UserHandle userHandle=new UserHandle();
 	Goods good=goodsHandle.findById(goodsId);
+	if(good==null){
+		out.print("<div class=\"alert alert-danger\" role=\"alert\">"+"没有这个物品！，请返回并检查来源页"+"</div>");
+		return;
+	}
 	boolean isLogin =LoginVerify.isLogin(request);
 	 pageContext.setAttribute("good",good);
 	 User Procuteuser=userHandle.findById(good.getProducter_id());

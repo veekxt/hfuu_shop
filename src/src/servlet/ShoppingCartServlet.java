@@ -14,7 +14,7 @@ import src.vo.Goods;
 import src.vo.User;
 
 /**
- * Servlet implementation class ShoppingCartServlet
+ * 添加一个物品到购物车
  */
 @WebServlet("/ShoppingCartServlet")
 public class ShoppingCartServlet extends HttpServlet {
