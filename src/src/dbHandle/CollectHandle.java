@@ -78,4 +78,17 @@ public class CollectHandle {
         this.pstmt.close();
         return all;
     }
+    //移除一个收藏夹物品
+    public boolean removeOneFromCollect(int goodId,int userId) throws Exception{
+		Boolean flag=false;
+		String sql="Delete from `collect` where goods_id=? and user_id=?";
+	    pstmt=conn.prepareStatement(sql);
+	    pstmt.setInt(1, goodId);
+	    pstmt.setInt(2, userId);
+	    if (this.pstmt.executeUpdate() > 0) {
+            flag = true;
+        }
+        this.pstmt.close();
+        return flag;
+    } 
 }

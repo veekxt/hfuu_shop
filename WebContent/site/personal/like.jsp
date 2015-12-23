@@ -44,7 +44,7 @@
                     for(Goods good:list){
                     if(good.getProducter_id()==null)continue;
                     User pUser = userHandle.findById(good.getProducter_id());
-                    %><div class="list-group-item">
+                    %><div onMouseLeave="hide(this,'re-bt-<%=good.getId() %>')" onMouseOver="show(this,'re-bt-<%=good.getId() %>')" class="list-group-item">
                         <div class="row">
                             <div class="goods-img col-md-2">
                                 <img class="img-rounded img-item-goods"
@@ -66,6 +66,8 @@
                                 String dateStr =myFmt.format(date);
                                 out.print(dateStr);
                                 %>
+                                <button id="re-bt-<%=good.getId() %>" style="display:none" type="button" class="btn btn-xs btn-danger"
+                                onclick="delete_collect(<%=good.getId()%>)">移除收藏</button>
                                 </span>
                                 </div>
                             </div>
@@ -90,3 +92,33 @@ int maxPage=num.value%perPage==0?num.value/perPage:num.value/perPage+1;
   </ul>
 </nav>
 </div>
+
+<script>
+function show(obj,id1) {
+    var objDiv = $("#"+id1+"");
+    $(objDiv).css("display","inline");
+}
+
+function hide(obj,id1) {
+var objDiv = $("#"+id1+"");
+$(objDiv).css("display", "none");
+}
+
+function delete_collect(goodsid){
+    collectRemove=new XMLHttpRequest();
+    collectRemove.onreadystatechange=function()
+      {
+      if (collectRemove.readyState==4 && collectRemove.status==200)
+        {
+        if(collectRemove.responseText=="success")
+            {
+                cnode = document.getElementById("re-bt-"+goodsid);
+                cnode.innerHTML="已从收藏夹移除";
+            }
+        }
+      }
+    collectRemove.open("GET","RemoveCollectServlet?goodsid="+goodsid+"&t="+Math.random(),true);
+    collectRemove.send(null);
+}
+
+</script>
