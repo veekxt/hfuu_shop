@@ -12,11 +12,12 @@
 <%
 UserHandle userHandle=new UserHandle();
 List<Goods> list= new ArrayList<Goods>();
+String key="";
 if(request.getParameter("key")==null || request.getParameter("key").length()==0){
     response.sendRedirect("index.jsp?ceta=0");
     return;
 }else{
-    String key=request.getParameter("key");
+    key=request.getParameter("key");
     GoodsHandle goodsHandle=new GoodsHandle();
     try {
         list = goodsHandle.findByKey(key);
@@ -67,7 +68,23 @@ if(request.getParameter("key")==null || request.getParameter("key").length()==0)
                             </div>
                                 <div class="col-md-10">
                                 <div class="row detail-goods lead">
-                                <a href="goods/info.jsp?goodsid=<%=good.getId()%>"><%=good.getName()%></a>
+                                <a href="goods/info.jsp?goodsid=<%=good.getId()%>">
+                                
+                                
+                                <%
+                                String name=good.getName();
+                                int tmp;
+                                String str1=name;
+                                String str2="";
+                                String str3="";
+                                if((tmp=name.indexOf(key))!=-1){
+                                	str1=name.substring(0,tmp);
+                                	str2=key;
+                                	str3=name.substring(tmp+key.length());
+                                }
+                                %>
+                                <%=str1 %><span class="bg-beselect"><%=str2 %></span><%=str3 %>
+                                </a>
                                 </div>
                                 <div class="row detail-goods">￥<span class="text-danger"><%=Math.round(good.getPrice()) %></span>
                                 <span class="detail-goods text-muted">　发布者:<%if(user.getName()!=null){%><%=user.getName() %><%}else{%><%=user.getEmail()%><%}%> </span>

@@ -176,7 +176,6 @@ public class GoodsHandle {
         String sql = "SELECT id,num,content,type_id,image,producter_id,price,name,create_date from goods where status=2 and name like ? order by create_date desc";
         this.pstmt = this.conn.prepareStatement(sql);
         this.pstmt.setString(1, "%"+key+"%");
-        System.out.print(this.pstmt.toString());
         ResultSet rs = this.pstmt.executeQuery();
         Goods good = null;
         while (rs.next()){
