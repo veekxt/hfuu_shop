@@ -116,8 +116,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` VALUES (null, '1', 'hfuu_shop@163.com', '8560ef54213c8b32e89a24ccc323a79e', '交易系统', null, null, null, '0');
 INSERT INTO `user` VALUES (null, '9', 'dandan@qq.com', '14e1b600b1fd579f47433b88e8d85291', '朱雷雷', null, null, null, '0');
 INSERT INTO `user` VALUES ('static/user_img/10', '10', 'veekxt@gmail.com', '14e1b600b1fd579f47433b88e8d85291', '解涛', null, null, '15256925578', '0');
-INSERT INTO `user` VALUES (null, '1017', '1050026@qq.com', 'acd09f1f204179b957001f53f411899b', '陈生辉', null, null, '13245634567', '4');
-INSERT INTO `user` VALUES (null, '1018', '1300573251@qq.com', '191016dc3346309bee3403f55f77e871', '张剑', null, null, null, '4');
+INSERT INTO `user` VALUES (null, '1017', '1050026@qq.com', 'acd09f1f204179b957001f53f411899b', '陈生辉', null, null, '13245634567', '0');
+INSERT INTO `user` VALUES (null, '1018', '1300573251@qq.com', '191016dc3346309bee3403f55f77e871', '张剑', null, null, null, '0');
 INSERT INTO `user` VALUES (null, '1019', '18256989168@163.com', '191016dc3346309bee3403f55f77e871', '张剑', null, null, null, '0');
 DROP TRIGGER IF EXISTS `notify_auditing`;
 DELIMITER ;;
