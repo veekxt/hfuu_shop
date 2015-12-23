@@ -21,7 +21,7 @@ public class ShopCartHandle {
         }
     }
 
-    public Integer shopCartNum(int id) throws Exception {
+    public Integer getShopCartNum(int id) throws Exception {
         String sql = "SELECT count(goodsId) FROM ShoppingCart WHERE userId=?";
         this.pstmt = this.conn.prepareStatement(sql);
         this.pstmt.setInt(1, id);

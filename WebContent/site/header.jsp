@@ -50,7 +50,7 @@
 			    Integer messNum = 0;
                 if(user!=null){
                 	ShopCartHandle shopCartHandle=new ShopCartHandle();
-                	goodsNum = shopCartHandle.shopCartNum(user.getId());
+                	goodsNum = shopCartHandle.getShopCartNum(user.getId());
 					messNum=user.getMessnum();
 				}
 			%>
