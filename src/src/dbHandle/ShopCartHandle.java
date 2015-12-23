@@ -20,7 +20,8 @@ public class ShopCartHandle {
             e.printStackTrace();
         }
     }
-
+    //获取user购物车物品数量
+    //不一致性标记：为什么用id作参数？
     public Integer getShopCartNum(int id) throws Exception {
         String sql = "SELECT count(goodsId) FROM ShoppingCart WHERE userId=?";
         this.pstmt = this.conn.prepareStatement(sql);
@@ -32,6 +33,7 @@ public class ShopCartHandle {
         	return 0;
         }
     }
+    //增加一条购物车记录，goodsNum已废弃
     public boolean doSaveShoppingCart( int goodsNum,int goodsId,int userId) throws Exception {
         boolean flag = false;
         String sql="select id from shoppingcart where goodsId="+goodsId;
@@ -52,7 +54,7 @@ public class ShopCartHandle {
         this.pstmt.close();
         return flag;
     }
-
+    //查找user所有购物车内物品
     public List<Goods> findGoodsByUser(User user) throws Exception{
         int userId=user.getId();
         List<Goods> all = new ArrayList<Goods>();
@@ -78,6 +80,7 @@ public class ShopCartHandle {
         this.pstmt.close();
         return all;
     }
+    //移除购物车的一个物品
     public boolean removeList(int goodId,int userId) throws Exception{
 		Boolean flag=false;
 		String sql="Delete from shoppingcart where goodsId=? and userId=?";
@@ -90,7 +93,7 @@ public class ShopCartHandle {
         this.pstmt.close();
         return flag;
     } 
-    
+    //清空user的购物车
     public boolean removeAllByUser(User user) throws Exception{
 		Boolean flag=false;
 		String sql="Delete from shoppingcart where and userId=?";
