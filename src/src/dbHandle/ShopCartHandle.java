@@ -57,7 +57,7 @@ public class ShopCartHandle {
     public List<Goods> findGoodsByUser(User user) throws Exception{
         int userId=user.getId();
         List<Goods> all = new ArrayList<Goods>();
-        String sql = "select id,num,content,type_id,image,producter_id,price,create_date,name from `goods` where id=any(SELECT goodsId from `shoppingcart`  where userId=?)";
+        String sql = "select id,num,content,type_id,image,producter_id,price,create_date,name from `goods` where id=any(SELECT goodsId from `shoppingcart`  where userId=?) order by create_date desc";
         this.pstmt = this.conn.prepareStatement(sql);
         this.pstmt.setInt(1,userId);
         ResultSet rs = this.pstmt.executeQuery();

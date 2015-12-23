@@ -48,9 +48,12 @@ public class CollectHandle {
     public List<Goods> findGoodsByUser(User user,IntHolder num,int limitMin,int perPage) throws Exception{
         int userId=user.getId();
         List<Goods> all = new ArrayList<Goods>();
-        String sql = "select id,num,content,type_id,image,producter_id,price,create_date,name,status from `goods` where id=any(SELECT goods_id from `collect`  where user_id=?)";
+        String sql = "select SQL_CALC_FOUND_ROWS id,num,content,type_id,image,producter_id,price,create_date,name,status from `goods` where id=any(SELECT goods_id from `collect`  where user_id=?) order by create_date desc limit ?,?";
         this.pstmt = this.conn.prepareStatement(sql);
         this.pstmt.setInt(1,userId);
+        this.pstmt.setInt(2,limitMin);
+        this.pstmt.setInt(3,perPage);
+        
         ResultSet rs = this.pstmt.executeQuery();
         while (rs.next()) {
             Goods good = new Goods();
@@ -67,6 +70,10 @@ public class CollectHandle {
             good.setCreatDate(date);
             good.setStates(rs.getInt(10));
             all.add(good);
+        }
+        rs = this.pstmt.executeQuery("SELECT FOUND_ROWS()");
+        if(rs.next()){
+        	num.value=rs.getInt(1);
         }
         this.pstmt.close();
         return all;

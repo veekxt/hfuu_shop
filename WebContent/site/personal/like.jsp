@@ -14,7 +14,7 @@
                 //判断pn参数
                 User user=(User)session.getAttribute("loginUser");
                 int pn=1;
-                int perPage=StaticVar.PERPAGE_COLLECT;//每页显示几条？
+                int perPage=2;//StaticVar.PERPAGE_COLLECT;//每页显示几条？
                 int ceta=0;
                 String tmpString=request.getParameter("pn");
                 //获取pn参数
@@ -39,7 +39,6 @@
                 %>
                 <%
                 out.println("<span class=\"list-group-item list-group-item-info\">我的收藏</span>");
-                list=goodHandle.findAll(num,limitMin,perPage);
                 list = collectHandle.findGoodsByUser(user, num, limitMin, perPage);
                   if(list.size()!=0){
                     for(Goods good:list){
