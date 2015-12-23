@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-12-23 11:04:49
+Date: 2015-12-23 12:36:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -55,7 +55,7 @@ CREATE TABLE `message` (
   `mess_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `mess_type` int(11) DEFAULT NULL,
   PRIMARY KEY (`mess_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of message
