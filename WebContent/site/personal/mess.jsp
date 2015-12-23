@@ -99,6 +99,13 @@ if(allMess.size()!=0){
 <!-- end of 一条消息 -->
 
 <%}%>
+<nav>
+  <ul class="pager">
+    <li class=""><a class="page-cut-btn" href="#"><span aria-hidden="true"></span> 上一页</a></li>
+    　　　　
+    <li class=""><a class="page-cut-btn" href="#">下一页 <span aria-hidden="true"></span></a></li>
+  </ul>
+</nav>
 <%}else{%>
 <div class="alert alert-warning" role="alert">
 你尚未收到任何消息

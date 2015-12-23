@@ -108,6 +108,13 @@
 			</div>
 			<%}%>
 				</div>
+<nav>
+  <ul class="pager">
+    <li class=""><a class="page-cut-btn" href="#"><span aria-hidden="true"></span> 上一页</a></li>
+    　　　　
+    <li class=""><a class="page-cut-btn" href="#">下一页 <span aria-hidden="true"></span></a></li>
+  </ul>
+</nav>
 			</div>
 		</div>
 	</div>
