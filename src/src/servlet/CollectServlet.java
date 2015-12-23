@@ -7,31 +7,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import src.dbHandle.GoodsHandle;
-import src.dbHandle.ShopCartHandle;
+import src.dbHandle.*;
 import src.tools.LoginVerify;
 import src.vo.Goods;
 import src.vo.User;
 
 /**
- * Servlet implementation class ShoppingCartServlet
+ * Servlet implementation class collectServlet
  */
-@WebServlet("/ShoppingCartServlet")
-public class ShoppingCartServlet extends HttpServlet {
+@WebServlet("/CollectServlet")
+public class CollectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public CollectServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	public ShoppingCartServlet() {
-		super();
-	}
-
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (LoginVerify.isLogin(request)) {
 			User user = (User) request.getSession().getAttribute("loginUser");
 			int userId = user.getId();
 			int goodsId = Integer.parseInt(request.getParameter("goodsId"));
-			ShopCartHandle shopCartHandle = new ShopCartHandle();
+			CollectHandle collectHandle = new CollectHandle();
 			GoodsHandle goodsHandle = new GoodsHandle();
 			Goods goods=null;
 			try {
@@ -40,7 +44,7 @@ public class ShoppingCartServlet extends HttpServlet {
                 e1.printStackTrace();
             }
 			try {
-				if(goods!=null && goods.getStates()==2 && shopCartHandle.doSaveShoppingCart(0, goodsId, userId)){
+				if(goods!=null && goods.getStates()==2 && collectHandle.doCreate(userId, goodsId)){
 					response.getWriter().print("success");
 				}
 				else{
@@ -55,8 +59,11 @@ public class ShoppingCartServlet extends HttpServlet {
 		}
 	}
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

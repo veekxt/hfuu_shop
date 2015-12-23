@@ -10,10 +10,23 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-12-23 18:51:19
+Date: 2015-12-23 22:00:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `collect`
+-- ----------------------------
+DROP TABLE IF EXISTS `collect`;
+CREATE TABLE `collect` (
+  `user_id` int(11) DEFAULT NULL,
+  `goods_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of collect
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `goods`
@@ -60,7 +73,7 @@ CREATE TABLE `message` (
   `mess_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `mess_type` int(11) DEFAULT NULL,
   PRIMARY KEY (`mess_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of message
@@ -123,7 +136,6 @@ INSERT INTO `user` VALUES ('static/user_img/10', '10', 'veekxt@gmail.com', '14e1
 INSERT INTO `user` VALUES (null, '123', '1300573251@qq.com', '191016dc3346309bee3403f55f77e871', '张剑', null, null, null, '0');
 INSERT INTO `user` VALUES (null, '1017', '1050026@qq.com', 'acd09f1f204179b957001f53f411899b', '陈生辉', null, null, '13245634567', '0');
 INSERT INTO `user` VALUES (null, '1019', '18256989168@163.com', '191016dc3346309bee3403f55f77e871', '张剑', null, null, null, '0');
-
 DROP TRIGGER IF EXISTS `notify_auditing`;
 DELIMITER ;;
 CREATE TRIGGER `notify_auditing` AFTER UPDATE ON `goods` FOR EACH ROW begin
@@ -140,7 +152,6 @@ end if;
 end
 ;;
 DELIMITER ;
-
 DROP TRIGGER IF EXISTS `change_user_mess_num`;
 DELIMITER ;;
 CREATE TRIGGER `change_user_mess_num` AFTER INSERT ON `message` FOR EACH ROW update user set mess_num=mess_num+1 where id=new.mess_to_id

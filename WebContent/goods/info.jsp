@@ -26,9 +26,24 @@ function toLogin(isLogin){
 		window.location.href="user/login.jsp?login-info="+"请先登录";
 	}
 }
+function collect(goodsId){
+   collectRequest=new XMLHttpRequest();
+   collectRequest.onreadystatechange=function()
+      {
+      if (( collectRequest.readyState==4)&&( collectRequest.status==200))
+        {
+        if( collectRequest.responseText=="success")
+            {
+            document.getElementById("collectButton").innerHTML="==已收藏==";
+            }
+        }
+      }
+   collectRequest.open("GET","CollectServlet?goodsId="+goodsId+"&t="+Math.random(),true);
+   collectRequest.send();
+}
 function shoppingCart(isLogin,goodsNum,goodsId){
 
-	if(isLogin){
+if(isLogin){
 	xmlShop=new XMLHttpRequest();
 	xmlShop.onreadystatechange=function()
 	  {
@@ -38,14 +53,10 @@ function shoppingCart(isLogin,goodsNum,goodsId){
 	    	{
 	    	document.getElementById("goodsNum").innerHTML=(parseInt(document.getElementById("goodsNum").innerHTML)+1).toString(); 		
 	    	document.getElementById("addCastButton").innerHTML="已加入购物车";
+	    	}else{
+	    		document.getElementById("addCastButton").innerHTML="错误，你可能重复添加了！";
 	    	}
-	    else if(xmlShop.responseText=="unLogin"){
-	    	//
 	    }
-	    }
-	  else{
-		  //document.getElementById("auditing-button-"+goodsid).innerHTML="=操作中=";
-	  }
 	  }
 	xmlShop.open("GET","ShoppingCartServlet?goodsId="+goodsId+"&t="+Math.random(),true);
 	xmlShop.send();
@@ -187,14 +198,13 @@ Integer goodsNum=0;
 						<hr />
 						<div class="row">
 							<div class="col-md-4">
-								<button type="button" class="center-block btn btn-default">收藏此物品</button>
+								<button id="collectButton" onclick="collect(<%=good.getId()%>)" type="button" class="center-block btn btn-default">收藏此物品</button>
 							</div>
 							<div class="col-md-4">
 								<button type="button" id="addCastButton"
 									class="center-block btn btn-default"
 									onclick="shoppingCart(<%=isLogin %>,<%=goodsNum %>,<%=good.getId()%>)">加入购物车</button>
 							</div>
-
 							<div class="col-md-4">
 								<button <%=good.getStates()==2?"":"disabled=\"disabled\"" %> id="buy" type="button" class="center-block btn btn-default" onclick="toLogin(<%=isLogin %>)">
 								<%

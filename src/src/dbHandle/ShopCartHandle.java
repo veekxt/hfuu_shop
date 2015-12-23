@@ -36,12 +36,11 @@ public class ShopCartHandle {
     //增加一条购物车记录，goodsNum已废弃
     public boolean doSaveShoppingCart( int goodsNum,int goodsId,int userId) throws Exception {
         boolean flag = false;
-        String sql="select id from shoppingcart where goodsId="+goodsId;
+        String sql="select id from shoppingcart where userId="+userId+" and goodsId="+goodsId;
         this.pstmt = this.conn.prepareStatement(sql);
         ResultSet rs = this.pstmt.executeQuery();
         if(rs.next()){
-        	flag = false;
-        	return flag;
+        	return false;
         }
         sql = "INSERT INTO shoppingcart(id,goodsId,userId) VALUES (?,?,?)";
         this.pstmt = this.conn.prepareStatement(sql);
