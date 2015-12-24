@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : xt_db
-Source Server Version : 50621
-Source Host           : localhost:3306
+Source Server         : xtvps
+Source Server Version : 50546
+Source Host           : 45.78.60.77:3306
 Source Database       : hfuu_shop
 
 Target Server Type    : MYSQL
-Target Server Version : 50621
+Target Server Version : 50546
 File Encoding         : 65001
 
-Date: 2015-12-23 22:00:24
+Date: 2015-12-24 12:19:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -60,6 +60,10 @@ INSERT INTO `goods` VALUES ('8', 'static/goods_img/8.jpg', '1', '公务员书', 
 INSERT INTO `goods` VALUES ('9', 'static/goods_img/9.jpg', '2', '凉席', '1', '60', '2', '寝室牛皮凉席', '123', '2015-12-23 16:20:46');
 INSERT INTO `goods` VALUES ('10', 'static/goods_img/10.jpg', '2', '纯棉枕头', '1', '50', '2', '纯棉枕头', '123', '2015-12-23 16:21:37');
 INSERT INTO `goods` VALUES ('11', 'static/goods_img/11.jpg', '2', 'LED台灯护眼学习卧室床头书桌大学生寝室插电节能USB调光夹子台灯', '1', '100', '2', '灯光颜色默认自然光，轻微偏黄的灯光颜色，台灯默认USB接口，台灯供电方式：1，可用一切手机充电器直接插220V家用插座。 2，可接电脑USB。 3，可接手机充电宝供电。（注：这款不是充电台灯，不带蓄电池，必须连着电源使用）', '123', '2015-12-23 16:29:32');
+INSERT INTO `goods` VALUES ('12', 'static/goods_img/12.jpg', '1', 'C PRIMER PLUS(第五版)中文版，C语言经典入门书籍', '1', '23', '2', '只翻过几次，几乎全新。', '10', '2015-12-24 01:02:27');
+INSERT INTO `goods` VALUES ('13', 'static/goods_img/13.jpg', '4', '诺基亚830', '1', '1200', '2', '购买时间在一年内，无保修，屏幕无划痕或坏点，机身有破裂损伤，完全正常，曾无拆无修，待机时长超过2天。相关配件有原装电池。', '10', '2015-12-24 01:08:58');
+INSERT INTO `goods` VALUES ('14', 'static/goods_img/14.jpg', '2', '室内物品收纳架，多功能免钉可伸缩衣柜分层隔板', '1', '11', '2', '多功能免钉无痕衣柜分层架，', '123', '2015-12-24 09:26:42');
+INSERT INTO `goods` VALUES ('15', 'static/goods_img/15.jpg', '3', '沃曼威斯韩版夜光双肩包大容量个性背包', '1', '50', '2', '书包，8成新\r\n', '123', '2015-12-24 09:36:38');
 
 -- ----------------------------
 -- Table structure for `message`
@@ -73,11 +77,12 @@ CREATE TABLE `message` (
   `mess_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `mess_type` int(11) DEFAULT NULL,
   PRIMARY KEY (`mess_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of message
 -- ----------------------------
+INSERT INTO `message` VALUES ('1', '9', '你的商品 <a target=\'_blank\' href=\'goods/info.jsp?goodsid=16\'>1</a>已经审核通过', '2015-12-24 12:18:19', '15', null);
 
 -- ----------------------------
 -- Table structure for `order`
@@ -131,11 +136,11 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (null, '1', 'hfuu_shop@163.com', '8560ef54213c8b32e89a24ccc323a79e', '交易系统', null, null, null, '0');
-INSERT INTO `user` VALUES (null, '9', 'dandan@qq.com', '14e1b600b1fd579f47433b88e8d85291', '朱雷雷', null, null, null, '0');
+INSERT INTO `user` VALUES ('static/user_img/9', '9', 'dandan@qq.com', '14e1b600b1fd579f47433b88e8d85291', '朱雷雷', null, null, '', '0');
 INSERT INTO `user` VALUES ('static/user_img/10', '10', 'veekxt@gmail.com', '14e1b600b1fd579f47433b88e8d85291', '解涛', null, null, '15256925578', '0');
-INSERT INTO `user` VALUES (null, '123', '1300573251@qq.com', '191016dc3346309bee3403f55f77e871', '张剑', null, null, null, '0');
+INSERT INTO `user` VALUES ('static/user_img/123', '123', '1300573251@qq.com', '191016dc3346309bee3403f55f77e871', '张剑', null, null, null, '0');
 INSERT INTO `user` VALUES (null, '1017', '1050026@qq.com', 'acd09f1f204179b957001f53f411899b', '陈生辉', null, null, '13245634567', '0');
-INSERT INTO `user` VALUES (null, '1019', '18256989168@163.com', '191016dc3346309bee3403f55f77e871', '张剑', null, null, null, '0');
+INSERT INTO `user` VALUES ('static/user_img/1019', '1019', '18256989168@163.com', '191016dc3346309bee3403f55f77e871', '张剑', null, null, null, '0');
 DROP TRIGGER IF EXISTS `notify_auditing`;
 DELIMITER ;;
 CREATE TRIGGER `notify_auditing` AFTER UPDATE ON `goods` FOR EACH ROW begin
@@ -155,16 +160,19 @@ DELIMITER ;
 DROP TRIGGER IF EXISTS `change_user_mess_num`;
 DELIMITER ;;
 CREATE TRIGGER `change_user_mess_num` AFTER INSERT ON `message` FOR EACH ROW update user set mess_num=mess_num+1 where id=new.mess_to_id
+;
 ;;
 DELIMITER ;
 DROP TRIGGER IF EXISTS `update_goods_status`;
 DELIMITER ;;
 CREATE TRIGGER `update_goods_status` AFTER INSERT ON `order` FOR EACH ROW begin
+set @buyerid=new.user_id;
+set @buyername=(select name from user where id=@buyerid);
 set @sellerid = (select producter_id from goods where id=new.goods_id);
 set @goodsid = (select id from goods where id=new.goods_id);
 set @goodsname = (select name from goods where id=new.goods_id);
 set @sellername = (select name from `user` where id=@sellerid);
-INSERT INTO `message`(mess_from_id,mess_to_id,mess_text,send_time) VALUES (1,@sellerid,CONCAT("你的商品","<a target='_blank' href='goods/info.jsp?goodsid=",@goodsid,"'>",@goodsname,"</a>","被购买，请尽快联系买家","<a target='_blank' href='user/personal.jsp?tab=info&userid=",@sellerid,"'>",@sellername,"</a>","，以下为买家的附加信息（可能为空）
+INSERT INTO `message`(mess_from_id,mess_to_id,mess_text,send_time) VALUES (1,@sellerid,CONCAT("你的商品","<a target='_blank' href='goods/info.jsp?goodsid=",@goodsid,"'>",@goodsname,"</a>","被购买，请尽快联系买家","<a target='_blank' href='user/personal.jsp?tab=info&userid=",@buyerid,"'>",@buyername,"</a>","，以下为买家的附加信息（可能为空）
 ==============
 ",new.message),new.date);
 update goods set status=4 where id=new.goods_id;

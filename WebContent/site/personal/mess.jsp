@@ -158,7 +158,7 @@ if(request.getParameter("toemail")!=null && !request.getParameter("toemail").equ
 <form action="MessCheckServlet" method="post">
   <div class="form-group">
     <label for="InputEmail">发送给用户：</label>
-    <input value="<%=toEmail%>" type="text" class="form-control" name="InputEmail" placeholder="输入用户邮箱">
+    <input value="<%=toEmail%>" type="text" class="form-control" name="InputEmailToSend" placeholder="输入用户邮箱">
   </div>
   <div class="form-group">
     <label for="InputMess">消息正文：</label>
