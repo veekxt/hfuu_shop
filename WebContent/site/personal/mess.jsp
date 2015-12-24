@@ -54,8 +54,13 @@ int maxPage=num.value%perPage==0?num.value/perPage:num.value/perPage+1;
 <%
 //访问了消息页，则将消息数量清零
 userHandle.emptyMessnum(me);
+%>
+<script>
+//前端消息数量清零
+document.getElementById("mess-number").innerHTML="0";
+</script>
+<%
 if(allMess.size()!=0){
-    
     for(int i=0;i<allMess.size();i++){
         Mess mess=allMess.get(i);
 %>

@@ -62,7 +62,7 @@
 			%>
 			<li><a href="user/personal.jsp?tab=shopcart&userid=<%=user.getId()%>">购物车(<span style="color: #d00;"
 					id="goodsNum"><%=goodsNum %></span>)</a></li>
-			<li><a href="user/personal.jsp?tab=mess&userid=<%=user.getId()%>">消息(<span style="color: #e00;"
+			<li><a href="user/personal.jsp?tab=mess&userid=<%=user.getId()%>">消息(<span id="mess-number" style="color: #e00;"
 					id="messNum"><%=messNum %></span>)</a></li>
 			<li class="dropdown"><a href="javascript:void(0)"
 				class="dropdown-toggle" data-toggle="dropdown" role="button"
