@@ -6,6 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
-<body>然而并没有内容
+<body>
+用户协议页面<br />
+并没有什么可写的
 </body>
 </html>

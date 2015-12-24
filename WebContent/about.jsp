@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-todo：关于
+关于页面<br />
+并没有什么可写的
 </body>
 </html>

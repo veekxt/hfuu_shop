@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import src.dbHandle.CollectHandle;
-import src.dbHandle.ShopCartHandle;
 import src.tools.LoginVerify;
 import src.vo.User;
 

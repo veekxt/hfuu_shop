@@ -24,7 +24,6 @@ public class CollectHandle {
     
     public boolean doCreate(int user_id,int goods_id)  throws Exception{
     	boolean flag = false;
-    	
         String sql="select user_id from `collect` where user_id="+user_id+" and goods_id="+goods_id;
         this.pstmt = this.conn.prepareStatement(sql);
         ResultSet rs = this.pstmt.executeQuery();
@@ -79,11 +78,11 @@ public class CollectHandle {
         return all;
     }
     //移除一个收藏夹物品
-    public boolean removeOneFromCollect(int goodId,int userId) throws Exception{
+    public boolean removeOneFromCollect(int goodsId,int userId) throws Exception{
 		Boolean flag=false;
 		String sql="Delete from `collect` where goods_id=? and user_id=?";
 	    pstmt=conn.prepareStatement(sql);
-	    pstmt.setInt(1, goodId);
+	    pstmt.setInt(1, goodsId);
 	    pstmt.setInt(2, userId);
 	    if (this.pstmt.executeUpdate() > 0) {
             flag = true;
