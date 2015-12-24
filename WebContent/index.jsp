@@ -151,3 +151,7 @@ int maxPage=num.value%perPage==0?num.value/perPage:num.value/perPage+1;
 	<jsp:include page="site/footer.jsp" />
 </body>
 </html>
+<%
+goodHandle.close();
+userHandle.close();
+%>

@@ -105,4 +105,14 @@ public class ShopCartHandle {
         return flag;
     } 
     
+	public void close() throws Exception {
+		if(this.conn != null){
+			try{
+				this.conn.close();
+			}catch(Exception e){
+				throw e ;
+			}
+		}
+	}
+    
 }

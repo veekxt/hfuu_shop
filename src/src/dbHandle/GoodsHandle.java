@@ -237,4 +237,14 @@ public class GoodsHandle {
         this.pstmt.close();
         return all;
     }
+    
+	public void close() throws Exception {
+		if(this.conn != null){
+			try{
+				this.conn.close();
+			}catch(Exception e){
+				throw e ;
+			}
+		}
+	}
 }
