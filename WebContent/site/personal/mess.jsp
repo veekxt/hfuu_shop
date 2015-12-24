@@ -11,7 +11,6 @@ if(!LoginVerify.isLogin(request)){
 	return;
 }
 User me=(User)session.getAttribute("loginUser");
-userHandle.emptyMessnum(me);
 
 int pn=1;
 String tmpString=request.getParameter("pn");
@@ -53,6 +52,8 @@ int maxPage=num.value%perPage==0?num.value/perPage:num.value/perPage+1;
 </div>
 <!-- 这里写消息列表 -->
 <%
+//访问了消息页，则将消息数量清零
+userHandle.emptyMessnum(me);
 if(allMess.size()!=0){
     
     for(int i=0;i<allMess.size();i++){
