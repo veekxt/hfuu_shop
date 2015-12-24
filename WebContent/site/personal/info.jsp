@@ -8,7 +8,16 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <%@ page import="java.text.SimpleDateFormat,java.sql.*,src.dbHandle.*,src.tools.*,javax.servlet.http.HttpSession,java.util.*,src.vo.*"%>
-
+<%
+//根据cache参数来决定是否使用缓存
+//解决上传新头像不刷新的问题
+String isCache=request.getParameter("cache");
+if(isCache!=null && isCache.equals("0")){
+	response.setHeader("Pragma","No-cache");
+	response.setHeader("Cache-Control","no-cache");
+	response.setDateHeader("Expires", 0);
+}
+%>
 <%
 UserHandle userHandle=new UserHandle();
 Boolean isLogined=LoginVerify.isLogin(request);

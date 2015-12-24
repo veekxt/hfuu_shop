@@ -34,6 +34,13 @@ public class UpdateUserImgServlet extends HttpServlet {
 		}
 		
 		User user=(User)(request.getSession().getAttribute("loginUser"));
+		UserHandle userHandle=new UserHandle();
+	    //更新信息，seesion中的user信息可能滞后！
+	    try {
+			user=userHandle.findById(user.getId());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 		Part part = request.getPart("file");
 		if(part==null){
 			response.sendRedirect("user/personal.jsp?tab=info&info="+java.net.URLEncoder.encode("请选择文件","UTF-8"));
@@ -41,11 +48,10 @@ public class UpdateUserImgServlet extends HttpServlet {
 		}
 		String savePath = request.getServletContext().getRealPath("static/user_img");
 		part.write(savePath+"/"+user.getId());
-		UserHandle userHandle=new UserHandle();
 		user.setImg("static/user_img/"+user.getId());
 		try {
 			userHandle.doUpdate(user);
-			response.sendRedirect("user/personal.jsp?tab=info&info="+java.net.URLEncoder.encode("头像更新成功","UTF-8"));
+			response.sendRedirect("user/personal.jsp?tab=info&info="+java.net.URLEncoder.encode("头像更新成功","UTF-8")+"&cache="+0);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {

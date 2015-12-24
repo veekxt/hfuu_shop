@@ -35,13 +35,16 @@
 			<button type="submit" class="btn btn-default">查找物品</button>
 		</form>
 
-		<% Boolean isLogined=LoginVerify.isLogin(request);
+		<% UserHandle userHandle=new UserHandle();
+		   Boolean isLogined=LoginVerify.isLogin(request);
 			User user=null;
 			String email="";
 			
 				//email 是邮箱或用户名（如果存在）
 		   if(isLogined){
 			   user=(User)session.getAttribute("loginUser");
+			   //更新信息，seesion中的user信息可能滞后！
+			   user=userHandle.findById(user.getId());
 			   email=(user.getName()==null || user.getName().length()==0)?user.getEmail():user.getName();
 		   }
                 %>
