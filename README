@@ -1,7 +1,3 @@
-引用了jquery和bootstrap
+引用了jquery和bootstrap，已经包含在WebContent/src/中了
 
-尚未完成第一个版本
-
-将于近期完成第一个版本
-
-12 - 23
+功能实现情况可以查看[releases](https://github.com/veekxt/HfuuShop/releases)
