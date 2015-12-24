@@ -129,7 +129,7 @@ Integer goodsNum=0;
 								</p>
 								<p>
 									<br />类型：<a target="_blank"
-										href="../index.jsp?ceta${good.getType_id()}"><%=typeName %></a><br />
+										href="<%=basePath %>index.jsp?ceta=${good.getType_id()}"><%=typeName %></a><br />
 									<br />
 								</p>
 								<p>

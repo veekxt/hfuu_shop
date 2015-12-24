@@ -21,6 +21,7 @@ public class RegisterServlet extends HttpServlet {
 		String email = request.getParameter("input_email");
 		String pwd = request.getParameter("input_password1");
 		String pwd2 = request.getParameter("input_password2");
+		String name= (request.getParameter("name")==null && request.getParameter("name").length()!=0)?"某用户":request.getParameter("name");
 		User user = new User();
 		boolean isRegister = false;
 		String isPwdSame="";
@@ -28,13 +29,14 @@ public class RegisterServlet extends HttpServlet {
 		String isEmail="";
 		UserHandle userHandle= new UserHandle();
 		try {
-			if (email.matches("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$")
+			if (email.matches("^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$")
 					&& ((userHandle.findByEmail(email)) == null)) {
-				if (pwd.matches("[A-Za-z0-9]{6,}")) {
+				if (pwd.matches("[A-Za-z0-9_]{6,}")) {
 					if (pwd2.equals(pwd)) {
 						pwd = MD5.getMD5(MD5.getMD5(pwd));
 						user.setEmail(email);
 						user.setPwd(pwd);
+						user.setName(name);
 						if (userHandle.doCreate(user)) {
 							isRegister = true;
 						}

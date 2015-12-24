@@ -128,9 +128,9 @@ if(allMess.size()!=0){
 <%}%>
 <nav>
   <ul class="pager">
-    <li class=""><a class="page-cut-btn" href="user/personal.jsp?tab=mess&userid=<%=user.getId()%>&pn=<%=pn<=1?1:pn-1%>"><span aria-hidden="true"></span><%=pn>1?"上一页":"位于首页"%></a></li>
+    <li class=""><a class="page-cut-btn" href="user/personal.jsp?tab=mess&userid=<%=me.getId()%>&pn=<%=pn<=1?1:pn-1%>"><span aria-hidden="true"></span><%=pn>1?"上一页":"位于首页"%></a></li>
     <li style=""><span style="border:0">    　　第<span style="color:red;border:0"><%=pn %></span>页　　</span></li>
-    <li class=""><a class="page-cut-btn" href="user/personal.jsp?tab=mess&userid=<%=user.getId()%>&pn=<%=pn>=maxPage?pn:pn+1%>"><%=pn<maxPage?"下一页":"位于末页"%><span aria-hidden="true"></span></a></li>
+    <li class=""><a class="page-cut-btn" href="user/personal.jsp?tab=mess&userid=<%=me.getId()%>&pn=<%=pn>=maxPage?pn:pn+1%>"><%=pn<maxPage?"下一页":"位于末页"%><span aria-hidden="true"></span></a></li>
   </ul>
 </nav>
 <%}else{%>
