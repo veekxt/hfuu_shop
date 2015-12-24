@@ -116,3 +116,7 @@ function buy_all(){
     xmlBuy.send(null);
 }
 </script>
+<%
+userHandle.close();
+shopCartHandle.close();
+%>

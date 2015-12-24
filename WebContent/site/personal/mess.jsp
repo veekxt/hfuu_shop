@@ -207,3 +207,7 @@ function delete_mess(messid){
 	xmlMess.send(null);
 }
 </script> 
+<%
+userHandle.close();
+messHandle.close();
+%>

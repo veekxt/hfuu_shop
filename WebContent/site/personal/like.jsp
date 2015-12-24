@@ -122,3 +122,8 @@ function delete_collect(goodsid){
 }
 
 </script>
+<%
+userHandle.close();
+goodHandle.close();
+collectHandle.close();
+%>

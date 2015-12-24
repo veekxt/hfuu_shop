@@ -84,8 +84,8 @@ public class GoodsCheckServlet extends HttpServlet {
 						request.setAttribute("isCheck", true);
 						int maxid = 0;
 						FileOutputStream fos = null;
+						GoodsHandle goodsHandle = new GoodsHandle();
 						try {
-							GoodsHandle goodsHandle = new GoodsHandle();
 							maxid = goodsHandle.getMaxId();
 							good.setId(maxid + 1);
 							int id = good.getId();
@@ -111,6 +111,7 @@ public class GoodsCheckServlet extends HttpServlet {
 							if (fos != null) {
 								fos.close();
 							}
+							goodsHandle.close();
 						}
 					} else {
 						fileCheck = "需要上传物品图片";

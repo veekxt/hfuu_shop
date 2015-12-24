@@ -13,10 +13,11 @@ Boolean isLogin=LoginVerify.isLogin(request);
 User me=null;
 User user=null;
 Integer userid=0;
-UserHandle userHandle=new UserHandle();
 if(request.getParameter("userid")!=null && request.getParameter("userid").length()!=0){
+	UserHandle userHandle=new UserHandle();
     userid=Integer.parseInt(request.getParameter("userid"));
     user=userHandle.findById(userid);
+    userHandle.close();
 }
 
 if(isLogin){

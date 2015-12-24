@@ -42,7 +42,9 @@ public class OrderCheckServlet extends HttpServlet {
                 response.sendRedirect(fromURL[0]+"&info="+java.net.URLEncoder.encode("购买失败","UTF-8"));
                 e.printStackTrace();
                 return;
-            }
+            }finally {
+            	orderHandle.close();
+			}
         }
         else{
             response.sendRedirect(fromURL[0]+"&info="+java.net.URLEncoder.encode("购买失败","UTF-8"));

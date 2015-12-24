@@ -48,6 +48,8 @@ public class UpdateUserImgServlet extends HttpServlet {
 			response.sendRedirect("user/personal.jsp?tab=info&info="+java.net.URLEncoder.encode("头像更新成功","UTF-8"));
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			userHandle.close();
 		}
 	}
 

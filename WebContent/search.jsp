@@ -10,15 +10,17 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <%
-UserHandle userHandle=new UserHandle();
 List<Goods> list= new ArrayList<Goods>();
 String key="";
+GoodsHandle goodsHandle=new GoodsHandle();
+UserHandle userHandle=new UserHandle();
 if(request.getParameter("key")==null || request.getParameter("key").length()==0){
     response.sendRedirect("index.jsp?ceta=0");
+    goodsHandle.close();
+    userHandle.close();
     return;
 }else{
     key=request.getParameter("key");
-    GoodsHandle goodsHandle=new GoodsHandle();
     try {
         list = goodsHandle.findByKey(key);
     } catch (Exception e) {
@@ -114,3 +116,7 @@ if(request.getParameter("key")==null || request.getParameter("key").length()==0)
     <jsp:include page="site/footer.jsp" />
 </body>
 </html>
+<%
+goodsHandle.close();
+userHandle.close();
+%>

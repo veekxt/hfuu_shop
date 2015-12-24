@@ -44,7 +44,9 @@ public class RemoveCollectServlet extends HttpServlet {
     		} catch (Exception e) {
     			e.printStackTrace();
     			response.getWriter().print("false");
-    		}
+    		}finally {
+    			collectHandle.close();
+			}
         }else{
         	response.getWriter().print("false");
         }   

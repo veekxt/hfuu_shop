@@ -42,7 +42,9 @@ public class CollectServlet extends HttpServlet {
                 goods=goodsHandle.findById(goodsId);
             } catch (Exception e1) {
                 e1.printStackTrace();
-            }
+            }finally {
+            	goodsHandle.close();
+			}
 			try {
 				if(goods!=null && goods.getStates()==2 && collectHandle.doCreate(userId, goodsId)){
 					response.getWriter().print("success");
@@ -53,6 +55,8 @@ public class CollectServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 				response.getWriter().print("error");
+			}finally {
+            	collectHandle.close();
 			}
 		} else {
 			response.getWriter().print("unLogin");

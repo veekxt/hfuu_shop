@@ -69,6 +69,8 @@ public class RegisterServlet extends HttpServlet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			userHandle.close();
 		}
 	}
 

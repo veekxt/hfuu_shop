@@ -38,7 +38,9 @@ public class ShoppingCartServlet extends HttpServlet {
                 goods=goodsHandle.findById(goodsId);
             } catch (Exception e1) {
                 e1.printStackTrace();
-            }
+            }finally {
+            	goodsHandle.close();
+			}
 			try {
 				if(goods!=null && goods.getStates()==2 && shopCartHandle.doSaveShoppingCart(0, goodsId, userId)){
 					response.getWriter().print("success");
@@ -49,6 +51,8 @@ public class ShoppingCartServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 				response.getWriter().print("error");
+			}finally {
+				shopCartHandle.close();
 			}
 		} else {
 			response.getWriter().print("unLogin");

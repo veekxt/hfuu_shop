@@ -51,6 +51,7 @@
                 if(user!=null){
                 	ShopCartHandle shopCartHandle=new ShopCartHandle();
                 	goodsNum = shopCartHandle.getShopCartNum(user.getId());
+                	shopCartHandle.close();//关闭连接
 					messNum=user.getMessnum();
 				}
 			%>

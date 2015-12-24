@@ -105,3 +105,7 @@ for(Goods goods:all)
 
 	</div>
 </div>
+<%
+userHandle.close();
+goodsHandle.close();
+%>

@@ -61,3 +61,7 @@ list=orderHandle.findGoodsByUser(me);
 	    	<%}%>
 	</div>
 </div>
+<%
+userHandle.close();
+orderHandle.close();
+%>

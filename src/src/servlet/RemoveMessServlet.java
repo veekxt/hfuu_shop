@@ -35,7 +35,9 @@ public class RemoveMessServlet extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
                 response.getWriter().print("false");
-            }
+            }finally {
+            	messHandle.close();
+			}
 	    }else{
 	        response.getWriter().print("false");
 	    }

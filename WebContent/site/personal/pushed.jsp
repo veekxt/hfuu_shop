@@ -72,3 +72,7 @@ SimpleDateFormat myFmt=new SimpleDateFormat("yyyy年MM月dd日 HH时mm分");
     </div>
 	</div>
 </div>
+<%
+userHandle.close();
+goodsHandle.close();
+%>

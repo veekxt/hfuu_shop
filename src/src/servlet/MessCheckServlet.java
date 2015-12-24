@@ -41,7 +41,9 @@ public class MessCheckServlet extends HttpServlet {
                 toUser=userHandle.findByEmail(toEmail);
             } catch (Exception e) {
                 e.printStackTrace();
-            }
+            }finally {
+				userHandle.close();
+			}
 	    }
 	    
 	    if(toUser!=null && toMess!=null && !toMess.equals("")){
@@ -54,7 +56,9 @@ public class MessCheckServlet extends HttpServlet {
                 response.sendRedirect("user/personal.jsp?tab=mess&userid="+fromUser.getId()+"&handle=write"+"&info="+java.net.URLEncoder.encode("消息已发送","UTF-8"));
             } catch (Exception e) {
                 e.printStackTrace();
-            }
+            }finally {
+				messHandle.close();
+			}
 	    }
 	    else{
 	        response.sendRedirect("user/personal.jsp?tab=mess&userid="+fromUser.getId()+"&handle=write"+"&info="+java.net.URLEncoder.encode("发送失败，检查你的输入","UTF-8"));

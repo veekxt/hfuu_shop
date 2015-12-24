@@ -47,6 +47,8 @@ public class AuditingServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 				response.getWriter().print("error");
+			}finally {
+				goodsHandle.close();
 			}
 		}else{
 			response.getWriter().print("error");

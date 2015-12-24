@@ -120,3 +120,6 @@ $(document).ready(function(){
     });
   });
 </script>
+<%
+userHandle.close();
+%>

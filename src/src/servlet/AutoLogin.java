@@ -62,6 +62,7 @@ public class AutoLogin implements Filter {
 				}
 			}
 		}
+		userHandle.close();
 		chain.doFilter(request, response);
 	}
 

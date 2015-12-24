@@ -39,7 +39,9 @@ public class BuyAllShopcartServlet extends HttpServlet {
             list = shopCartHandle.findGoodsByUser(user);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }finally {
+        	shopCartHandle.close();
+		}
         if(list!=null && list.size()!=0){
             OrderHandle orderHandle=new OrderHandle();
             Order order=new Order();
@@ -61,6 +63,8 @@ public class BuyAllShopcartServlet extends HttpServlet {
                 } catch (Exception e) {
                     e.printStackTrace();
                     listErr.add(goods);
+                }finally{
+                	orderHandle.close();
                 }
             }
             if(listSuc.size()>0){

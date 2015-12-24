@@ -229,3 +229,7 @@ Integer goodsNum=0;
 	<jsp:include page="../site/footer.jsp" />
 </body>
 </html>
+<%
+userHandle.close();
+goodsHandle.close();
+%>

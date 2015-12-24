@@ -45,7 +45,9 @@ public class RemoveShopCartServlet extends HttpServlet {
     		} catch (Exception e) {
     			e.printStackTrace();
     			response.getWriter().print("false");
-    		}
+    		}finally {
+    			shopCartHandle.close();
+			}
         }else{
         	response.getWriter().print("false");
         }   

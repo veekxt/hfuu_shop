@@ -59,6 +59,8 @@ public class UpdateUserInfoServlet extends HttpServlet {
 				} catch (Exception e) {
 					info="更新失败，数据库错误";
 					e.printStackTrace();
+				}finally {
+					userHandle.close();
 				}
 			}else{
 				info="更新失败，检查你的输入";
