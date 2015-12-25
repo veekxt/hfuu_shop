@@ -39,9 +39,12 @@
 .page-cut-btn{
 	background-color:#D9EDF7 !important;
 }
-/*首页分类列表*/
+/*首页分类列表，已弃用*/
 .index-ceta-list{
 	background-color:#D9EDF7 !important;
+}
+.active{
+	background-color:#5892EE !important;
 }
 pre{
 	white-space: pre-wrap;
