@@ -10,6 +10,31 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%
+//判断pn参数
+int pn=1;
+int perPage=StaticVar.PERPAGE_GOODS;//每页显示几条？
+int ceta=0;
+String tmpString=request.getParameter("pn");
+//获取pn参数
+if(tmpString!=null && tmpString.length()!=0){
+    if(Integer.parseInt(tmpString)>0){
+        pn=Integer.parseInt(tmpString);
+    }
+}
+//获取ceta参数
+tmpString=request.getParameter("ceta");
+if(tmpString!=null && tmpString.length()!=0){
+    if(Integer.parseInt(tmpString)>0){
+        ceta=Integer.parseInt(tmpString);
+    }
+}
+int limitMin=(pn-1)*perPage;
+GoodsHandle goodHandle=new GoodsHandle();
+UserHandle userHandle =new UserHandle();
+List <Goods> list=null;
+IntHolder num = new IntHolder(0);
+%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -26,44 +51,19 @@
 					<div class="col-md-12">
 						<div class="list-group">
 							<span class="list-group-item list-group-item-info">分类</span> 
-							<a href="index.jsp?ceta=0" class="list-group-item"><span class="badge"><!-- 这里写数量，暂时搁置 --></span>全部</a>
-							<a href="index.jsp?ceta=2" class="list-group-item"><span class="badge"></span>生活出行</a>
-							<a href="index.jsp?ceta=1" class="list-group-item"><span class="badge"></span>书籍</a> 
-							<a href="index.jsp?ceta=5" class="list-group-item"><span class="badge"></span>体育运动</a> 
-							<a href="index.jsp?ceta=4" class="list-group-item"><span class="badge"></span>电子产品</a>
-							<a href="index.jsp?ceta=3" class="list-group-item"><span class="badge"></span>衣物鞋包</a>
-							<a href="index.jsp?ceta=6" class="list-group-item"><span class="badge"></span>其他</a>
+							<a href="index.jsp?ceta=0" class="list-group-item <%=ceta==0?"index-ceta-list":"" %>"><span class="badge"><!-- 这里写数量，暂时搁置 --></span>全部</a>
+							<a href="index.jsp?ceta=2" class="list-group-item <%=ceta==2?"index-ceta-list":"" %>"><span class="badge"></span>生活出行</a>
+							<a href="index.jsp?ceta=1" class="list-group-item <%=ceta==1?"index-ceta-list":"" %>"><span class="badge"></span>书籍</a> 
+							<a href="index.jsp?ceta=5" class="list-group-item <%=ceta==5?"index-ceta-list":"" %>"><span class="badge"></span>体育运动</a> 
+							<a href="index.jsp?ceta=4" class="list-group-item <%=ceta==4?"index-ceta-list":"" %>"><span class="badge"></span>电子产品</a>
+							<a href="index.jsp?ceta=3" class="list-group-item <%=ceta==3?"index-ceta-list":"" %>"><span class="badge"></span>衣物鞋包</a>
+							<a href="index.jsp?ceta=6" class="list-group-item <%=ceta==6?"index-ceta-list":"" %>"><span class="badge"></span>其他</a>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-8">
 				<div class="list-group">
-				<%
-				//判断pn参数
-				int pn=1;
-				int perPage=StaticVar.PERPAGE_GOODS;//每页显示几条？
-				int ceta=0;
-				String tmpString=request.getParameter("pn");
-				//获取pn参数
-                if(tmpString!=null && tmpString.length()!=0){
-                    if(Integer.parseInt(tmpString)>0){
-                        pn=Integer.parseInt(tmpString);
-                    }
-                }
-				//获取ceta参数
-				tmpString=request.getParameter("ceta");
-                if(tmpString!=null && tmpString.length()!=0){
-                    if(Integer.parseInt(tmpString)>0){
-                        ceta=Integer.parseInt(tmpString);
-                    }
-                }
-				int limitMin=(pn-1)*perPage;
-				GoodsHandle goodHandle=new GoodsHandle();
-				UserHandle userHandle =new UserHandle();
-			    List <Goods> list=null;
-			    IntHolder num = new IntHolder(0);
-			    %>
 			    <%
 			    switch(ceta){
                 case 0:

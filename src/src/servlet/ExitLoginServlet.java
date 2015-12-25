@@ -15,7 +15,7 @@ public class ExitLoginServlet extends HttpServlet {
     public ExitLoginServlet() {
         super();
     }
-    
+    //退出登录，移除cookies和session属性
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().setAttribute("isLogined", false);
 		Cookie[] cookies=request.getCookies();

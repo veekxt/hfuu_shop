@@ -16,7 +16,7 @@ public class CharSet implements Filter {
 
 	public void destroy() {
 	}
-
+	//过滤器：设置编码,统一使用UTF-8
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");

@@ -39,7 +39,7 @@ public class AutoLogin implements Filter {
 		UserHandle userHandle = new UserHandle();
 		String emailCookie = null;
 		/*
-		 * 日后修复标记：这里仅用了email作为cookie并用于验证，极不安全
+		 * **重要**：//日后修复标记：这里仅用了email作为cookie并用于验证，极不安全
 		 */
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {

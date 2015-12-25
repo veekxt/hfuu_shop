@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
 		super();
 
 	}
-
+	//登录验证，设置session和coookies
 	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		String inputEmail = request.getParameter("inputEmail");
 		String inputPassword = request.getParameter("inputPassword");

@@ -30,6 +30,7 @@ public class CollectServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    //添加一个物品到收藏夹
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (LoginVerify.isLogin(request)) {
 			User user = (User) request.getSession().getAttribute("loginUser");

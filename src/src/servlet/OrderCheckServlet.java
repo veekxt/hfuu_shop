@@ -18,7 +18,7 @@ public class OrderCheckServlet extends HttpServlet {
     public OrderCheckServlet() {
         super();
     }
-    
+   //订单验证
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String messageToSeller = request.getParameter("message-to-seller");
         Boolean isLogined = LoginVerify.isLogin(request);

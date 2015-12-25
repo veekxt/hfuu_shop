@@ -27,7 +27,7 @@ public class RemoveCollectServlet extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * 从收藏夹移除一个物品
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer goodsId = Integer.parseInt(request.getParameter("goodsid"));

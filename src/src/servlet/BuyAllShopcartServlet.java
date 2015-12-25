@@ -46,8 +46,10 @@ public class BuyAllShopcartServlet extends HttpServlet {
             OrderHandle orderHandle=new OrderHandle();
             Order order=new Order();
             Date date=new Date();
+            //使用两个list来收集失败和成功的物品
             List <Goods> listSuc = new ArrayList<Goods>();
             List <Goods> listErr = new ArrayList<Goods>();
+            
             for(Goods goods:list){
                 order.setGoodsId(goods.getId());
                 order.setUserId(user.getId());
@@ -56,6 +58,7 @@ public class BuyAllShopcartServlet extends HttpServlet {
                 try {
                     if(orderHandle.doCreate(order)){
                         listSuc.add(goods);
+                        //购买成功则移除
                         shopCartHandle.removeList(goods.getId(), user.getId());
                     }else{
                         listErr.add(goods);
