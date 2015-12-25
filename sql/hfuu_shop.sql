@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50546
 File Encoding         : 65001
 
-Date: 2015-12-24 16:02:51
+Date: 2015-12-25 16:05:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -65,8 +65,9 @@ INSERT INTO `goods` VALUES ('13', 'static/goods_img/13.jpg', '4', '诺基亚830�
 INSERT INTO `goods` VALUES ('14', 'static/goods_img/14.jpg', '2', '室内物品收纳架，多功能免钉可伸缩衣柜分层隔板', '1', '11', '2', '多功能免钉无痕衣柜分层架，', '123', '2015-12-24 09:26:42');
 INSERT INTO `goods` VALUES ('15', 'static/goods_img/15.jpg', '3', '沃曼威斯韩版夜光双肩包大容量个性背包', '1', '50', '2', '书包，8成新\r\n', '123', '2015-12-24 09:36:38');
 INSERT INTO `goods` VALUES ('16', 'static/goods_img/16.jpg', '4', '华为荣耀4x手机', '1', '450', '2', '移动4g标配版在保九新，京东抢购的，配件发票箱盒齐全，已经贴好钢化膜，送一软壳，便框有些许磕碰，不明显，屏幕右上方有出厂黄斑，4x通病，买回来就这样，无拆无修，特价处理。不议价，顺丰到付。', '10', '2015-12-24 15:30:13');
-INSERT INTO `goods` VALUES ('17', 'static/goods_img/17.jpg', '4', '畅学STM32开发学习板，配套stm32f103c8t6最小系统核心板', '1', '67', '2', '畅学STM32开发学习板，所有模块均可用', '10', '2015-12-24 15:34:45');
-INSERT INTO `goods` VALUES ('18', 'static/goods_img/18.jpg', '1', '地球往事系列小说 ，三体1+三体2黑暗森林+三体3死神永生', '1', '72', '2', '重庆出版集团出版\r\n全部是正版\r\nISBN编号: 9787536693968', '10', '2015-12-24 15:43:54');
+INSERT INTO `goods` VALUES ('17', 'static/goods_img/17.jpg', '4', '畅学STM32开发学习板，配套stm32f103c8t6最小系统核心板', '1', '67', '1', '畅学STM32开发学习板，所有模块均可用', '10', '2015-12-24 15:34:45');
+INSERT INTO `goods` VALUES ('18', 'static/goods_img/18.jpg', '1', '地球往事系列小说 ，三体1+三体2黑暗森林+三体3死神永生', '1', '72', '1', '重庆出版集团出版\r\n全部是正版\r\nISBN编号: 9787536693968', '10', '2015-12-24 15:43:54');
+INSERT INTO `goods` VALUES ('19', 'static/goods_img/19.jpg', '1', '《1984》(精装珍藏本) 奥威尔著  世界名著小说', '1', '23', '1', '全新\r\n中国画报出版社出版\r\n译者: 林东泰\r\nISBN编号: 9787514601312\r\n2011年08月', '10', '2015-12-25 15:57:39');
 
 -- ----------------------------
 -- Table structure for `message`
@@ -80,7 +81,7 @@ CREATE TABLE `message` (
   `mess_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `mess_type` int(11) DEFAULT NULL,
   PRIMARY KEY (`mess_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of message
@@ -141,7 +142,7 @@ INSERT INTO `user` VALUES (null, '1', 'hfuu_shop@163.com', '8560ef54213c8b32e89a
 INSERT INTO `user` VALUES ('static/user_img/9', '9', 'dandan@qq.com', '14e1b600b1fd579f47433b88e8d85291', '朱雷雷', null, null, '', '0');
 INSERT INTO `user` VALUES ('static/user_img/10', '10', 'veekxt@gmail.com', '14e1b600b1fd579f47433b88e8d85291', '解涛', null, null, '15256925578', '0');
 INSERT INTO `user` VALUES ('static/user_img/123', '123', '1300573251@qq.com', '191016dc3346309bee3403f55f77e871', '张剑', null, null, null, '0');
-INSERT INTO `user` VALUES (null, '1017', '1050026@qq.com', 'acd09f1f204179b957001f53f411899b', '陈生辉', null, null, '13245634567', '0');
+INSERT INTO `user` VALUES ('static/user_img/0', '1017', '1050026@qq.com', 'acd09f1f204179b957001f53f411899b', '陈生辉', null, null, '13245634567', '0');
 INSERT INTO `user` VALUES ('static/user_img/1019', '1019', '18256989168@163.com', '191016dc3346309bee3403f55f77e871', '张剑', null, null, null, '0');
 INSERT INTO `user` VALUES (null, '1020', '121@qq.com', '14e1b600b1fd579f47433b88e8d85291', null, null, null, null, '0');
 INSERT INTO `user` VALUES (null, '1021', 'leilei@qq.com', '14e1b600b1fd579f47433b88e8d85291', null, null, null, null, '0');
@@ -164,7 +165,6 @@ DELIMITER ;
 DROP TRIGGER IF EXISTS `change_user_mess_num`;
 DELIMITER ;;
 CREATE TRIGGER `change_user_mess_num` AFTER INSERT ON `message` FOR EACH ROW update user set mess_num=mess_num+1 where id=new.mess_to_id
-;
 ;;
 DELIMITER ;
 DROP TRIGGER IF EXISTS `update_goods_status`;
