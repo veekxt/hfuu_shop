@@ -41,5 +41,9 @@
 }
 /*首页分类列表*/
 .index-ceta-list{
-	background-color:#C0CEF6 !important;
+	background-color:#D9EDF7 !important;
+}
+pre{
+	white-space: pre-wrap;
+	word-wrap: break-word;
 }
