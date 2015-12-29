@@ -5,7 +5,8 @@ import javax.servlet.http.HttpSession;
 import src.vo.*;
 
 public class LoginVerify {
-	//登录验证方法
+	//登录验证
+	//判断是否为管理员登录
 	public static boolean isAdmin(HttpServletRequest request){
 		HttpSession ses=request.getSession();
 		if(isLogin(request) && ((User)ses.getAttribute("loginUser")).getId()<1000){
@@ -13,7 +14,7 @@ public class LoginVerify {
 		}
 		return false;
 	}
-	
+	//是否已经登录
 	public static boolean isLogin(HttpServletRequest request){
 		HttpSession ses=request.getSession();
 		if(ses.getAttribute("isLogined")!=null
