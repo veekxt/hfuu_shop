@@ -71,6 +71,7 @@ if(isLogin){
 	<jsp:include page="../site/header.jsp" flush="true" />
 	<%
 int goodsId=Integer.parseInt(request.getParameter("goodsid"));
+	
 Integer goodsNum=0;
 	GoodsHandle goodsHandle=new GoodsHandle();
 	UserHandle userHandle=new UserHandle();
@@ -177,8 +178,13 @@ Integer goodsNum=0;
 								<p>
 								请输入给卖家的附加消息，然后点击 "确定" 按钮，我们将会通知卖家。
 								</p>
-								
-								<form action="OrderCheckServlet?goodsid=<%=request.getParameter("goodsid")%>&userid=<%=((User)session.getAttribute("loginUser")).getId()%>" method="post">
+								<%
+									User guser = (User)session.getAttribute("loginUser");
+									int guserid = 0;
+									if(guser != null)
+										guserid = guser.getId();
+								%>
+								<form action="OrderCheckServlet?goodsid=<%=request.getParameter("goodsid")%>&userid=<%=guserid%>" method="post">
 								  <div class="form-group">
 								    <textarea class="form-control" name="message-to-seller" id="message-to-seller"></textarea>
 								  </div>
