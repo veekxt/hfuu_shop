@@ -40,7 +40,7 @@ public class BuyAllShopcartServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
-        	shopCartHandle.close();
+        	;
 		}
         if(list!=null && list.size()!=0){
             OrderHandle orderHandle=new OrderHandle();
@@ -67,9 +67,10 @@ public class BuyAllShopcartServlet extends HttpServlet {
                     e.printStackTrace();
                     listErr.add(goods);
                 }finally{
-                	orderHandle.close();
+                	;
                 }
             }
+            orderHandle.close();
             if(listSuc.size()>0){
                 resOut.println("<p>物品：</p><p>");
                 for(int i=0;i<listSuc.size();i++){
@@ -85,6 +86,8 @@ public class BuyAllShopcartServlet extends HttpServlet {
                 resOut.println("</p><p>购买失败</p>");
             }
         }
+        
+        shopCartHandle.close();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
