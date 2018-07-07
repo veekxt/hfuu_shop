@@ -71,7 +71,7 @@ public class OrderHandle {
             good.setCreatDate(date);
             all.add(good);
         }
-        this.pstmt.close();
+        rs.close();this.pstmt.close();
         return all;
     }
     

@@ -62,7 +62,7 @@ public class MessHandle {
         if(rs.next()){
         	num.value=rs.getInt(1);
         }
-        this.pstmt.close();
+        rs.close();this.pstmt.close();
         return all;
     }
     

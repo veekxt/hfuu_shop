@@ -42,7 +42,7 @@ public class GoodsHandle {
             java.util.Date date=new  java.util.Date(timeStamp.getTime());
             goods.setCreatDate(date);
         }
-        this.pstmt.close();
+        rs.close();this.pstmt.close();
         return goods;
     }
 
@@ -102,7 +102,7 @@ public class GoodsHandle {
         if(rs.next()){
         	num.value=rs.getInt(1);
         }
-        this.pstmt.close();
+        rs.close();this.pstmt.close();
         return all;
     }
 
@@ -127,7 +127,7 @@ public class GoodsHandle {
             good.setCreatDate(date);
             all.add(good);
         }
-        this.pstmt.close();
+        rs.close();this.pstmt.close();
         return all;
     }
 
@@ -182,7 +182,7 @@ public class GoodsHandle {
         if(rs.next()){
         	num.value=rs.getInt(1);
         }
-        this.pstmt.close();
+        rs.close();this.pstmt.close();
         return all;
     }
     
@@ -208,7 +208,7 @@ public class GoodsHandle {
             good.setCreatDate(date);
             all.add(good);
         }
-        this.pstmt.close();
+        rs.close();this.pstmt.close();
         return all;
     }
     
@@ -234,7 +234,7 @@ public class GoodsHandle {
             good.setStates(rs.getInt(10));
             all.add(good);
         }
-        this.pstmt.close();
+        rs.close();this.pstmt.close();
         return all;
     }
     

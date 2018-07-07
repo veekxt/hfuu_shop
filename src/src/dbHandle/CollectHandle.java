@@ -39,7 +39,7 @@ public class CollectHandle {
         if (this.pstmt.executeUpdate() > 0) {
             flag = true;
         }
-        this.pstmt.close();
+        rs.close();this.pstmt.close();
         return flag;
     }
     
@@ -74,7 +74,7 @@ public class CollectHandle {
         if(rs.next()){
         	num.value=rs.getInt(1);
         }
-        this.pstmt.close();
+        rs.close();this.pstmt.close();
         return all;
     }
     //移除一个收藏夹物品

@@ -50,7 +50,7 @@ public class ShopCartHandle {
         if (this.pstmt.executeUpdate() > 0) {
             flag = true;
         }
-        this.pstmt.close();
+        rs.close();this.pstmt.close();
         return flag;
     }
     //查找user所有购物车内物品
@@ -76,7 +76,7 @@ public class ShopCartHandle {
             good.setCreatDate(date);
             all.add(good);
         }
-        this.pstmt.close();
+        rs.close();this.pstmt.close();
         return all;
     }
     //移除购物车的一个物品

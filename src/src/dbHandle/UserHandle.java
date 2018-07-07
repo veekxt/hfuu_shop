@@ -98,7 +98,7 @@ public class UserHandle{
 			user.setImg(rs.getString(8)) ;
 			user.setMessnum(rs.getInt(7)) ;
 		}
-		this.pstmt.close();
+		rs.close();this.pstmt.close();
 		return user ;
 	}
 	public User findByEmail(String str) throws Exception{
@@ -118,7 +118,7 @@ public class UserHandle{
 			user.setImg(rs.getString(8)) ;
 			user.setMessnum(rs.getInt(7)) ;
 		}
-		this.pstmt.close();
+		rs.close();this.pstmt.close();
 		return user ;
 	}
 	

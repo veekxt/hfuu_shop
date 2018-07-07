@@ -20,7 +20,7 @@
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
 		<a class="navbar-brand" href="<%=basePath %>index.jsp?ceta=0"
-			style="font-size: 24px">合肥学院物品交易网</a>
+			style="font-size: 24px">合肥学院物品交易(demo)</a>
 	</div>
 
 	<!-- Collect the nav links, forms, and other content for toggling -->
