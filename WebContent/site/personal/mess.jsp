@@ -1,4 +1,4 @@
-<%@page import="org.omg.CORBA.IntHolder"%>
+<%@page import="src.tools.IntHolder"%>
 <%/*
 个人信息页，被/personal包含，非自己只显示公开信息
 */%>

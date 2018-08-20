@@ -4,7 +4,7 @@ public class DatabaseConnection {
 	private static final String DBDRIVER = "com.mysql.jdbc.Driver" ; 
 	private static final String DBURL = "jdbc:mysql://127.0.0.1:3306/hfuu_shop" ;
 	private static final String DBUSER = "root" ;
-	private static final String DBPASSWORD = "44222" ;
+	private static final String DBPASSWORD = "loroot" ;
 	private Connection conn ;
 	public DatabaseConnection() throws Exception {
 		Class.forName(DBDRIVER) ;

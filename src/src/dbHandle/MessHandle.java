@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.omg.CORBA.IntHolder;
+import src.tools.IntHolder;
 
 import src.dbc.DatabaseConnection;
 import src.vo.*;
