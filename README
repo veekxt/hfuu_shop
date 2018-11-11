@@ -1,4 +1,6 @@
-demo: https://veekxt.com/HfuuShop
+demo: http://veekxt.com/hfuu_shop
+
+测试用户：邮箱：veekxt@gmail.com 密码: 123456
 
 引用了jquery和bootstrap，已经包含在WebContent/src/中了
 
